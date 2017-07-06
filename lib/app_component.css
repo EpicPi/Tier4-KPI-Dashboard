@@ -1,3 +1,16 @@
-:host {
-    /* This is equivalent of the 'body' selector of a page. */
+body {
+    font: 15px/20px 'Segoe UI', 'Open Sans', Verdana, Arial;
+    margin: 0;
+    padding: 24px;
+}
+
+button {
+    font: inherit;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    padding: 4px 8px;
+}
+
+canvas {
+    border: 1px solid;
 }

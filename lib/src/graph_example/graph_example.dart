@@ -5,10 +5,14 @@ import 'dart:math';
 final random = new Random();
 
 int rand(int min, int max) => random.nextInt(max - min) + min;
+var chart;
+var table = new DataTable([
+  ['Browser', 'Share'],
+  ['Memory', 25],
+  ['CPU', 75],
+  ['Disk', 40]
+]);
 
-void main() {
-  createGaugeChart();
-}
 
 Element createContainer() {
   var e = new DivElement()
@@ -19,23 +23,33 @@ Element createContainer() {
   document.body.append(e);
   return e;
 }
+void change()
+{
+  disableAllButtons();
+  for (var row in table.rows) {
+    for (var i = 1; i < table.columns.length; i++) {
+      row[i] = rand(0, 101);
+    }
+  }
+  chart.update();
+}
+void disableAllButtons() {
+  changeDataButton.disabled = true;
+  insertRemoveRowButton.disabled = true;
+}
+var changeDataButton = new ButtonElement()..text = 'Change data';
+
+var insertRemoveRowButton = new ButtonElement()
+  ..text = 'Insert/remove data row';
 
 void createGaugeChart() {
-  var changeDataButton = new ButtonElement()..text = 'Change data';
   document.body.append(changeDataButton);
-
-  var insertRemoveRowButton = new ButtonElement()
-    ..text = 'Insert/remove data row';
   document.body.append(insertRemoveRowButton);
 
+
   var container = createContainer();
-  var table = new DataTable([
-    ['Browser', 'Share'],
-    ['Memory', 25],
-    ['CPU', 75],
-    ['Disk', 40]
-  ]);
-  var chart = new GaugeChart(container);
+
+  chart = new GaugeChart(container);
   chart.draw(table, {
     'animation': {
       'easing': (double t) {
@@ -51,19 +65,10 @@ void createGaugeChart() {
     'title': {'text': 'Gauge Chart Demo'},
   });
 
-  void disableAllButtons() {
-    changeDataButton.disabled = true;
-    insertRemoveRowButton.disabled = true;
-  }
+
 
   changeDataButton.onClick.listen((_) {
-    disableAllButtons();
-    for (var row in table.rows) {
-      for (var i = 1; i < table.columns.length; i++) {
-        row[i] = rand(0, 101);
-      }
-    }
-    chart.update();
+
   });
 
   var insertRow = true;
