@@ -1,17 +1,15 @@
 name: kpi_dash
-description: A web app that uses AngularDart Components
+description: A key performance indicies dashbaord for business reporting and acountability
 version: 0.0.1
-#homepage: https://www.example.com
-#author: Piyush <email@example.com>
-
+#homepage: https://www.kancharlawar.com
+#author: Piyush <piyush@kancharlawar.com>
+#author: Pranav <email@email.com>
 environment:
   sdk: '>=1.24.0 <2.0.0'
 
 dependencies:
   angular2: ^3.0.0
   angular_components: ^0.5.1
-  modern_charts: ^0.1.7
-  chartjs: ^0.4.0
 
 dev_dependencies:
   angular_test: ^1.0.0-beta+2
@@ -28,8 +26,6 @@ transformers:
     $include: test/**_test.dart
 - dart_to_js_script_rewriter
 
-# Uncomment the following in sdk 1.24+ to make pub serve
-# use dartdevc (webdev.dartlang.org/tools/dartdevc).
-#web:
-#  compiler:
-#    debug: dartdevc
+web:
+  compiler:
+    debug: dartdevc

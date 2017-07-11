@@ -37,16 +37,9 @@ final globalOptions = {
   // The color list used to render the series. If there are more series than
   // colors, the colors will be reused.
   'colors': [
-    '#7cb5ec',
-    '#434348',
-    '#90ed7d',
-    '#f7a35c',
-    '#8085e9',
-    '#f15c80',
-    '#e4d354',
-    '#8085e8',
-    '#8d4653',
-    '#91e8e1'
+    '#ed312a',
+    '#f2dd26',
+    '#74f126',
   ],
 
   // Map - An object that controls the legend.
@@ -298,20 +291,11 @@ class Chart {
     return result;
   }
 
-  /// Counts the number of visible series up to (but not including) the [end]th
-  /// series.
-  int _countVisibleSeries([int end]) {
-    end ??= _seriesStates.length;
-    return _seriesStates
-        .take(end)
-        .where((e) => e.index >= _VisibilityState.showing.index)
-        .length;
-  }
-
   String _getColor(int index) {
     var colors = _options['colors'] as List<String>;
     return colors[index % colors.length];
   }
+
 
   String _getHighlightColor(String color) => _changeColorAlpha(color, .5);
 
