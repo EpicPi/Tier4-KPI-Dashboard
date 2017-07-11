@@ -126,7 +126,7 @@ class GaugeChart extends Chart {
   _Entity _createEntity(int seriesIndex, int entityIndex, value, String color,
       String highlightColor) {
     // Override the colors.
-    color = _getColor(entityIndex);
+    color = _getColorByValue(value);
     highlightColor = _changeColorAlpha(color, .5);
 
     var name = _dataTable.rows[entityIndex][0];
@@ -152,7 +152,7 @@ class GaugeChart extends Chart {
     var n = _dataTable.rows.length;
     for (var i = 0; i < n; i++) {
       var gauge = _seriesList[0].entities[i] as _Gauge;
-      var color = _getColor(i);
+      var color = _getColorByValue(_dataTable.rows[i][1]);
       var highlightColor = _changeColorAlpha(color, .5);
       gauge
         ..index = i

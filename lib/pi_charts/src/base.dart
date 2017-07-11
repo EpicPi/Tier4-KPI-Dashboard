@@ -296,6 +296,14 @@ class Chart {
     return colors[index % colors.length];
   }
 
+  String _getColorByValue(int value) {
+    var colors = _options['colors'] as List<String>;
+    if(value<33)
+      return colors[0];
+    if(value<66)
+      return colors[1];
+    return colors[2];
+    }
 
   String _getHighlightColor(String color) => _changeColorAlpha(color, .5);
 

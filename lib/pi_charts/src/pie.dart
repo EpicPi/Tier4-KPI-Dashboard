@@ -208,7 +208,7 @@ class PieChart extends Chart {
   _Entity _createEntity(int seriesIndex, int entityIndex, value, String color,
       String highlightColor) {
     // Override the colors.
-    color = _getColor(entityIndex);
+    color = _getColorByValue(value);
     highlightColor = _changeColorAlpha(color, .5);
     var name = _dataTable.rows[entityIndex][0];
     var startAngle = _startAngle;
@@ -255,7 +255,7 @@ class PieChart extends Chart {
 
     for (var i = 0; i < pieCount; i++) {
       var pie = pies[i];
-      var color = _getColor(i);
+      var color = _getColorByValue(_dataTable.rows[i][1]);
       pie.index = i;
       pie.name = _dataTable.rows[i][0];
       pie.color = color;
