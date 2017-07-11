@@ -11,6 +11,13 @@ button {
     padding: 4px 8px;
 }
 
-canvas {
-    border: 1px solid;
+/*canvas {*/
+    /*border: 1px solid;*/
+/*}*/
+
+.graph-main{
+    height: 400px;
+    width: 800px;
+    max-width: 100%;
+    margin-bottom: 50px;
 }
