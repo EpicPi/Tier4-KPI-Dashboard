@@ -13,12 +13,7 @@ import 'package:kpi_dash/src/summary_component/summary_component.dart';
   selector: 'my-app',
   styleUrls: const ['app_component.css'],
   templateUrl: 'app_component.html',
-  directives: const [materialDirectives, GraphExampleComponent],
+  directives: const [materialDirectives, SummaryComponent],
   providers: const [materialProviders],
 )
-class AppComponent implements OnInit{
-
-  @override
-  ngOnInit() {
-  }
-}
+class AppComponent{}

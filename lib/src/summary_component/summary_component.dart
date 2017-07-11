@@ -7,14 +7,16 @@ import 'package:kpi_dash/pi_charts/pi_charts.dart';
   styleUrls: const ['summary_component.css'],
   templateUrl: 'summary_component.html',
 )
-class GraphExampleComponent implements AfterContentInit, AfterViewInit {
+class SummaryComponent implements AfterContentInit, AfterViewInit {
   @ViewChild('canvasMain')
   ElementRef canvas;
   CanvasElement canvasElement;
 
   var table = new DataTable([
     ['Browser', 'Share'],
-    ['Memory', 25],
+    ['Goal1', 25],
+    ['Goal2',50],
+    ['Goal3', 97]
   ]);
 
   var insertRow = true;
@@ -28,5 +30,6 @@ class GraphExampleComponent implements AfterContentInit, AfterViewInit {
   @override
   ngAfterViewInit() {
     createGaugeChart(canvasElement,table);
+
   }
 }
