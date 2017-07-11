@@ -296,6 +296,7 @@ class Chart {
     return colors[index % colors.length];
   }
 
+  //TODO have this be incremental as in each percentage has an individual color
   String _getColorByValue(int value) {
     var colors = _options['colors'] as List<String>;
     if(value<33)

@@ -234,13 +234,6 @@ class PieChart extends Chart {
 
   @override
   void _updateSeries([int index]) {
-    // Example data table:
-    //   Browser  Share
-    //   Chrome   .35
-    //   IE       .30
-    //   Firefox  .20
-    //   Other    .15
-
     var sum = 0.0;
     var startAngle = _startAngle;
     var pieCount = _dataTable.rows.length;

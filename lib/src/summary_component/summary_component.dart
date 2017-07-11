@@ -14,8 +14,8 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
 
   var table = new DataTable([
     ['Browser', 'Share'],
-    ['Goal1', 75],
-    ['Goal2',50],
+    ['Goal1', 34],
+    ['Goal2',67],
     ['Goal3', 97]
   ]);
 
