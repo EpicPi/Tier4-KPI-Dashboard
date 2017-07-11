@@ -202,3 +202,8 @@ class GaugeChart extends Chart {
     _defaultOptions['legend']['position'] = 'none';
   }
 }
+void createGaugeChart(CanvasElement canvasElement, DataTable table) {
+  new GaugeChart(canvasElement)..draw(table, {
+    'animation': {'easing': (t) => t}
+  });
+}
