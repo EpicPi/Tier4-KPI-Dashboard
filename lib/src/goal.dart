@@ -5,7 +5,7 @@ class Goal
   String name;
   String detail;
   var strategies;
-  Goal(this.name)
+  Goal(this.name, this.detail)
   {
     strategies = new List<Strategy>();
   }
@@ -16,6 +16,6 @@ class Goal
       {
         total += strat.percentage;
       }
-    return total/strategies.length;
+    return total/strategies.length ?? 0;
   }
 }

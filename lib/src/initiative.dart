@@ -5,11 +5,18 @@ class Initiative
   String name;
   String detail;
   var directives;
-  num value;
-  num percentage;
-  Initiative(this.name)
+  Initiative(this.name,this.detail)
   {
     directives = new List<Directive>();
   }
 
+  num get percentage
+  {
+    var total =0;
+    for(var strat in directives)
+    {
+      total += strat.percentage;
+    }
+    return total/directives.length ?? 0;
+  }
 }
