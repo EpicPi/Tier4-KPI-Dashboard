@@ -68,6 +68,7 @@ class _Pie extends _Entity {
       if (startAngle > endAngle) angle -= _2PI;
     }
 
+
     if (startAngle <= endAngle) {
       // Clockwise.
       return isInRange(angle, startAngle, endAngle);
@@ -75,6 +76,12 @@ class _Pie extends _Entity {
       // Counterclockwise.
       return isInRange(angle, endAngle, startAngle);
     }
+  }
+  bool containsPointGeneral(Point p)
+  {
+    p -= center;
+    var mag = p.magnitude;
+    return !(mag > outerRadius);
   }
 
   @override

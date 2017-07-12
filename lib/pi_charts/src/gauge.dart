@@ -187,7 +187,16 @@ class GaugeChart extends Chart {
     return -1;
   }
 
+  int getEntityGroupIndexGeneral(num x, num y){
+    var p = new Point(x,y);
+    for(_Gauge g in _seriesList[0].entities){
+      if(g.containsPointGeneral(p)) return g.index;
+    }
+  }
+
+
   @override
+
   Point _getTooltipPosition() {
     var gauge = _seriesList[0].entities[_focusedEntityIndex] as _Gauge;
     var x = gauge.center.x - _tooltip.offsetWidth ~/ 2;
