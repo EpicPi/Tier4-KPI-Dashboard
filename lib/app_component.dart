@@ -4,6 +4,7 @@
 import 'package:angular2/angular2.dart';
 import 'package:angular_components/angular_components.dart';
 
+import 'package:kpi_dash/src/goals_service.dart';
 import 'package:kpi_dash/src/summary_component/summary_component.dart';
 
 // AngularDart info: https://webdev.dartlang.org/angular
@@ -16,4 +17,11 @@ import 'package:kpi_dash/src/summary_component/summary_component.dart';
   directives: const [materialDirectives, SummaryComponent],
   providers: const [materialProviders],
 )
-class AppComponent{}
+class AppComponent implements OnInit{
+  var goals;
+  @override
+  ngOnInit() {
+   goals = GoalsService.goals;
+
+  }
+}

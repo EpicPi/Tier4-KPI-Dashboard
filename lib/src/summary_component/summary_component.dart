@@ -11,7 +11,7 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
   @ViewChild('canvasMain')
   ElementRef canvas;
   CanvasElement canvasElement;
-
+  var goals;
   var table = new DataTable([
     ['Browser', 'Share'],
     ['Goal1', 34],
@@ -29,6 +29,7 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
 
   @override
   ngAfterViewInit() {
+    goals =
     createGaugeChart(canvasElement,table);
 
   }
