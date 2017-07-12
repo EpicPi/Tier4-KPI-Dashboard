@@ -29,8 +29,8 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
 
   @override
   ngAfterViewInit() {
-    goals =
-    createGaugeChart(canvasElement,table);
+//    goals =
+    var chart = createGaugeChart(canvasElement,table);
 
   }
 }

@@ -180,7 +180,7 @@ class PieChart extends Chart {
   }
 
   @override
-  int _getEntityGroupIndex(num x, num y) {
+  int getEntityGroupIndex(num x, num y) {
     var p = new Point(x, y);
     var entities = _seriesList.first.entities;
     for (var i = entities.length - 1; i >= 0; i--) {

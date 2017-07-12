@@ -720,7 +720,7 @@ class Chart {
   /// specified by [x] and [y].
   ///
   /// To be overridden.
-  int _getEntityGroupIndex(num x, num y) => -1;
+  int getEntityGroupIndex(num x, num y) => -1;
 
   /// Handles `mousemove` or `touchstart` events to highlight appropriate
   /// points/bars/pies/... as well as update the tooltip.
@@ -730,7 +730,7 @@ class Chart {
     var rect = _context.canvas.getBoundingClientRect();
     var x = e.client.x - rect.left;
     var y = e.client.y - rect.top;
-    var index = _getEntityGroupIndex(x, y);
+    var index = getEntityGroupIndex(x, y);
 
     if (index != _focusedEntityIndex) {
       _focusedEntityIndex = index;

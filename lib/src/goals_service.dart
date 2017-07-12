@@ -20,7 +20,7 @@ class GoalsService {
               "intiative detail $i of ${strategy.name} of ${goal.name}"));
         for (var init in strategy.initiatives) {
           for (int i = 0; i < 3; i++) {
-            init.add(new Directive(
+            init.directives.add(new Directive(
                 "directive $i of ${init.name} of ${strategy.name} of ${goal.name}",
                 "directive detail $i of ${init.name} of ${strategy.name} of ${goal.name}"));
           }
