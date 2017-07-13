@@ -15,7 +15,7 @@ class Goal {
     for (var strat in strategies) {
       total += strat.percentage;
     }
-    return total / strategies.length ?? 0;
+    return total ~/ strategies.length ?? 0;
   }
 
   DataTable get dataTable {

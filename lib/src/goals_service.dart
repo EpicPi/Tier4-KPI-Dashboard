@@ -25,7 +25,9 @@ class GoalsService {
           for (int i = 0; i < 3; i++) {
             init.directives.add(new Directive(
                 "directive $i of ${init.name} of ${strategy.name} of ${goal.name}",
-                "directive detail $i of ${init.name} of ${strategy.name} of ${goal.name}"));
+                "directive detail $i of ${init.name} of ${strategy.name} of ${goal.name}")
+            ..maxValue = 100
+            ..value=rng.nextInt(100));
           }
         }
       }

@@ -14,12 +14,11 @@ class Strategy
 
   num get percentage
   {
-    return val;
-//    var total =0;
-//    for(var strat in initiatives)
-//    {
-//      total += strat.percentage;
-//    }
-//    return total/initiatives.length ?? 0;
+    var total =0;
+    for(var strat in initiatives)
+    {
+      total += strat.percentage;
+    }
+    return total~/initiatives.length ?? 0;
   }
 }
