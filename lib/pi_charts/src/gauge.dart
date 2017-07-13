@@ -192,6 +192,8 @@ class GaugeChart extends Chart {
     for(_Gauge g in _seriesList[0].entities){
       if(g.containsPointGeneral(p)) return g.index;
     }
+
+    return -1;
   }
 
 

@@ -2,9 +2,11 @@ import 'package:kpi_dash/src/goal.dart';
 import 'package:kpi_dash/src/initiative.dart';
 import 'package:kpi_dash/src/strategy.dart';
 import 'package:kpi_dash/src/directive.dart';
+import 'dart:math';
 
 class GoalsService {
   static get goals {
+    var rng = new Random();
     var goals = new List<Goal>();
     for (int i = 0; i < 3; i++) {
       goals.add(new Goal("goal $i", "goal detail $i"));
@@ -12,7 +14,8 @@ class GoalsService {
     for (var goal in goals) {
       for (int i = 0; i < 3; i++)
         goal.strategies.add(new Strategy("strategy $i of ${goal.name}",
-            "strategy detail $i of ${goal.name}"));
+            "strategy detail $i of ${goal.name}",
+            rng.nextInt(100)));
       for (var strategy in goal.strategies) {
         for (int i = 0; i < 3; i++)
           strategy.initiatives.add(new Initiative(

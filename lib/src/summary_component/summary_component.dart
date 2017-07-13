@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:kpi_dash/pi_charts/pi_charts.dart';
+import 'package:kpi_dash/src/goals_service.dart';
 
 @Component(
   selector: 'graph-example',
@@ -35,11 +36,14 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
     canvasElement = canvas.nativeElement;
     canvasElement.onClick.listen(printOnClick);
     divElement = div.nativeElement;
+
+    goals = GoalsService.goals;
   }
 
   @override
   ngAfterViewInit() {
-//    goals =
+
+
     chart = createGaugeChart(canvasElement,table);
   }
 
@@ -52,16 +56,19 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
   }
   void printOnClick(MouseEvent e)
   {
+    //if you don;t click on a graph, do nothing
+    var index = getIndex(e);
+    if(index<0)
+      return;
+
     //only one display open at a a time
     if(divElement.childNodes.length>1)
       divElement.childNodes.last.remove();
-
-    var index = getIndex(e);
-
+    
     var canvas2 = new CanvasElement();
     divElement.append(canvas2);
 
-    createGaugeChart(canvas2, table);
+    createGaugeChart(canvas2, goals[index].dataTable);
 
   }
 
