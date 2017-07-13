@@ -21,15 +21,6 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
   var chart;
   bool isOneEnabled = true;
   CanvasRenderingContext2D context;
-  var table = new DataTable([
-    ['Browser', 'Share'],
-    ['Goal1', 34],
-    ['Goal2',67],
-    ['Goal3', 97]
-  ]);
-
-  var insertRow = true;
-
 
   @override
   ngAfterContentInit() {
@@ -38,13 +29,19 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
     divElement = div.nativeElement;
 
     goals = GoalsService.goals;
+
   }
 
   @override
   ngAfterViewInit() {
 
+    List<List> data = new List<List>();
+    data.add(["name","value"]);
 
-    chart = createGaugeChart(canvasElement,table);
+    for(var goal in goals)
+      data.add([goal.name,goal.percentage]);
+
+    chart = createGaugeChart(canvasElement,new DataTable(data));
   }
 
   num getIndex(MouseEvent e)
@@ -64,7 +61,7 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
     //only one display open at a a time
     if(divElement.childNodes.length>1)
       divElement.childNodes.last.remove();
-    
+
     var canvas2 = new CanvasElement();
     divElement.append(canvas2);
 

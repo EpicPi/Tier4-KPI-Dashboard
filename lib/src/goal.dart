@@ -22,8 +22,8 @@ class Goal {
     List<List> data = new List<List>();
     data.add(["name","value"]);
 
-    for(num i=0; i<strategies.length; i++)
-      data.add([strategies[i].name,strategies[i].percentage]);
+    for(var strat in strategies)
+      data.add([strat.name,strat.percentage]);
 
     return new DataTable(data);
   }
