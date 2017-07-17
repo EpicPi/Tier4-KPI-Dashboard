@@ -2,11 +2,13 @@ import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:kpi_dash/pi_charts/pi_charts.dart';
 import 'package:kpi_dash/src/goals_service.dart';
+import 'package:kpi_dash/src/services/firebase_service.dart';
 
 @Component(
   selector: 'my-summary',
   styleUrls: const ['summary_component.css'],
   templateUrl: 'summary_component.html',
+  providers: const[]
 )
 class SummaryComponent implements AfterContentInit, AfterViewInit {
   @ViewChild('canvasMain')
@@ -17,6 +19,9 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
   ElementRef div;
   DivElement divElement;
 
+  final FirebaseService fbService;
+  SummaryComponent(this.fbService);
+
   var goals;
   var chart;
   bool isOneEnabled = true;
@@ -25,10 +30,9 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
   @override
   ngAfterContentInit() {
     canvasElement = canvas.nativeElement;
-    canvasElement.onClick.listen(printOnClick);
+    canvasElement.onClick.listen(createSubGraph);
     divElement = div.nativeElement;
 
-//    goals = GoalsService.goals;
 
   }
 
@@ -38,7 +42,7 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
     List<List> data = new List<List>();
     data.add(["name","value"]);
 
-    for(var goal in goals)
+    for(var goal in fbService.goals)
       data.add([goal.name,goal.percentage]);
 
     chart = createGaugeChart(canvasElement,new DataTable(data));
@@ -52,9 +56,9 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
     return chart.getEntityGroupIndexGeneral(x, y);
   }
   // TODO: need to make this create multiple rows if necessary
-  void printOnClick(MouseEvent e)
+  void createSubGraph(MouseEvent e)
   {
-    //if you don;t click on a graph, do nothing
+    //if you didn't click on a graph, do nothing
     var index = getIndex(e);
     if(index<0)
       return;
@@ -66,7 +70,7 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
     var canvas2 = new CanvasElement();
     divElement.append(canvas2);
 
-    createGaugeChart(canvas2, goals[index].dataTable);
+    createGaugeChart(canvas2, fbService.goals[index].dataTable);
 
   }
 

@@ -17,7 +17,7 @@ import 'package:kpi_dash/src/vu_scroll_down.dart';
   templateUrl: 'goal_component.html',
   directives: const [materialDirectives, COMMON_DIRECTIVES, CORE_DIRECTIVES, StrategyComponent, InitiativeComponent,
   DirectiveComponent, VuScrollDown],
-  providers: const [materialProviders, FirebaseService],
+  providers: const [materialProviders],
 )
 
 class GoalComponent{

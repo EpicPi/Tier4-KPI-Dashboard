@@ -1,8 +1,8 @@
 <div class="container">
     <material-expansionpanel-set>
-        <material-expansionpanel *ngFor="let goal of goals"
+        <material-expansionpanel *ngFor="let goal of fbService.goals"
                 name = "{{goal.name}}";
-                secondaryText = "{{goal.detail}}"
+                secondaryText = "{{goal.description}}"
                 [showSaveCancel] = "false">
             <material-progress class = "red"
             [activeProgress] = "9">
@@ -11,7 +11,7 @@
             <material-expansionpanel-set>
                 <material-expansionpanel wide *ngFor ="let start of goal.strategies"
                     name="{{start.name}}"
-                    secondaryText = "{{goal.detail}}"
+                    secondaryText = "{{goal.description}}"
                     [showSaveCancel] = "false">
                 </material-expansionpanel>
 
