@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:kpi_dashboard_attempt_7/src/models/goal.dart';
-import 'package:kpi_dashboard_attempt_7/src/models/strategy.dart';
-import 'package:kpi_dashboard_attempt_7/src/models/initiative.dart';
-import  'package:kpi_dashboard_attempt_7/src/models/dir.dart';
+import 'package:kpi_dash/src/models/goal.dart';
+import 'package:kpi_dash/src/models/strategy.dart';
+import 'package:kpi_dash/src/models/initiative.dart';
+import  'package:kpi_dash/src/models/dir.dart';
 import 'package:angular2/core.dart';
 import 'package:firebase/firebase.dart' as fb;
 

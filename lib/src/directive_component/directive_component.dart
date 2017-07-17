@@ -2,11 +2,11 @@ import 'package:angular2/core.dart';
 import 'dart:core';
 import 'package:angular2/angular2.dart';
 import 'package:angular_components/angular_components.dart';
-import 'package:kpi_dashboard_attempt_7/src/models/dir.dart';
-import 'package:kpi_dashboard_attempt_7/src/models/goal.dart';
-import 'package:kpi_dashboard_attempt_7/src/models/initiative.dart';
-import 'package:kpi_dashboard_attempt_7/src/models/strategy.dart';
-import 'package:kpi_dashboard_attempt_7/src/services/firebase_service.dart';
+import 'package:kpi_dash/src/models/dir.dart';
+import 'package:kpi_dash/src/models/goal.dart';
+import 'package:kpi_dash/src/models/initiative.dart';
+import 'package:kpi_dash/src/models/strategy.dart';
+import 'package:kpi_dash/src/services/firebase_service.dart';
 
 
 
