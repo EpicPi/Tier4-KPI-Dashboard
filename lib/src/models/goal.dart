@@ -1,6 +1,5 @@
-import 'package:angular2/core.dart';
+import 'package:kpi_dash/pi_charts/src/datatable.dart';
 import 'strategy.dart';
-import 'dart:math';
 
 const String nameTagText = "name";
 const String stratTagText = "strategies";
@@ -17,15 +16,31 @@ class Goal {
   }
 
 
-//  Goal.fromMap(Map map) :
-//        this(map['name'], map['percent']);
-
   Map toMap(Goal item) =>
       {
         nameTagText: item.name,
         descTagText: item.description,
         stratTagText: item.strategies
       };
+
+  DataTable get dataTable {
+    List<List> data = new List<List>();
+    data.add(["name","value"]);
+
+    for(var strat in strategies)
+      data.add([strat.name,strat.percentage]);
+
+    return new DataTable(data);
+  }
+
+  num get percentage {
+//    return val;
+    var total = 0;
+    for (var strat in strategies) {
+      total += strat.percentage;
+    }
+    return total ~/ strategies.length ?? 0;
+  }
 }
 
 

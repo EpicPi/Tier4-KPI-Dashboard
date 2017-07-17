@@ -41,8 +41,7 @@ void add() {
   String goalName = inputNameText.trim();
   String goalDesc = inputDescText.trim();
 
-  if (goalName.isEmpty) return;
-  if(goalDesc.isEmpty) return;
+  if (goalName.isEmpty || goalDesc.isEmpty) return;
   fbService.addGoal(goalName, goalDesc);
 }
 

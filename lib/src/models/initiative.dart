@@ -1,4 +1,4 @@
-import 'dir.dart';
+import 'directive.dart';
 import 'dart:math';
 
 
@@ -20,5 +20,15 @@ class Initiative{
         desc3TagText: init.description,
         directivesTagText: init.directives
       };
+
+  num get percentage
+  {
+    var total =0;
+    for(var dir in directives)
+    {
+      total += dir.percentage;
+    }
+    return total~/directives.length ?? 0;
+  }
 
 }

@@ -20,4 +20,15 @@ class Strategy{
         desc2TagText: strat.description,
         initiativesTagText: strat.initiatives
       };
+
+
+  num get percentage
+  {
+    var total =0;
+    for(var init in initiatives)
+    {
+      total += init.percentage;
+    }
+    return total~/initiatives.length ?? 0;
+  }
 }

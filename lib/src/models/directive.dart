@@ -24,4 +24,6 @@ class Dir{
         valuesTagText: dir.values
       };
 
+  num get percentage => 0;
+
 }
