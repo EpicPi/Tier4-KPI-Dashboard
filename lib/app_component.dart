@@ -19,11 +19,11 @@ import 'package:kpi_dash/src/summary_component/summary_component.dart';
   directives: const [materialDirectives, GoalComponent],
   providers: const [materialProviders],
 )
-class AppComponent implements OnInit{
+class AppComponent{
   var goals;
-  @override
-  ngOnInit() {
-//   goals = GoalsService.goals;
 
-  }
+  AppComponent();
+
+
+  String title = "Summary";
 }

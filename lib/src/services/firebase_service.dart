@@ -40,49 +40,40 @@ class FirebaseService {
     // Value of data from snapshot.
     var val = data.val();
     // Creates a new Goal item. It is possible to retrieve a key from data.
-    var item = new Goal(val[nameTagText], val[descTagText], [], data.key);
-    goals.add(new Goal(val[nameTagText], val[descTagText], [], data.key));
+    var item = new Goal(
+        val[nameTagText], val[descTagText], [], data.key);
+    goals.add(item);
 
-    fb.DatabaseReference fbRefStrat =
-        _fbRefGoals.child(item.key).child("strategies");
-    await fbRefStrat
-        .limitToLast(60)
-        .onChildAdded
-        .listen((fb.QueryEvent event2) async {
+    fb.DatabaseReference fbRefStrat = _fbRefGoals.child(item.key).child("strategies");
+    await fbRefStrat.limitToLast(60).onChildAdded.listen((fb.QueryEvent event2) async{
       fb.DataSnapshot data = event2.snapshot;
       // Value of data from snapshot.
       var val = data.val();
       // Creates a new Strategy item. It is possible to retrieve a key from data.
-      var strat =
-          new Strategy(val[name2TagText], val[desc2TagText], [], data.key);
+      var strat = new Strategy(
+          val[name2TagText], val[desc2TagText], [], data.key);
       item.strategies.add(strat);
 
-      fb.DatabaseReference fbRefInit =
-          fbRefStrat.child(strat.key).child("initiatives");
-      await fbRefInit
-          .limitToLast(60)
-          .onChildAdded
-          .listen((fb.QueryEvent event3) async {
+      fb.DatabaseReference fbRefInit = fbRefStrat.child(strat.key).child("initiatives");
+      await fbRefInit.limitToLast(60).onChildAdded.listen((fb.QueryEvent event3) async{
         fb.DataSnapshot data = event3.snapshot;
         var val = data.val();
-        var init =
-            new Initiative(val[name3TagText], val[desc3TagText], [], data.key);
+        var init = new Initiative(
+            val[name3TagText], val[desc3TagText], [], data.key);
         strat.initiatives.add(init);
 
-        fb.DatabaseReference fbRefDir =
-            fbRefInit.child(init.key).child("directives");
-        await fbRefDir
-            .limitToLast(60)
-            .onChildAdded
-            .listen((fb.QueryEvent event4) async {
+        fb.DatabaseReference fbRefDir = fbRefInit.child(init.key).child("directives");
+        await fbRefDir.limitToLast(60).onChildAdded.listen((fb.QueryEvent event4) async{
           fb.DataSnapshot data = event4.snapshot;
           var val = data.val();
-          var dir = new Dir(val[name4TagText], val[desc4TagText],
-              val[maxValTagText], [], data.key);
+          var dir = new Dir(
+              val[name4TagText], val[desc4TagText], val[maxValTagText], [], data.key);
           init.directives.add(dir);
+
         });
       });
     });
+
   }
 
   Future addGoal(String name, String desc) async {
