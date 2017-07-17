@@ -41,7 +41,7 @@ class FirebaseService {
     var val = data.val();
     // Creates a new Goal item. It is possible to retrieve a key from data.
     var item = new Goal(val[nameTagText], val[descTagText], [], data.key);
-    goals.add(item);
+    goals.add(new Goal(val[nameTagText], val[descTagText], [], data.key));
 
     fb.DatabaseReference fbRefStrat =
         _fbRefGoals.child(item.key).child("strategies");

@@ -16,14 +16,14 @@ import 'package:kpi_dash/src/summary_component/summary_component.dart';
   selector: 'my-app',
   styleUrls: const ['app_component.css'],
   templateUrl: 'app_component.html',
-  directives: const [materialDirectives, SummaryComponent, DetailComponent],
+  directives: const [materialDirectives, GoalComponent],
   providers: const [materialProviders],
 )
 class AppComponent implements OnInit{
   var goals;
   @override
   ngOnInit() {
-   goals = GoalsService.goals;
+//   goals = GoalsService.goals;
 
   }
 }

@@ -28,7 +28,7 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
     canvasElement.onClick.listen(printOnClick);
     divElement = div.nativeElement;
 
-    goals = GoalsService.goals;
+//    goals = GoalsService.goals;
 
   }
 

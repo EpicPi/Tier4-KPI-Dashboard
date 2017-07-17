@@ -17,7 +17,7 @@ class DetailComponent implements OnInit{
   var goals;
   @override
   ngOnInit() {
-    goals = GoalsService.goals;
+//    goals = GoalsService.goals;
   }
 
 }
