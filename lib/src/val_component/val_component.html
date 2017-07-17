@@ -1,11 +1,15 @@
 
-        <material-dropdown-select
-                [visible]=false
-                [width]="5"
-                [selection]="monthSelectModel">
+        <!--<material-dropdown-select-->
+                <!--[visible]=false-->
+                <!--[width]="5"-->
+                <!--[selection]="monthSelectModel">-->
+        <!--</material-dropdown-select>-->
+
+        <material-dropdown-select>
+            <material-select-item *ngFor="let month of months">
+                {{month}}
+            </material-select-item>
         </material-dropdown-select>
-
-
 
 
 

@@ -35,7 +35,7 @@ class ValComponent {
     2060,
   ];
 
-  static const List<String> months = const <String>[
+  var months = const <String>[
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
@@ -47,10 +47,7 @@ class ValComponent {
 
   Value selectedVal;
 
-
-  // Single Selection Model.
-  final SelectionModel<String> monthSelectModel =
-  new SelectionModel.withList(selectedValues: [months[1]]);
+  
 
   num pickYear(num year) {
     return year;
