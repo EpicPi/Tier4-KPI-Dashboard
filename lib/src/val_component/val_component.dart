@@ -24,14 +24,8 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
   providers: const [materialProviders],
 )
 
-class ValComponent{
+class ValComponent {
 
-  bool useComponentRenderer = false;
-  bool useItemRenderer = false;
-  bool useOptionGroup = false;
-  bool withHeaderAndFooter = false;
-  bool popupMatchInputWidth = true;
-  bool visible = false;
 
   static const List<num> years = const <num>[
     2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026,
@@ -48,76 +42,42 @@ class ValComponent{
 
 
   final FirebaseService fbService5;
+
   ValComponent(this.fbService5);
+
   Value selectedVal;
 
-//  // Single Selection Model.
-//  final SelectionModel<String> monthSelectModel =
-//  new SelectionModel.withList(selectedValues: [_languagesListLong[1]]);
-//
-//  String get singleSelectLanguageLabel =>
-//      singleSelectModel.selectedValues.length > 0
-//          ? itemRenderer(singleSelectModel.selectedValues.first)
-//          : 'Select Language';
-//
-//  final SelectionModel<int> widthSelection = new SelectionModel<int>.withList();
-//  final SelectionOptions<int> widthOptions =
-//  new SelectionOptions<int>.fromList([0, 1, 2, 3, 4, 5]);
-//
-//  String get widthButtonText => widthSelection.selectedValues.isNotEmpty
-//      ? widthSelection.selectedValues.first.toString()
-//      : '0';
-//
-//  int get width => widthSelection.selectedValues.isNotEmpty
-//      ? widthSelection.selectedValues.first
-//      : null;
-//
-//  String get singleSelectedLanguage =>
-//      singleSelectModel.selectedValues.isNotEmpty
-//          ? singleSelectModel.selectedValues.first.uiDisplayName
-//          : null;
-//
-//  ItemRenderer<Language> get itemRenderer =>
-//      useItemRenderer ? _itemRenderer : _displayNameRenderer;
-//
-//  class Language implements HasUIDisplayName {
-//  final String code;
-//  final String label;
-//
-//  const Language(this.code, this.label);
-//
-//  @override
-//  String get uiDisplayName => label;
-//
-//  @override
-//  String toString() => uiDisplayName;
-//  }
-//
 
+  // Single Selection Model.
+  final SelectionModel<String> monthSelectModel =
+  new SelectionModel.withList(selectedValues: [months[1]]);
 
-
-
-  num pickYear(num year){
+  num pickYear(num year) {
     return year;
   }
 
-  String pickMonth(String month){
+  String pickMonth(String month) {
     return month;
   }
 
   num inputVal = null;
 
 
-  void addValue(Goal goal, Strategy strat, Initiative init, Dir dir, num year, String month) {
+  void addValue(Goal goal, Strategy strat, Initiative init, Dir dir, num year,
+      String month) {
     num value = inputVal;
 
     if (value == null) return;
 
-    fbService5.addVal(goal, strat, init, dir, pickMonth(month), pickYear(year), value);
+    fbService5.addVal(
+        goal,
+        strat,
+        init,
+        dir,
+        pickMonth(month),
+        pickYear(year),
+        value);
   }
-
-
-
 
 
 }

@@ -1,27 +1,38 @@
-<h4>Single Select</h4>
-<!--<material-dropdown-select-->
-        <!--[buttonText]="singleSelectLanguageLabel"-->
-        <!--[selection]="singleSelectModel"-->
-        <!--[options]="languageOptionsLong"-->
-        <!--[itemRenderer]="itemRenderer"-->
-        <!--[componentRenderer]="componentRenderer"-->
-        <!--[width]="width"-->
-        <!--[popupMatchInputWidth]="popupMatchInputWidth"-->
-        <!--[preferredPositions]="preferredPositions"-->
-        <!--[slide]="slide"-->
-        <!--[visible]="visible">-->
-    <!--<div header>-->
-        <!--<div *ngIf="withHeaderAndFooter">-&#45;&#45;Custom Header Section-&#45;&#45;-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div footer>-->
-        <!--<div *ngIf="withHeaderAndFooter">-&#45;&#45;Custom Footer Section-&#45;&#45;-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</material-dropdown-select>-->
 
-<!--<p>Selected Value: {{ singleSelectedLanguage }}</p>-->
+        <material-dropdown-select
+                [visible]=false
+                [width]="5"
+                [selection]="monthSelectModel">
+        </material-dropdown-select>
 
-<material-dropdown-select>
-    <md-option ng-repeat="month in months"></md-option>
-</material-dropdown-select>
+
+
+
+
+
+
+
+<div *ngFor="let goal of fbService5.goals" >
+    <h3>Goal</h3>
+    <div class="name">
+        Name: {{goal.name}}
+    </div>
+    <div *ngFor="let strat of goal.strategies" >
+        <h3>Strategy</h3>
+        <div class="name2">
+            Name: {{strat.name}}
+        </div>
+        <div *ngFor="let init of strat.initiatives" >
+            <h3>Initiative</h3>
+            <div class="name3">
+                Name: {{init.name}}
+            </div>
+            <div *ngFor="let dir of init.directives" >
+                <h3>Directive</h3>
+                <div class="name4">
+                    Name: {{dir.name}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -28,8 +28,8 @@ class GoalComponent{
 //  @Input()
 //  var goals = goal_list;
 
-  final FirebaseService fbService;
-  GoalComponent(this.fbService);
+  final FirebaseService fbService1;
+  GoalComponent(this.fbService1);
   Goal selectedGoal;
   bool b= true;
 
@@ -42,20 +42,20 @@ void add() {
   String goalDesc = inputDescText.trim();
 
   if (goalName.isEmpty || goalDesc.isEmpty) return;
-  fbService.addGoal(goalName, goalDesc);
+  fbService1.addGoal(goalName, goalDesc);
 }
 
 void delete(Goal goal){
-  fbService.deleteGoal(goal.key);
-  fbService.goals.remove(goal);
+  fbService1.deleteGoal(goal.key);
+  fbService1.goals.remove(goal);
 }
 
 void changeName(Goal goal){
-  fbService.changeGoalName(goal);
+  fbService1.changeGoalName(goal);
 }
 
 void changeDesc(Goal goal){
-  fbService.changeGoalDescription(goal);
+  fbService1.changeGoalDescription(goal);
 }
 
   void onSelect(Goal goal){
