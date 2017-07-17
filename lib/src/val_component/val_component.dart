@@ -15,12 +15,23 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
   styleUrls: const ['val_component.css'],
   templateUrl: 'val_component.html',
   directives: const [materialDirectives, COMMON_DIRECTIVES, CORE_DIRECTIVES,
-  MaterialExpansionPanel, MaterialExpansionPanelSet, DisplayNameRendererDirective, MaterialCheckboxComponent,
-  MaterialDropdownSelectComponent, MaterialSelectComponent, MaterialSelectItemComponent,],
+  MaterialExpansionPanel, MaterialExpansionPanelSet,
+  DisplayNameRendererDirective,
+  MaterialCheckboxComponent,
+  MaterialDropdownSelectComponent,
+  MaterialSelectComponent,
+  MaterialSelectItemComponent,],
   providers: const [materialProviders],
 )
 
 class ValComponent{
+
+  bool useComponentRenderer = false;
+  bool useItemRenderer = false;
+  bool useOptionGroup = false;
+  bool withHeaderAndFooter = false;
+  bool popupMatchInputWidth = true;
+  bool visible = false;
 
   static const List<num> years = const <num>[
     2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026,
@@ -40,15 +51,49 @@ class ValComponent{
   ValComponent(this.fbService5);
   Value selectedVal;
 
-  // Single Selection Model.
-  final SelectionModel<num> yearSelectModel =
-  new SelectionModel.withList(selectedValues: [years[1]]);
+//  // Single Selection Model.
+//  final SelectionModel<String> monthSelectModel =
+//  new SelectionModel.withList(selectedValues: [_languagesListLong[1]]);
+//
+//  String get singleSelectLanguageLabel =>
+//      singleSelectModel.selectedValues.length > 0
+//          ? itemRenderer(singleSelectModel.selectedValues.first)
+//          : 'Select Language';
+//
+//  final SelectionModel<int> widthSelection = new SelectionModel<int>.withList();
+//  final SelectionOptions<int> widthOptions =
+//  new SelectionOptions<int>.fromList([0, 1, 2, 3, 4, 5]);
+//
+//  String get widthButtonText => widthSelection.selectedValues.isNotEmpty
+//      ? widthSelection.selectedValues.first.toString()
+//      : '0';
+//
+//  int get width => widthSelection.selectedValues.isNotEmpty
+//      ? widthSelection.selectedValues.first
+//      : null;
+//
+//  String get singleSelectedLanguage =>
+//      singleSelectModel.selectedValues.isNotEmpty
+//          ? singleSelectModel.selectedValues.first.uiDisplayName
+//          : null;
+//
+//  ItemRenderer<Language> get itemRenderer =>
+//      useItemRenderer ? _itemRenderer : _displayNameRenderer;
+//
+//  class Language implements HasUIDisplayName {
+//  final String code;
+//  final String label;
+//
+//  const Language(this.code, this.label);
+//
+//  @override
+//  String get uiDisplayName => label;
+//
+//  @override
+//  String toString() => uiDisplayName;
+//  }
+//
 
-//// Label for the button for single selection.
-//  String get label =>
-//      yearSelectModel.selectedValues.length > 0
-//          ? itemRenderer(yearSelectModel.selectedValues.first)
-//          : 'Select Year';
 
 
 

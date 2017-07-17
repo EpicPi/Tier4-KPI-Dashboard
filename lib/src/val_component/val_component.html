@@ -1,7 +1,27 @@
-Yeet!
+<h4>Single Select</h4>
+<!--<material-dropdown-select-->
+        <!--[buttonText]="singleSelectLanguageLabel"-->
+        <!--[selection]="singleSelectModel"-->
+        <!--[options]="languageOptionsLong"-->
+        <!--[itemRenderer]="itemRenderer"-->
+        <!--[componentRenderer]="componentRenderer"-->
+        <!--[width]="width"-->
+        <!--[popupMatchInputWidth]="popupMatchInputWidth"-->
+        <!--[preferredPositions]="preferredPositions"-->
+        <!--[slide]="slide"-->
+        <!--[visible]="visible">-->
+    <!--<div header>-->
+        <!--<div *ngIf="withHeaderAndFooter">-&#45;&#45;Custom Header Section-&#45;&#45;-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div footer>-->
+        <!--<div *ngIf="withHeaderAndFooter">-&#45;&#45;Custom Footer Section-&#45;&#45;-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</material-dropdown-select>-->
 
+<!--<p>Selected Value: {{ singleSelectedLanguage }}</p>-->
 
-<material-dropdown-select
-        [selection]="yearSelectModel"
-        [visible]=false>
+<material-dropdown-select>
+    <md-option ng-repeat="month in months"></md-option>
 </material-dropdown-select>
