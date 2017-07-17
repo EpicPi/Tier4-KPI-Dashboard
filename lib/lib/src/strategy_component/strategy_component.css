@@ -1,0 +1,23 @@
+material-expansionpanel{
+    width: 1000px;
+}
+
+button.delete{
+    position:absolute;
+    left:900px;
+}
+
+button.editintro{
+    position:absolute;
+    left:900px;
+}
+
+div.edit{
+    position:relative;
+    left:50px;
+}
+
+my-init{
+    position:relative;
+    left: 30px;
+}

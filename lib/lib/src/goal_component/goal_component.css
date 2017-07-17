@@ -1,0 +1,17 @@
+div.goals{
+    position:relative;
+    left: 30px;
+}
+
+div.name{
+    font-size: 1.2em;
+}
+
+div.description{
+    font-size: 1.2em;
+}
+
+my-strategy{
+    position:relative;
+    left: 30px;
+}
