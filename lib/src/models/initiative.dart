@@ -1,11 +1,10 @@
 import 'directive.dart';
 
-
 const String name3TagText = "name";
-const String desc3TagText="description";
+const String desc3TagText = "description";
 const String directivesTagText = "directives";
 
-class Initiative{
+class Initiative {
   String key;
   String name;
   String description;
@@ -13,21 +12,17 @@ class Initiative{
 
   Initiative(this.name, this.description, this.directives, [this.key]);
 
-  Map toMap(Initiative init) =>
-      {
+  Map toMap(Initiative init) => {
         name3TagText: init.name,
         desc3TagText: init.description,
         directivesTagText: init.directives
       };
 
-  num get percentage
-  {
-    var total =0;
-    for(var dir in directives)
-    {
+  num get percentage {
+    var total = 0;
+    for (var dir in directives) {
       total += dir.percentage;
     }
-    return total~/directives.length ?? 0;
+    return total ~/ directives.length ?? 0;
   }
-
 }

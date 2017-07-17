@@ -5,19 +5,15 @@ const String nameTagText = "name";
 const String stratTagText = "strategies";
 const String descTagText = "description";
 
-
 class Goal {
   String key;
   String name;
   String description;
   List<Strategy> strategies;
 
-  Goal(this.name, this.description, this.strategies, [this.key]) {
-  }
+  Goal(this.name, this.description, this.strategies, [this.key]) {}
 
-
-  Map toMap(Goal item) =>
-      {
+  Map toMap(Goal item) => {
         nameTagText: item.name,
         descTagText: item.description,
         stratTagText: item.strategies
@@ -25,10 +21,9 @@ class Goal {
 
   DataTable get dataTable {
     List<List> data = new List<List>();
-    data.add(["name","value"]);
+    data.add(["name", "value"]);
 
-    for(var strat in strategies)
-      data.add([strat.name,strat.percentage]);
+    for (var strat in strategies) data.add([strat.name, strat.percentage]);
 
     return new DataTable(data);
   }
@@ -42,5 +37,3 @@ class Goal {
     return total ~/ strategies.length ?? 0;
   }
 }
-
-
