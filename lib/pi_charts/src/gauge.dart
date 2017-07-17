@@ -178,15 +178,27 @@ class GaugeChart extends Chart {
   }
 
   @override
-  int _getEntityGroupIndex(num x, num y) {
+  int getEntityGroupIndex(num x, num y) {
     var p = new Point(x, y);
     for (_Gauge g in _seriesList[0].entities) {
       if (g.containsPoint(p)) return g.index;
     }
+
     return -1;
   }
 
+  int getEntityGroupIndexGeneral(num x, num y){
+    var p = new Point(x,y);
+    for(_Gauge g in _seriesList[0].entities){
+      if(g.containsPointGeneral(p)) return g.index;
+    }
+
+    return -1;
+  }
+
+
   @override
+
   Point _getTooltipPosition() {
     var gauge = _seriesList[0].entities[_focusedEntityIndex] as _Gauge;
     var x = gauge.center.x - _tooltip.offsetWidth ~/ 2;
@@ -202,8 +214,8 @@ class GaugeChart extends Chart {
     _defaultOptions['legend']['position'] = 'none';
   }
 }
-void createGaugeChart(CanvasElement canvasElement, DataTable table) {
-  new GaugeChart(canvasElement)..draw(table, {
+createGaugeChart(CanvasElement canvasElement, DataTable table) {
+  return new GaugeChart(canvasElement)..draw(table, {
     'animation': {'easing': (t) => t}
   });
 }

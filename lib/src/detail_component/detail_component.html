@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="container">
+    <material-expansionpanel-set>
+        <material-expansionpanel *ngFor="let goal of goals"
+                name = "{{goal.name}}";
+                secondaryText = "{{goal.detail}}"
+                [showSaveCancel] = "false">
+            <material-progress class = "red"
+            [activeProgress] = "9">
 
-</body>
-</html>
+            </material-progress>
+            <material-expansionpanel-set>
+                <material-expansionpanel wide *ngFor ="let start of goal.strategies"
+                    name="{{start.name}}"
+                    secondaryText = "{{goal.detail}}"
+                    [showSaveCancel] = "false">
+                </material-expansionpanel>
+
+            </material-expansionpanel-set>
+        </material-expansionpanel>
+    </material-expansionpanel-set>
+
+</div>

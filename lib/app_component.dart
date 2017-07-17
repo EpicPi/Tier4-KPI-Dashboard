@@ -4,6 +4,7 @@
 import 'package:angular2/angular2.dart';
 import 'package:angular_components/angular_components.dart';
 
+import 'package:kpi_dash/src/detail_component/detail_component.dart';
 import 'package:kpi_dash/src/goals_service.dart';
 import 'package:kpi_dash/src/summary_component/summary_component.dart';
 
@@ -14,7 +15,7 @@ import 'package:kpi_dash/src/summary_component/summary_component.dart';
   selector: 'my-app',
   styleUrls: const ['app_component.css'],
   templateUrl: 'app_component.html',
-  directives: const [materialDirectives, SummaryComponent],
+  directives: const [materialDirectives, SummaryComponent, DetailComponent],
   providers: const [materialProviders],
 )
 class AppComponent implements OnInit{

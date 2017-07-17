@@ -5,8 +5,9 @@ class Strategy
   String name;
   String detail;
   var initiatives;
+  num val;
 
-  Strategy(this.name, this.detail)
+  Strategy(this.name, this.detail, [this.val])
   {
     initiatives = new List<Initiative>();
   }
@@ -18,6 +19,6 @@ class Strategy
     {
       total += strat.percentage;
     }
-    return total/initiatives.length ?? 0;
+    return total~/initiatives.length ?? 0;
   }
 }

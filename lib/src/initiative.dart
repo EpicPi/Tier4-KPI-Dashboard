@@ -17,6 +17,6 @@ class Initiative
     {
       total += strat.percentage;
     }
-    return total/directives.length ?? 0;
+    return total~/directives.length ?? 0;
   }
 }

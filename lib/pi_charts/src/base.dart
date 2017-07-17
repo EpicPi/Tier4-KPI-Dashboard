@@ -252,7 +252,7 @@ class Chart {
   Rectangle<int> _titleBox;
 
   /// The main rendering context.
-  CanvasRenderingContext2D _context;
+  CanvasRenderingContext2D context;
 
   /// The rendering context for the axes.
   CanvasRenderingContext2D _axesContext;
@@ -276,8 +276,8 @@ class Chart {
     var result = _colorCache[key];
     if (result == null) {
       // Convert [color] to HEX/RGBA format using [_context].
-      _context.fillStyle = color;
-      color = _context.fillStyle;
+      context.fillStyle = color;
+      color = context.fillStyle;
 
       if (color[0] == '#') {
         result = hexToRgba(color, alpha);
@@ -362,9 +362,9 @@ class Chart {
           _seriesAndAxesBox.height -= titleH + _chartTitleMargin;
           break;
       }
-      _context.font = _getFont(title['style']);
+      context.font = _getFont(title['style']);
       titleW =
-          _context.measureText(title['text']).width.round() + 2 * _titlePadding;
+          context.measureText(title['text']).width.round() + 2 * _titlePadding;
       titleX = (_width - titleW - 2 * _titlePadding) ~/ 2;
     }
     _titleBox = new Rectangle(titleX, titleY, titleW, titleH);
@@ -553,12 +553,12 @@ class Chart {
       }
     }
 
-    _context.fillStyle = _options['backgroundColor'];
-    _context.fillRect(0, 0, _width, _height);
+    context.fillStyle = _options['backgroundColor'];
+    context.fillRect(0, 0, _width, _height);
     _seriesContext.clearRect(0, 0, _width, _height);
     _drawSeries(_easingFunction(percent));
-    _context.drawImageScaled(_axesContext.canvas, 0, 0, _width, _height);
-    _context.drawImageScaled(_seriesContext.canvas, 0, 0, _width, _height);
+    context.drawImageScaled(_axesContext.canvas, 0, 0, _width, _height);
+    context.drawImageScaled(_seriesContext.canvas, 0, 0, _width, _height);
     _drawTitle();
 
     if (percent < 1.0) {
@@ -575,7 +575,7 @@ class Chart {
 
     var x = (_titleBox.left + _titleBox.right) ~/ 2;
     var y = _titleBox.bottom - _titlePadding;
-    _context
+    context
       ..font = _getFont(title['style'])
       ..fillStyle = title['style']['color']
       ..textAlign = 'center'
@@ -720,17 +720,17 @@ class Chart {
   /// specified by [x] and [y].
   ///
   /// To be overridden.
-  int _getEntityGroupIndex(num x, num y) => -1;
+  int getEntityGroupIndex(num x, num y) => -1;
 
   /// Handles `mousemove` or `touchstart` events to highlight appropriate
   /// points/bars/pies/... as well as update the tooltip.
   void _mouseMove(MouseEvent e) {
     if (animating || e.buttons != 0) return;
 
-    var rect = _context.canvas.getBoundingClientRect();
+    var rect = context.canvas.getBoundingClientRect();
     var x = e.client.x - rect.left;
     var y = e.client.y - rect.top;
-    var index = _getEntityGroupIndex(x, y);
+    var index = getEntityGroupIndex(x, y);
 
     if (index != _focusedEntityIndex) {
       _focusedEntityIndex = index;
@@ -849,7 +849,7 @@ class Chart {
 //    if (container.getComputedStyle().position == 'static') {
 //      container.style.position = 'relative';
 //    }
-    _context = container.getContext('2d');
+    context = container.getContext('2d');
     _axesContext = new CanvasElement().getContext('2d');
     _seriesContext = new CanvasElement().getContext('2d');
 
@@ -918,7 +918,7 @@ class Chart {
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
 
-      setCanvasSize(_context);
+      setCanvasSize(context);
       setCanvasSize(_axesContext);
       setCanvasSize(_seriesContext);
     }
