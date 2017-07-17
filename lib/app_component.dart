@@ -6,7 +6,6 @@ import 'package:angular_components/angular_components.dart';
 
 import 'package:kpi_dash/src/detail_component/detail_component.dart';
 import 'package:kpi_dash/src/goal_component/goal_component.dart';
-import 'package:kpi_dash/src/goals_service.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
 import 'package:kpi_dash/src/summary_component/summary_component.dart';
 

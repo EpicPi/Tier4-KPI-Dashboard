@@ -1,18 +1,33 @@
 <div class="container">
     <material-expansionpanel-set>
         <material-expansionpanel *ngFor="let goal of fbService.goals"
-                name = "{{goal.name}}";
-                secondaryText = "{{goal.description}}"
-                [showSaveCancel] = "false">
-            <material-progress class = "red"
-            [activeProgress] = "9">
+                                 name="{{goal.name}}" ;
+                                 secondaryText="{{goal.description}}"
+                                 [showSaveCancel]="false">
+            <material-progress class="red"
+                               [activeProgress]="9">
 
             </material-progress>
             <material-expansionpanel-set>
-                <material-expansionpanel wide *ngFor ="let start of goal.strategies"
-                    name="{{start.name}}"
-                    secondaryText = "{{goal.description}}"
-                    [showSaveCancel] = "false">
+                <material-expansionpanel wide *ngFor="let strat of goal.strategies"
+                                         name="{{strat.name}}"
+                                         secondaryText="{{strat.description}}"
+                                         [showSaveCancel]="false">
+
+                    <material-expansionpanel-set>
+                        <material-expansionpanel wide *ngFor="let init of strat.initiatives"
+                                                 name="{{init.name}}"
+                                                 secondaryText="{{init.description}}"
+                                                 [showSaveCancel]="false">
+                            <material-expansionpanel-set>
+                                <material-expansionpanel wide *ngFor="let dir of init.directives"
+                                                         name="{{dir.name}}"
+                                                         secondaryText="{{dir.description}}"
+                                                         [showSaveCancel]="false">
+                                </material-expansionpanel>
+                            </material-expansionpanel-set>
+                        </material-expansionpanel>
+                    </material-expansionpanel-set>
                 </material-expansionpanel>
 
             </material-expansionpanel-set>
