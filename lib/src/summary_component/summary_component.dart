@@ -4,7 +4,7 @@ import 'package:kpi_dash/pi_charts/pi_charts.dart';
 import 'package:kpi_dash/src/goals_service.dart';
 
 @Component(
-  selector: 'graph-example',
+  selector: 'my-summary',
   styleUrls: const ['summary_component.css'],
   templateUrl: 'summary_component.html',
 )
@@ -51,6 +51,7 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
     var y = e.client.y - rect.top;
     return chart.getEntityGroupIndexGeneral(x, y);
   }
+  // TODO: need to make this create multiple rows if necessary
   void printOnClick(MouseEvent e)
   {
     //if you don;t click on a graph, do nothing
