@@ -15,11 +15,18 @@
                 <div>
                     <label>Name: </label>
                     <input [(ngModel)]="selectedDir.name" (keyup.enter)="change4Name(goal, strat, init, selectedDir)"
-                           (keyup.enter)="change4Desc(goal, strat, init, selectedDir)" (keyup.enter)="selectedDir=null">
+                           (keyup.enter)="change4Desc(goal, strat, init, selectedDir)" (keyup.enter)="changeMax(goal, strat, init, selectedDir)"
+                           (keyup.enter)="selectedDir=null">
                     <br>
                     <label>Description: </label>
                     <input [(ngModel)]="selectedDir.description" (keyup.enter)="change4Desc(goal, strat, init, selectedDir)"
-                           (keyup.enter)="change4Name(goal, strat, init, selectedDir)" (keyup.enter)="selectedDir=null">
+                           (keyup.enter)="change4Name(goal, strat, init, selectedDir)" (keyup.enter)="changeMax(goal, strat, init, selectedDir)"
+                           (keyup.enter)="selectedDir=null">
+                    <br>
+                    <label>Max Value: </label>
+                    <input type="number" [(ngModel)]="selectedDir.maxValue" (keyup.enter)="changeMax(goal, strat, init, selectedDir)"
+                           (keyup.enter)="change4Name(goal, strat, init, selectedDir)" (keyup.enter)="change4Desc(goal, strat, init, selectedDir)"
+                           (keyup.enter)="selectedDir=null">
                 </div>
             </div>
         </div>
@@ -35,7 +42,7 @@
             <br>
             <div>
             <label>Directive Max Value: </label>
-            <input type="number" [(ngModel)] = "inputMax"   (keyup.enter)="add4(goal, strat, init)" (keyup.enter)="inputTextName=''"
+            <input type="number" [(ngModel)] = "inputMax"   value="0" (keyup.enter)="add4(goal, strat, init)" (keyup.enter)="inputTextName=''"
                    (keyup.enter)="inputTextDescription=''" (keyup.enter)="inputMax = null ">
             </div>
             <button (click)="add4(goal, strat, init)" (click)="inputTextName=''"

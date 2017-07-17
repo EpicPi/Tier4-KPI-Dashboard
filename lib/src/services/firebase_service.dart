@@ -70,6 +70,14 @@ class FirebaseService {
               val[name4TagText], val[desc4TagText], val[maxValTagText], [], data.key);
           init.directives.add(dir);
 
+          fb.DatabaseReference fbRefVal = fbRefDir.child(dir.key).child("values");
+          await fbRefVal.limitToLast(60).onChildAdded.listen((fb.QueryEvent event5) async{
+            fb.DataSnapshot data = event4.snapshot;
+            var val = data.val();
+            var v = new Value(
+                val[monthTagText], val[yearTagText], val[valTagText], data.key);
+            dir.values.add(v);
+          });
         });
       });
     });
@@ -121,6 +129,23 @@ class FirebaseService {
           .child("directives")
           .push(d.toMap(d));
     } catch (error) {
+      print(error);
+    }
+  }
+
+  Future addVal(Goal goal, Strategy strat, Initiative init, Dir dir,
+      String month, num year, num v) async{
+    try{
+      Value val = new Value(month, year, v);
+      for(int i=0; i<dir.values.length; i++){
+        if(month==dir.values[i].month && year==dir.values[i].year)
+          return;
+      }
+      await _fbRefGoals.child(goal.key).child("strategies").
+      child(strat.key).child("initiatives").child(init.key).
+      child("directives").child(dir.key).child("values").push(val.toMap(val));
+    }
+    catch (error) {
       print(error);
     }
   }

@@ -42,6 +42,7 @@ class DirectiveComponent{
 
     if (name2Text.isEmpty) return;
     if (desc2Text.isEmpty) return;
+    if(max==null) return;
 
     fbService4.addDir(goal, strat, init, name2Text, desc2Text, max);
   }
@@ -57,6 +58,10 @@ class DirectiveComponent{
 
   void change4Desc(Goal goal, Strategy strat, Initiative init, Dir dir){
     fbService4.changeDirDescription(goal, strat, init, dir);
+  }
+
+  void changeMax (Goal goal, Strategy strat, Initiative init, Dir dir){
+    fbService4.changeDirMax(goal, strat, init, dir);
   }
 
   void onSelect(Dir dir){
