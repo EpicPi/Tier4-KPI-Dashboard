@@ -18,6 +18,7 @@ class Year {
       };
 
   num toNum(Year y){
+    if(y==null) return null;
     return y.year;
   }
 

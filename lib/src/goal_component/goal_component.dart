@@ -39,9 +39,11 @@ class GoalComponent {
   String inputNameText = "";
   String inputDescText = "";
 
-  Year year = new Year(2015, []);
+  Year year = null;
+//      new Year(2015, []);
 
   num toNum(Year y){
+    if (y==null) return null;
     return y.year;
   }
 

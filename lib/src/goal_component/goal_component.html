@@ -1,5 +1,9 @@
 
 <div [hidden] = "fbService.user == null" hidden;>
+    Select Year:
+    <div *ngIf="year != null">
+    {{year.toNum(year)}}
+    </div>
 <material-dropdown-select [width]="1">
     <material-select-item *ngFor="let year of fbService.years">
         <div (click)="pickYear(year)" >
@@ -8,7 +12,7 @@
     </material-select-item>
 </material-dropdown-select>
 
-
+<div *ngIf="year != null">
         <div class="goals">
 
             <div *ngFor="let goal of year.goals" >
@@ -56,6 +60,7 @@
         </div>
     <br>
     <br>
+</div>
 </div>
 
 <!--<header class="horiz">-->
