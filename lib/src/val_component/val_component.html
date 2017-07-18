@@ -1,23 +1,16 @@
-
-        <!--<material-dropdown-select-->
-                <!--[visible]=false-->
-                <!--[width]="5"-->
-                <!--[selection]="monthSelectModel">-->
-        <!--</material-dropdown-select>-->
-
-        Select Month:
+        Select Month: {{month}}
         <material-dropdown-select [width]="1">
             <material-select-item *ngFor="let month of months">
-                <div (click)="pickMonth(month)">
+                <div (click)="pickMonth(month)" >
                     {{month}}
                 </div>
             </material-select-item>
         </material-dropdown-select>
         <br>
-        Select Year:
+        Select Year: {{year}}
         <material-dropdown-select [width]="1">
             <material-select-item *ngFor="let year of years">
-                <div (click)="pickYear(year)">
+                <div (click)="pickYear(year)" >
                     {{year}}
                 </div>
             </material-select-item>
@@ -56,6 +49,16 @@
                                 <div class="val">
                                     <div class="name5">
                                         <h3>Value: {{val.value}}</h3>
+                                    </div>
+                                    <button (click)="deleteValue(goal, strat, init, dir, val)">Delete</button>
+                                    <button (click)="onSelect(val)">Edit</button>
+                                </div>
+                                <div class="edit" *ngIf="selectedVal != null">
+                                    <h5>Edit Value:</h5>
+                                    <div>
+                                        <label>Value: </label>
+                                        <input type="number" [(ngModel)]="selectedVal.value" (keyup.enter)="changeValue(goal, strat, init, dir, selectedVal)"
+                                               (keyup.enter)="selectedVal=null">
                                     </div>
                                 </div>
                             </div>

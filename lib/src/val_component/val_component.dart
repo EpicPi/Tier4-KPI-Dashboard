@@ -73,5 +73,18 @@ class ValComponent {
     fbService5.addVal(goal, strat, init, dir, month, year, value);
   }
 
+  void deleteValue(Goal goal, Strategy strat, Initiative init, Dir dir, Value val){
+    fbService5.deleteVal(goal.key, strat.key, init.key, dir.key, val.key);
+    dir.values.remove(val);
+  }
+
+  void changeValue(Goal goal, Strategy strat, Initiative init, Dir dir, Value val){
+    fbService5.changeVal(goal, strat, init, dir, val);
+  }
+
+  void onSelect(Value val){
+    selectedVal = val;
+  }
+
 
 }

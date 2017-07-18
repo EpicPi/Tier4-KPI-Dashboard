@@ -244,6 +244,21 @@ class FirebaseService {
         .set(dir.maxValue);
   }
 
+  Future changeVal(Goal goal, Strategy strat, Initiative init, Dir dir, Value val) async {
+    await _fbRefGoals
+        .child(goal.key)
+        .child("strategies")
+        .child(strat.key)
+        .child("initiatives")
+        .child(init.key)
+        .child("directives")
+        .child(dir.key)
+        .child("values")
+        .child(val.key)
+        .child("value")
+        .set(val.value);
+  }
+
   Future deleteGoal(String key) async {
     try {
       await _fbRefGoals.child(key).remove();
@@ -287,6 +302,24 @@ class FirebaseService {
           .remove();
     } catch (e) {
       print("Error in deleting $key4: $e");
+    }
+  }
+
+  Future deleteVal(String key1, String key2, String key3, String key4, String key5) async {
+    try {
+      await _fbRefGoals
+          .child(key1)
+          .child("strategies")
+          .child(key2)
+          .child("initiatives")
+          .child(key3)
+          .child("directives")
+          .child(key4)
+          .child("values")
+          .child(key5)
+          .remove();
+    } catch (e) {
+      print("Error in deleting $key5: $e");
     }
   }
 
