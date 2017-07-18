@@ -4,6 +4,7 @@ import 'package:kpi_dash/src/models/goal.dart';
 import 'package:kpi_dash/src/models/strategy.dart';
 import 'package:angular2/angular2.dart';
 import 'package:angular_components/angular_components.dart';
+import 'package:kpi_dash/src/models/year.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
 
 @Component(
@@ -25,6 +26,9 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
 )
 class StrategyComponent {
   @Input()
+  Year year;
+
+  @Input()
   Goal goal;
 
   final FirebaseService fbService2;
@@ -34,33 +38,33 @@ class StrategyComponent {
   String inputTextName = "";
   String inputTextDescription = "";
 
-  void add2List(Goal goal) {
-    String stratName = inputTextName.trim();
-    String stratDesc = inputTextDescription.trim();
+//  void add2List(Year year, Goal goal) {
+//    String stratName = inputTextName.trim();
+//    String stratDesc = inputTextDescription.trim();
+//
+//    goal.strategies.add(new Strategy(stratName, stratDesc, []));
+//  }
 
-    goal.strategies.add(new Strategy(stratName, stratDesc, []));
-  }
-
-  void add2(Goal goal) {
+  void add2(Year year, Goal goal) {
     String nameText = inputTextName.trim();
     String descText = inputTextDescription.trim();
 
     if (nameText.isEmpty) return;
     if (descText.isEmpty) return;
-    fbService2.addStrat(goal, nameText, descText);
+    fbService2.addStrat(year, goal, nameText, descText);
   }
 
-  void delete2(Goal goal, Strategy strat) {
-    fbService2.deleteStrategy(goal.key, strat.key);
+  void delete2(Year year, Goal goal, Strategy strat) {
+    fbService2.deleteStrategy(year.key, goal.key, strat.key);
     goal.strategies.remove(strat);
   }
 
-  void change2Name(Goal goal, Strategy strat) {
-    fbService2.changeStratName(goal, strat);
+  void change2Name(Year year, Goal goal, Strategy strat) {
+    fbService2.changeStratName(year, goal, strat);
   }
 
-  void change2Desc(Goal goal, Strategy strat) {
-    fbService2.changeStratDescription(goal, strat);
+  void change2Desc(Year year, Goal goal, Strategy strat) {
+    fbService2.changeStratDescription(year, goal, strat);
   }
 
   void onSelect(Strategy strat) {

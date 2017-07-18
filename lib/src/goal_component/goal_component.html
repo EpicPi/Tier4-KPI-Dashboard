@@ -3,17 +3,17 @@
 <div [hidden] = "fbService.user == null" hidden;>
     <div class="goals">
 
-        <div *ngFor="let goal of fbService.goals" >
+        <div *ngFor="let goal of year.goals" >
             <h3>Goal</h3>
                 <div class="name" (click)="onSelect(goal)">
                     Name: {{goal.name}}</div>
                 <div class="description" (click)="onSelect(goal)">
                     Description: {{goal.description}}</div>
-            <button class="delete" (click)="delete(goal)">Delete</button>
+            <button class="delete" (click)="delete(year,goal)">Delete</button>
             <button class="editintro" (click)="onSelect(goal)">Edit</button>
             <br>
             <br>
-            <my-strategy [goal]="goal"></my-strategy>
+            <my-strategy [year]=year [goal]="goal"></my-strategy>
 
             <br>
         </div>
@@ -24,11 +24,11 @@
         <h3>Edit Goal:</h3>
         <div>
             <label>Name: </label>
-            <input [(ngModel)]="selectedGoal.name" (keyup.enter)="changeName(selectedGoal)"
-                   (keyup.enter)="changeDesc(selectedGoal)" (keyup.enter)="selectedGoal = null">
+            <input [(ngModel)]="selectedGoal.name" (keyup.enter)="changeName(year, selectedGoal)"
+                   (keyup.enter)="changeDesc(year, selectedGoal)" (keyup.enter)="selectedGoal = null">
             <label>Description: </label>
-            <input [(ngModel)]="selectedGoal.description" (keyup.enter)="changeDesc(selectedGoal)"
-                   (keyup.enter)="changeName(selectedGoal)" (keyup.enter)="selectedGoal = null">
+            <input [(ngModel)]="selectedGoal.description" (keyup.enter)="changeDesc(year, selectedGoal)"
+                   (keyup.enter)="changeName(year, selectedGoal)" (keyup.enter)="selectedGoal = null">
         </div>
     </div>
 
@@ -36,13 +36,13 @@
     <div>
         <h3>Add Goal:</h3>
         <label>Goal Name:</label>
-        <input type="text" [(ngModel)] = 'inputNameText' (keyup.enter)="add()" (keyup.enter)="inputNameText ='' "
+        <input type="text" [(ngModel)] = 'inputNameText' (keyup.enter)="add(year)" (keyup.enter)="inputNameText ='' "
             (keyup.enter)="inputDescText=''">
         <br>
         <label>Goal Description:</label>
-        <input type="text" [(ngModel)] = 'inputDescText' (keyup.enter)="add()" (keyup.enter)="inputDescText=''"
+        <input type="text" [(ngModel)] = 'inputDescText' (keyup.enter)="add(year)" (keyup.enter)="inputDescText=''"
                (keyup.enter)="inputNameText='' ">
-        <button (click)="add()" (click)="inputDescText=''" (click)="inputNameText =''" >
+        <button (click)="add(year)" (click)="inputDescText=''" (click)="inputNameText =''" >
             Add
         </button>
     </div>

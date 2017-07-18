@@ -1,5 +1,5 @@
 const String monthTagText = "month";
-const String yearTagText = "year";
+const String yTagText = "year";
 const String valTagText = "value";
 
 class Value {
@@ -11,5 +11,5 @@ class Value {
   Value(this.month, this.year, this.value, [this.key]);
 
   Map toMap(Value val) =>
-      {monthTagText: val.month, yearTagText: val.year, valTagText: val.value};
+      {monthTagText: val.month, yTagText: val.year, valTagText: val.value};
 }

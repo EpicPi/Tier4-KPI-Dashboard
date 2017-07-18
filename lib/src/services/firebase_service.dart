@@ -2,15 +2,18 @@ import 'dart:async';
 import 'package:kpi_dash/src/models/models.dart';
 import 'package:angular2/core.dart';
 import 'package:firebase/firebase.dart' as fb;
+import 'package:kpi_dash/src/models/year.dart';
 
 @Injectable()
 class FirebaseService {
   fb.User user;
-  List<Goal> goals;
+//  List<Goal> goals;
+  fb.DatabaseReference _fbRefYears;
   fb.Auth _fbAuth;
   fb.GoogleAuthProvider _fbGoogleAuthProvider;
   fb.Database _fbDatabase;
-  fb.DatabaseReference _fbRefGoals;
+//  fb.DatabaseReference _fbRefGoals;
+  List<Year> years;
 
   FirebaseService() {
     fb.initializeApp(
@@ -20,92 +23,181 @@ class FirebaseService {
         storageBucket: "fir-tier-4-kpi-dashboard.appspot.com");
 
     _fbDatabase = fb.database();
-    _fbRefGoals = _fbDatabase.ref("goals");
+    _fbRefYears = _fbDatabase.ref("years");
     _fbGoogleAuthProvider = new fb.GoogleAuthProvider();
     _fbAuth = fb.auth();
     _fbAuth.onAuthStateChanged.listen(_authChanged);
   }
 
+//  Future _authChanged(fb.AuthEvent event) async {
+//    user = event.user;
+//
+//    if (user != null) {
+//      goals = [];
+//      await _fbRefGoals.limitToLast(60).onChildAdded.listen(_newGoal);
+//    }
+//  }
+
   Future _authChanged(fb.AuthEvent event) async {
     user = event.user;
 
     if (user != null) {
-      goals = [];
-      await _fbRefGoals.limitToLast(60).onChildAdded.listen(_newGoal);
+      years = [];
+      await _fbRefYears.limitToLast(60).onChildAdded.listen(_newYear);
     }
   }
 
-  Future _newGoal(fb.QueryEvent event) async {
-    fb.DataSnapshot data = event.snapshot;
+  Future _newYear(fb.QueryEvent e) async{
+    fb.DataSnapshot data = e.snapshot;
     // Value of data from snapshot.
     var val = data.val();
     // Creates a new Goal item. It is possible to retrieve a key from data.
-    var item = new Goal(
-        val[nameTagText], val[descTagText], [], data.key);
-    goals.add(item);
-
-    fb.DatabaseReference fbRefStrat = _fbRefGoals.child(item.key).child("strategies");
-    await fbRefStrat.limitToLast(60).onChildAdded.listen((fb.QueryEvent event2) async{
-      fb.DataSnapshot data = event2.snapshot;
+    var item = new Year(
+        val[yearTagText], [], data.key);
+    years.add(item);
+    fb.DatabaseReference fbRefGoals = _fbRefYears.child(item.key).child("goals");
+    await fbRefGoals.limitToLast(60).onChildAdded.listen((fb.QueryEvent event) async {
+      fb.DataSnapshot data = event.snapshot;
       // Value of data from snapshot.
       var val = data.val();
-      // Creates a new Strategy item. It is possible to retrieve a key from data.
-      var strat = new Strategy(
-          val[name2TagText], val[desc2TagText], [], data.key);
-      item.strategies.add(strat);
+      // Creates a new Goal item. It is possible to retrieve a key from data.
+      var g = new Goal(
+          val[nameTagText], val[descTagText], [], data.key);
+      item.goals.add(g);
 
-      fb.DatabaseReference fbRefInit = fbRefStrat.child(strat.key).child("initiatives");
-      await fbRefInit.limitToLast(60).onChildAdded.listen((fb.QueryEvent event3) async{
-        fb.DataSnapshot data = event3.snapshot;
+      fb.DatabaseReference fbRefStrat = fbRefGoals.child(g.key).child(
+          "strategies");
+      await fbRefStrat
+          .limitToLast(60)
+          .onChildAdded
+          .listen((fb.QueryEvent event2) async {
+        fb.DataSnapshot data = event2.snapshot;
+        // Value of data from snapshot.
         var val = data.val();
-        var init = new Initiative(
-            val[name3TagText], val[desc3TagText], [], data.key);
-        strat.initiatives.add(init);
+        // Creates a new Strategy item. It is possible to retrieve a key from data.
+        var strat = new Strategy(
+            val[name2TagText], val[desc2TagText], [], data.key);
+        g.strategies.add(strat);
 
-        fb.DatabaseReference fbRefDir = fbRefInit.child(init.key).child("directives");
-        await fbRefDir.limitToLast(60).onChildAdded.listen((fb.QueryEvent event4) async{
-          fb.DataSnapshot data = event4.snapshot;
+        fb.DatabaseReference fbRefInit = fbRefStrat.child(strat.key).child(
+            "initiatives");
+        await fbRefInit
+            .limitToLast(60)
+            .onChildAdded
+            .listen((fb.QueryEvent event3) async {
+          fb.DataSnapshot data = event3.snapshot;
           var val = data.val();
-          var dir = new Dir(
-              val[name4TagText], val[desc4TagText], val[maxValTagText], [], data.key);
-          init.directives.add(dir);
+          var init = new Initiative(
+              val[name3TagText], val[desc3TagText], [], data.key);
+          strat.initiatives.add(init);
 
-          fb.DatabaseReference fbRefVal = fbRefDir.child(dir.key).child("values");
-          await fbRefVal.limitToLast(60).onChildAdded.listen((fb.QueryEvent event5) async{
-            fb.DataSnapshot data = event5.snapshot;
+          fb.DatabaseReference fbRefDir = fbRefInit.child(init.key).child(
+              "directives");
+          await fbRefDir
+              .limitToLast(60)
+              .onChildAdded
+              .listen((fb.QueryEvent event4) async {
+            fb.DataSnapshot data = event4.snapshot;
             var val = data.val();
-            var v = new Value(
-                val[monthTagText], val[yearTagText], val[valTagText], data.key);
-            dir.values.add(v);
+            var dir = new Dir(
+                val[name4TagText], val[desc4TagText], val[maxValTagText], [],
+                data.key);
+            init.directives.add(dir);
+
+            fb.DatabaseReference fbRefVal = fbRefDir.child(dir.key).child(
+                "values");
+            await fbRefVal
+                .limitToLast(60)
+                .onChildAdded
+                .listen((fb.QueryEvent event5) async {
+              fb.DataSnapshot data = event5.snapshot;
+              var val = data.val();
+              var v = new Value(
+                  val[monthTagText], val[yearTagText], val[valTagText],
+                  data.key);
+              dir.values.add(v);
+            });
           });
         });
       });
     });
-
   }
 
-  Future addGoal(String name, String desc) async {
+
+
+//  Future _newGoal(fb.QueryEvent event) async {
+//    fb.DataSnapshot data = event.snapshot;
+//    // Value of data from snapshot.
+//    var val = data.val();
+//    // Creates a new Goal item. It is possible to retrieve a key from data.
+//    var item = new Goal(
+//        val[nameTagText], val[descTagText], [], data.key);
+//    goals.add(item);
+//
+//    fb.DatabaseReference fbRefStrat = _fbRefGoals.child(item.key).child("strategies");
+//    await fbRefStrat.limitToLast(60).onChildAdded.listen((fb.QueryEvent event2) async{
+//      fb.DataSnapshot data = event2.snapshot;
+//      // Value of data from snapshot.
+//      var val = data.val();
+//      // Creates a new Strategy item. It is possible to retrieve a key from data.
+//      var strat = new Strategy(
+//          val[name2TagText], val[desc2TagText], [], data.key);
+//      item.strategies.add(strat);
+//
+//      fb.DatabaseReference fbRefInit = fbRefStrat.child(strat.key).child("initiatives");
+//      await fbRefInit.limitToLast(60).onChildAdded.listen((fb.QueryEvent event3) async{
+//        fb.DataSnapshot data = event3.snapshot;
+//        var val = data.val();
+//        var init = new Initiative(
+//            val[name3TagText], val[desc3TagText], [], data.key);
+//        strat.initiatives.add(init);
+//
+//        fb.DatabaseReference fbRefDir = fbRefInit.child(init.key).child("directives");
+//        await fbRefDir.limitToLast(60).onChildAdded.listen((fb.QueryEvent event4) async{
+//          fb.DataSnapshot data = event4.snapshot;
+//          var val = data.val();
+//          var dir = new Dir(
+//              val[name4TagText], val[desc4TagText], val[maxValTagText], [], data.key);
+//          init.directives.add(dir);
+//
+//          fb.DatabaseReference fbRefVal = fbRefDir.child(dir.key).child("values");
+//          await fbRefVal.limitToLast(60).onChildAdded.listen((fb.QueryEvent event5) async{
+//            fb.DataSnapshot data = event5.snapshot;
+//            var val = data.val();
+//            var v = new Value(
+//                val[monthTagText], val[yearTagText], val[valTagText], data.key);
+//            dir.values.add(v);
+//          });
+//        });
+//      });
+//    });
+//
+//  }
+
+  Future addGoal(Year year, String name, String desc) async {
     try {
       Goal g = new Goal(name, desc, []);
-      await _fbRefGoals.push(g.toMap(g));
+      await _fbRefYears.child(year.key).child("goals").push(g.toMap(g));
     } catch (error) {
       print(error);
     }
   }
 
-  Future addStrat(Goal goal, String name, String desc) async {
+  Future addStrat(Year year, Goal goal, String name, String desc) async {
     try {
       Strategy s = new Strategy(name, desc, []);
-      await _fbRefGoals.child(goal.key).child("strategies").push(s.toMap(s));
+      await _fbRefYears.child(year.key).child("goals").child(goal.key).child("strategies").push(s.toMap(s));
     } catch (error) {
       print(error);
     }
   }
 
-  Future addInit(Goal goal, Strategy strat, String name, String desc) async {
+  Future addInit(Year year, Goal goal, Strategy strat, String name, String desc) async {
     try {
       Initiative i = new Initiative(name, desc, []);
-      await _fbRefGoals
+      await _fbRefYears
+          .child(year.key)
+          .child("goals")
           .child(goal.key)
           .child("strategies")
           .child(strat.key)
@@ -116,11 +208,13 @@ class FirebaseService {
     }
   }
 
-  Future addDir(Goal goal, Strategy strat, Initiative init, String name,
+  Future addDir(Year year, Goal goal, Strategy strat, Initiative init, String name,
       String desc, num maxVal) async {
     try {
       Dir d = new Dir(name, desc, maxVal, []);
-      await _fbRefGoals
+      await _fbRefYears
+          .child(year.key)
+          .child("goals")
           .child(goal.key)
           .child("strategies")
           .child(strat.key)
@@ -133,15 +227,15 @@ class FirebaseService {
     }
   }
 
-  Future addVal(Goal goal, Strategy strat, Initiative init, Dir dir,
-      String month, num year, num v) async{
+  Future addVal(Year year,Goal goal, Strategy strat, Initiative init, Dir dir,
+      String month, num y, num v) async{
     try{
-      Value val = new Value(month, year, v);
+      Value val = new Value(month, y, v);
       for(int i=0; i<dir.values.length; i++){
         if(month==dir.values[i].month && year==dir.values[i].year)
           return;
       }
-      await _fbRefGoals.child(goal.key).child("strategies").
+      await _fbRefYears.child(year.key).child("goals").child(goal.key).child("strategies").
       child(strat.key).child("initiatives").child(init.key).
       child("directives").child(dir.key).child("values").push(val.toMap(val));
     }
@@ -150,19 +244,23 @@ class FirebaseService {
     }
   }
 
-  Future changeGoalName(Goal goal) async {
-    await _fbRefGoals.child(goal.key).child("name").set(goal.name);
+  Future changeGoalName(Year year, Goal goal) async {
+    await _fbRefYears.child(year.key).child("goals").child(goal.key).child("name").set(goal.name);
   }
 
-  Future changeGoalDescription(Goal goal) async {
-    await _fbRefGoals
+  Future changeGoalDescription(Year year, Goal goal) async {
+    await _fbRefYears
+        .child(year.key)
+        .child("goals")
         .child(goal.key)
         .child("description")
         .set(goal.description);
   }
 
-  Future changeStratName(Goal goal, Strategy strat) async {
-    await _fbRefGoals
+  Future changeStratName(Year year, Goal goal, Strategy strat) async {
+    await _fbRefYears
+        .child(year.key)
+        .child("goals")
         .child(goal.key)
         .child("strategies")
         .child(strat.key)
@@ -170,8 +268,10 @@ class FirebaseService {
         .set(strat.name);
   }
 
-  Future changeStratDescription(Goal goal, Strategy strat) async {
-    await _fbRefGoals
+  Future changeStratDescription(Year year, Goal goal, Strategy strat) async {
+    await _fbRefYears
+        .child(year.key)
+        .child("goals")
         .child(goal.key)
         .child("strategies")
         .child(strat.key)
@@ -179,8 +279,10 @@ class FirebaseService {
         .set(strat.description);
   }
 
-  Future changeInitName(Goal goal, Strategy strat, Initiative init) async {
-    await _fbRefGoals
+  Future changeInitName(Year year, Goal goal, Strategy strat, Initiative init) async {
+    await _fbRefYears
+        .child(year.key)
+        .child("goals")
         .child(goal.key)
         .child("strategies")
         .child(strat.key)
@@ -191,8 +293,10 @@ class FirebaseService {
   }
 
   Future changeInitDescription(
-      Goal goal, Strategy strat, Initiative init) async {
-    await _fbRefGoals
+      Year year, Goal goal, Strategy strat, Initiative init) async {
+    await _fbRefYears
+        .child(year.key)
+        .child("goals")
         .child(goal.key)
         .child("strategies")
         .child(strat.key)
@@ -203,8 +307,10 @@ class FirebaseService {
   }
 
   Future changeDirName(
-      Goal goal, Strategy strat, Initiative init, Dir dir) async {
-    await _fbRefGoals
+      Year year, Goal goal, Strategy strat, Initiative init, Dir dir) async {
+    await _fbRefYears
+        .child(year.key)
+        .child("goals")
         .child(goal.key)
         .child("strategies")
         .child(strat.key)
@@ -217,8 +323,10 @@ class FirebaseService {
   }
 
   Future changeDirDescription(
-      Goal goal, Strategy strat, Initiative init, Dir dir) async {
-    await _fbRefGoals
+      Year year, Goal goal, Strategy strat, Initiative init, Dir dir) async {
+    await _fbRefYears
+        .child(year.key)
+        .child("goals")
         .child(goal.key)
         .child("strategies")
         .child(strat.key)
@@ -231,8 +339,10 @@ class FirebaseService {
   }
 
   Future changeDirMax(
-      Goal goal, Strategy strat, Initiative init, Dir dir) async {
-    await _fbRefGoals
+      Year year, Goal goal, Strategy strat, Initiative init, Dir dir) async {
+    await _fbRefYears
+        .child(year.key)
+        .child("goals")
         .child(goal.key)
         .child("strategies")
         .child(strat.key)
@@ -244,8 +354,10 @@ class FirebaseService {
         .set(dir.maxValue);
   }
 
-  Future changeVal(Goal goal, Strategy strat, Initiative init, Dir dir, Value val) async {
-    await _fbRefGoals
+  Future changeVal(Year year, Goal goal, Strategy strat, Initiative init, Dir dir, Value val) async {
+    await _fbRefYears
+        .child(year.key)
+        .child("goals")
         .child(goal.key)
         .child("strategies")
         .child(strat.key)
@@ -259,45 +371,31 @@ class FirebaseService {
         .set(val.value);
   }
 
-  Future deleteGoal(String key) async {
+  Future deleteGoal(String key1, String key2) async {
     try {
-      await _fbRefGoals.child(key).remove();
-    } catch (e) {
-      print("Error in deleting $key: $e");
-    }
-  }
-
-  Future deleteStrategy(String key1, String key2) async {
-    try {
-      await _fbRefGoals.child(key1).child("strategies").child(key2).remove();
+      await _fbRefYears.child(key1).child("goals").child(key2).remove();
     } catch (e) {
       print("Error in deleting $key2: $e");
     }
   }
 
-  Future deleteInit(String key1, String key2, String key3) async {
+  Future deleteStrategy(String key1, String key2, String key3) async {
     try {
-      await _fbRefGoals
-          .child(key1)
-          .child("strategies")
-          .child(key2)
-          .child("initiatives")
-          .child(key3)
-          .remove();
+      await _fbRefYears.child(key1).child("goals").child(key2).child("strategies").child(key3).remove();
     } catch (e) {
       print("Error in deleting $key3: $e");
     }
   }
 
-  Future deleteDir(String key1, String key2, String key3, String key4) async {
+  Future deleteInit(String key1, String key2, String key3, String key4) async {
     try {
-      await _fbRefGoals
+      await _fbRefYears
           .child(key1)
-          .child("strategies")
+          .child("goals")
           .child(key2)
-          .child("initiatives")
+          .child("strategies")
           .child(key3)
-          .child("directives")
+          .child("initiatives")
           .child(key4)
           .remove();
     } catch (e) {
@@ -305,21 +403,41 @@ class FirebaseService {
     }
   }
 
-  Future deleteVal(String key1, String key2, String key3, String key4, String key5) async {
+  Future deleteDir(String key1, String key2, String key3, String key4, key5) async {
     try {
-      await _fbRefGoals
+      await _fbRefYears
           .child(key1)
-          .child("strategies")
+          .child("goals")
           .child(key2)
-          .child("initiatives")
+          .child("strategies")
           .child(key3)
-          .child("directives")
+          .child("initiatives")
           .child(key4)
-          .child("values")
+          .child("directives")
           .child(key5)
           .remove();
     } catch (e) {
       print("Error in deleting $key5: $e");
+    }
+  }
+
+  Future deleteVal(String key1, String key2, String key3, String key4, String key5, String key6) async {
+    try {
+      await _fbRefYears
+          .child(key1)
+          .child("goals")
+          .child(key2)
+          .child("strategies")
+          .child(key3)
+          .child("initiatives")
+          .child(key4)
+          .child("directives")
+          .child(key5)
+          .child("values")
+          .child(key6)
+          .remove();
+    } catch (e) {
+      print("Error in deleting $key6: $e");
     }
   }
 

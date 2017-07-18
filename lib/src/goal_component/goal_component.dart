@@ -5,6 +5,7 @@ import 'package:angular_components/angular_components.dart';
 import 'package:kpi_dash/src/directive_component/directive_component.dart';
 import 'package:kpi_dash/src/initiative_component/initiative_component.dart';
 import 'package:kpi_dash/src/models/goal.dart';
+import 'package:kpi_dash/src/models/year.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
 import 'package:kpi_dash/src/strategy_component/strategy_component.dart';
 import 'package:kpi_dash/src/vu_scroll_down.dart';
@@ -24,6 +25,9 @@ import 'package:kpi_dash/src/vu_scroll_down.dart';
   providers: const [materialProviders],
 )
 class GoalComponent {
+  @Input()
+  Year year;
+
   final FirebaseService fbService;
   GoalComponent(this.fbService);
   Goal selectedGoal;
@@ -32,25 +36,25 @@ class GoalComponent {
   String inputNameText = "";
   String inputDescText = "";
 
-  void add() {
+  void add(Year year) {
     String goalName = inputNameText.trim();
     String goalDesc = inputDescText.trim();
 
     if (goalName.isEmpty || goalDesc.isEmpty) return;
-    fbService.addGoal(goalName, goalDesc);
+    fbService.addGoal(year, goalName, goalDesc);
   }
 
-  void delete(Goal goal) {
-    fbService.deleteGoal(goal.key);
-    fbService.goals.remove(goal);
+  void delete(Year year, Goal goal) {
+    fbService.deleteGoal(year.key, goal.key);
+    year.goals.remove(goal);
   }
 
-  void changeName(Goal goal) {
-    fbService.changeGoalName(goal);
+  void changeName(Year year, Goal goal) {
+    fbService.changeGoalName(year, goal);
   }
 
-  void changeDesc(Goal goal) {
-    fbService.changeGoalDescription(goal);
+  void changeDesc(Year year, Goal goal) {
+    fbService.changeGoalDescription(year, goal);
   }
 
   void onSelect(Goal goal) {

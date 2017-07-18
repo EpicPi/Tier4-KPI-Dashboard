@@ -1,7 +1,9 @@
 import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:kpi_dash/pi_charts/pi_charts.dart';
+import 'package:kpi_dash/src/models/year.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
+import 'package:kpi_dash/src/year_component/year_component.dart';
 
 @Component(
     selector: 'my-summary',
@@ -18,7 +20,9 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
   DivElement divElement;
 
   final FirebaseService fbService;
-  SummaryComponent(this.fbService);
+  SummaryComponent(
+      this.fbService
+      );
 
   var goals;
   var chart;
@@ -37,7 +41,7 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
     List<List> data = new List<List>();
     data.add(["name", "value"]);
 
-    for (var goal in fbService.goals) data.add([goal.name, goal.percentage]);
+    for (var goal in year.goals) data.add([goal.name, goal.percentage]);
 
     chart = createGaugeChart(canvasElement, new DataTable(data));
   }

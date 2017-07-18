@@ -4,13 +4,13 @@
             <div *ngFor="let strat of goal.strategies">
                 <h4>Strategy</h4>
                 <span (click)="onSelect(strat)">Name: {{strat.name}}</span>
-                <button class="delete" (click)="delete2(goal, strat)">Delete</button>
+                <button class="delete" (click)="delete2(year, goal, strat)">Delete</button>
                 <br>
                 <span class="badge" (click)="onSelect(strat)">Description: {{strat.description}}</span>
                 <button class="editintro" (click)="onSelect(strat)">Edit</button>
                 <br>
                 <br>
-                <my-init [goal]=goal [strat]="strat"></my-init>
+                <my-init [year]=year [goal]=goal [strat]="strat"></my-init>
 
             </div>
             <br>
@@ -18,11 +18,11 @@
                 <h4>Edit Strategy:</h4>
                 <div>
                     <label>Name: </label>
-                    <input [(ngModel)]="selectedStrat.name" (keyup.enter)="change2Name(goal, selectedStrat)"
-                           (keyup.enter)="change2Desc(goal, selectedStrat)" (keyup.enter)="selectedStrat=null">
+                    <input [(ngModel)]="selectedStrat.name" (keyup.enter)="change2Name(year, goal, selectedStrat)"
+                           (keyup.enter)="change2Desc(year, goal, selectedStrat)" (keyup.enter)="selectedStrat=null">
                     <label>Description: </label>
-                    <input [(ngModel)]="selectedStrat.description" (keyup.enter)="change2Desc(goal, selectedStrat)"
-                           (keyup.enter)="change2Name(goal, selectedStrat)" (keyup.enter)="selectedStrat=null">
+                    <input [(ngModel)]="selectedStrat.description" (keyup.enter)="change2Desc(year, goal, selectedStrat)"
+                           (keyup.enter)="change2Name(year, goal, selectedStrat)" (keyup.enter)="selectedStrat=null">
                 </div>
             </div>
             <br>
@@ -30,13 +30,13 @@
         <div>
             <h4>Add Strategy:</h4>
             <label>Strategy Name:</label>
-            <input type="text" [(ngModel)] = 'inputTextName' (keyup.enter)="add2(goal)" (keyup.enter)="inputTextName='' "
+            <input type="text" [(ngModel)] = 'inputTextName' (keyup.enter)="add2(year, goal)" (keyup.enter)="inputTextName='' "
                    (keyup.enter)="inputTextDescription=''">
             <br>
             <label>Strategy Description:</label>
-            <input type="text" [(ngModel)] = 'inputTextDescription' (keyup.enter)="add2(goal)" (keyup.enter)="inputTextDescription=''"
+            <input type="text" [(ngModel)] = 'inputTextDescription' (keyup.enter)="add2(year, goal)" (keyup.enter)="inputTextDescription=''"
                    (keyup.enter)="inputTextName='' ">
-            <button (click)="add2(goal)" (click)="inputTextDescription=''" (click)="inputTextName='' ">
+            <button (click)="add2(year, goal)" (click)="inputTextDescription=''" (click)="inputTextName='' ">
                 Add
             </button>
         </div>

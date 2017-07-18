@@ -9,13 +9,14 @@ import 'package:kpi_dash/src/goal_component/goal_component.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
 import 'package:kpi_dash/src/summary_component/summary_component.dart';
 import 'package:kpi_dash/src/val_component/val_component.dart';
+import 'package:kpi_dash/src/year_component/year_component.dart';
 
 @Component(
   selector: 'my-app',
   styleUrls: const ['app_component.css'],
   templateUrl: 'app_component.html',
   directives: const [materialDirectives, COMMON_DIRECTIVES,
-  CORE_DIRECTIVES, DetailComponent, GoalComponent, ValComponent, ROUTER_DIRECTIVES],
+  CORE_DIRECTIVES, DetailComponent, YearComponent,  ValComponent, ROUTER_DIRECTIVES],
   providers: const [materialProviders, FirebaseService, ROUTER_PROVIDERS],
 )
 
@@ -27,14 +28,15 @@ import 'package:kpi_dash/src/val_component/val_component.dart';
   const Route(
       path: '/admin',
       name: 'Admin',
-      component: GoalComponent),
+      component: YearComponent),
   const Route(
     path: '/details',
     name: 'Details',
     component: DetailComponent)
 ])
 class AppComponent {
-  var goals;
+
+
   final FirebaseService fbService;
   AppComponent(this.fbService);
 

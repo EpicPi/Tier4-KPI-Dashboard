@@ -2,7 +2,7 @@
         <div class="directives">
             <ul *ngFor="let dir of init.directives">
                 <span (click)="onSelect(dir)">Name: {{dir.name}}</span>
-                <button class="delete" (click)="delete4(goal, strat, init, dir)">Delete</button>
+                <button class="delete" (click)="delete4(year, goal, strat, init, dir)">Delete</button>
                 <br>
                 <span class="badge" (click)="onSelect(dir)">Description: {{dir.description}}</span>
                 <button class="editintro" (click)="onSelect(dir)">Edit</button>
@@ -14,18 +14,18 @@
                 <h4>Edit Directive:</h4>
                 <div>
                     <label>Name: </label>
-                    <input [(ngModel)]="selectedDir.name" (keyup.enter)="change4Name(goal, strat, init, selectedDir)"
-                           (keyup.enter)="change4Desc(goal, strat, init, selectedDir)" (keyup.enter)="changeMax(goal, strat, init, selectedDir)"
+                    <input [(ngModel)]="selectedDir.name" (keyup.enter)="change4Name(year, goal, strat, init, selectedDir)"
+                           (keyup.enter)="change4Desc(year, goal, strat, init, selectedDir)" (keyup.enter)="changeMax(year, goal, strat, init, selectedDir)"
                            (keyup.enter)="selectedDir=null">
                     <br>
                     <label>Description: </label>
-                    <input [(ngModel)]="selectedDir.description" (keyup.enter)="change4Desc(goal, strat, init, selectedDir)"
-                           (keyup.enter)="change4Name(goal, strat, init, selectedDir)" (keyup.enter)="changeMax(goal, strat, init, selectedDir)"
+                    <input [(ngModel)]="selectedDir.description" (keyup.enter)="change4Desc(year, goal, strat, init, selectedDir)"
+                           (keyup.enter)="change4Name(year, goal, strat, init, selectedDir)" (keyup.enter)="changeMax(year, goal, strat, init, selectedDir)"
                            (keyup.enter)="selectedDir=null">
                     <br>
                     <label>Max Value: </label>
-                    <input type="number" [(ngModel)]="selectedDir.maxValue" (keyup.enter)="changeMax(goal, strat, init, selectedDir)"
-                           (keyup.enter)="change4Name(goal, strat, init, selectedDir)" (keyup.enter)="change4Desc(goal, strat, init, selectedDir)"
+                    <input type="number" [(ngModel)]="selectedDir.maxValue" (keyup.enter)="changeMax(year, goal, strat, init, selectedDir)"
+                           (keyup.enter)="change4Name(year, goal, strat, init, selectedDir)" (keyup.enter)="change4Desc(year, goal, strat, init, selectedDir)"
                            (keyup.enter)="selectedDir=null">
                 </div>
             </div>
@@ -33,19 +33,19 @@
         <div>
             <h4>Add Directive:</h4>
             <label>Directive Name:</label>
-            <input type="text" [(ngModel)] = 'inputTextName' (keyup.enter)="add4(goal, strat, init)" (keyup.enter)="inputTextDescription='' "
+            <input type="text" [(ngModel)] = 'inputTextName' (keyup.enter)="add4(year, goal, strat, init)" (keyup.enter)="inputTextDescription='' "
                    (keyup.enter)="inputTextName=''" (keyup.enter)="inputMax = null ">
             <br>
             <label>Directive Description:</label>
-            <input type="text" [(ngModel)] = 'inputTextDescription' (keyup.enter)="add4(goal, strat, init)" (keyup.enter)="inputTextName=''"
+            <input type="text" [(ngModel)] = 'inputTextDescription' (keyup.enter)="add4(year, goal, strat, init)" (keyup.enter)="inputTextName=''"
                    (keyup.enter)="inputTextDescription=''" (keyup.enter)="inputMax = null ">
             <br>
             <div>
             <label>Directive Max Value: </label>
-            <input type="number" [(ngModel)] = "inputMax"   value="0" (keyup.enter)="add4(goal, strat, init)" (keyup.enter)="inputTextName=''"
+            <input type="number" [(ngModel)] = "inputMax"   value="0" (keyup.enter)="add4(year, goal, strat, init)" (keyup.enter)="inputTextName=''"
                    (keyup.enter)="inputTextDescription=''" (keyup.enter)="inputMax = null ">
             </div>
-            <button (click)="add4(goal, strat, init)" (click)="inputTextName=''"
+            <button (click)="add4(year, goal, strat, init)" (click)="inputTextName=''"
                     (click)="inputTextDescription=''" (click)="inputMax = null ">
                 Add
             </button>

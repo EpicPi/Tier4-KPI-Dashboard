@@ -1,0 +1,109 @@
+{
+  "years": {
+    "year857045454": {
+      "year" : 2017,
+      "goals": {
+        "-K2ib4H77rj0LYewF7dP": {
+          "name": "first",
+          "description": "first",
+          "strategies": {
+            "-strat4638w3435": {
+              "name": "strat1",
+              "description": "something",
+              "initiatives": {
+                "-initind23r23r23r": {
+                  "name": "init1",
+                  "directives": {
+                    "-dir4e73959854040": {
+                      "name": "yeet",
+                      "description": "yah",
+                      "max value": 5,
+                      "values": {
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "-K2ib5JHRbbL0NrztUfO": {
+          "name": "second",
+          "strategies": {
+            "-strat465783874": {
+              "name": "strat2",
+              "description": "something",
+              "initiatives": {
+                "-initind23r23r256r": {
+                  "name": "init2",
+                  "directives": {
+                    "-dir4e767854040": {
+                      "name": "yeet2",
+                      "description": "yah2",
+                      "max value": 5,
+                      "values": {
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "-K2ib62mjHh34CAUbide": {
+          "name": "third",
+          "strategies": {
+            "-strat44985367": {
+              "name": "strat2",
+              "description": "something",
+              "initiatives": {
+                "-initind23r2332r23r": {
+                  "name": "init3",
+                  "directives": {
+                    "-dir4e767563240": {
+                      "name": "yeet3",
+                      "description": "yah3",
+                      "max value": 5,
+                      "values": {
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "year5656545454":{
+      "year":2018
+    },
+    "year5665254":{
+      "year":2019
+    },
+    "year5561554":{
+      "year":2020
+    },
+    "year566654":{
+      "year":2021
+    },
+    "year35554":{
+      "year":2022
+    },
+    "year5054":{
+      "year":2023
+    },
+    "year5615554":{
+      "year":2024
+    },
+    "year54265554":{
+      "year":2025
+    },
+    "year5535554":{
+      "year":2026
+    },
+    "year5665424":{
+      "year":2027
+    }
+  }
+}
