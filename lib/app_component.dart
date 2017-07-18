@@ -3,7 +3,7 @@
 
 import 'package:angular2/angular2.dart';
 import 'package:angular_components/angular_components.dart';
-
+import 'package:angular2/router.dart';
 import 'package:kpi_dash/src/detail_component/detail_component.dart';
 import 'package:kpi_dash/src/goal_component/goal_component.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
@@ -14,9 +14,16 @@ import 'package:kpi_dash/src/val_component/val_component.dart';
   selector: 'my-app',
   styleUrls: const ['app_component.css'],
   templateUrl: 'app_component.html',
-  directives: const [materialDirectives, DetailComponent, GoalComponent, ValComponent],
-  providers: const [materialProviders, FirebaseService],
+  directives: const [materialDirectives, DetailComponent, GoalComponent, ValComponent, ROUTER_DIRECTIVES],
+  providers: const [materialProviders, FirebaseService, ROUTER_PROVIDERS],
 )
+
+@RouteConfig(const [
+  const Route(
+      path: '/value',
+      name: 'Data Entry Page',
+      component: ValComponent),
+])
 class AppComponent {
   var goals;
   final FirebaseService fbService;
