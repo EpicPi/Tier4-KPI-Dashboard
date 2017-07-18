@@ -72,7 +72,7 @@ class FirebaseService {
 
           fb.DatabaseReference fbRefVal = fbRefDir.child(dir.key).child("values");
           await fbRefVal.limitToLast(60).onChildAdded.listen((fb.QueryEvent event5) async{
-            fb.DataSnapshot data = event4.snapshot;
+            fb.DataSnapshot data = event5.snapshot;
             var val = data.val();
             var v = new Value(
                 val[monthTagText], val[yearTagText], val[valTagText], data.key);

@@ -27,7 +27,7 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
 class ValComponent {
 
 
-  static const List<num> years = const <num>[
+  var years = const <num>[
     2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026,
     2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037,
     2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048,
@@ -44,36 +44,33 @@ class ValComponent {
   final FirebaseService fbService5;
 
   ValComponent(this.fbService5);
+  String month = null;
+  num year = null;
+
 
   Value selectedVal;
 
   
 
-  num pickYear(num year) {
-    return year;
+  void pickYear(num y) {
+    year = y;
+    print(year);
   }
 
-  String pickMonth(String month) {
-    return month;
+  void pickMonth(String m) {
+    month = m;
+    print (month);
   }
 
-  num inputVal = null;
 
 
-  void addValue(Goal goal, Strategy strat, Initiative init, Dir dir, num year,
-      String month) {
+  num inputVal = 0;
+  void addValue(Goal goal, Strategy strat, Initiative init, Dir dir,) {
     num value = inputVal;
 
     if (value == null) return;
 
-    fbService5.addVal(
-        goal,
-        strat,
-        init,
-        dir,
-        pickMonth(month),
-        pickYear(year),
-        value);
+    fbService5.addVal(goal, strat, init, dir, month, year, value);
   }
 
 

@@ -6,8 +6,8 @@ const String valTagText = "value";
 class Value{
   String key;
   String month;
-  int year;
-  int value;
+  num year;
+  num value;
 
   Value(this.month, this.year, this.value, [this.key]);
 

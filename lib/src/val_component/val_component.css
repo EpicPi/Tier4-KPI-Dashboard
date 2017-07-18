@@ -1,0 +1,24 @@
+div.goal{
+    position:relative;
+    left:20px
+}
+
+div.strat{
+    position:relative;
+    left:50px
+}
+
+div.init{
+    position:relative;
+    left:80px
+}
+
+div.dir{
+    position:relative;
+    left:110px
+}
+
+div.val{
+    position:relative;
+    left:20px
+}
