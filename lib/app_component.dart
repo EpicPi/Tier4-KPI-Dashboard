@@ -27,7 +27,11 @@ import 'package:kpi_dash/src/val_component/val_component.dart';
   const Route(
       path: '/admin',
       name: 'Admin',
-      component: GoalComponent)
+      component: GoalComponent),
+  const Route(
+    path: '/details',
+    name: 'Details',
+    component: DetailComponent)
 ])
 class AppComponent {
   var goals;
