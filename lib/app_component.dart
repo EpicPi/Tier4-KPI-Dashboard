@@ -19,10 +19,12 @@ import 'package:kpi_dash/src/year_component/year_component.dart';
   selector: 'my-app',
   styleUrls: const ['app_component.css'],
   templateUrl: 'app_component.html',
-  directives: const [materialDirectives, COMMON_DIRECTIVES,
-  CORE_DIRECTIVES, DetailComponent, GoalComponent, StrategyComponent,
-  InitiativeComponent, DirectiveComponent,materialDirectives,
-  COMMON_DIRECTIVES, CORE_DIRECTIVES, ValComponent, ROUTER_DIRECTIVES],
+  directives: const [materialDirectives,
+  COMMON_DIRECTIVES, CORE_DIRECTIVES,
+  DetailComponent, GoalComponent, StrategyComponent,
+  InitiativeComponent, DirectiveComponent,
+  materialDirectives, COMMON_DIRECTIVES, CORE_DIRECTIVES,
+  ValComponent, ROUTER_DIRECTIVES],
   providers: const [materialProviders, FirebaseService, ROUTER_PROVIDERS],
 )
 

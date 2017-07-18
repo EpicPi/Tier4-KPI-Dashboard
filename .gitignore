@@ -9,3 +9,4 @@ pubspec.lock
 doc/api/
 
 libraries/
+!/lib/src/year_component/year_component.css
