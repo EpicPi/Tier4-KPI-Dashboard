@@ -9,12 +9,16 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
   selector: 'my-dir',
   styleUrls: const ['directive_component.css'],
   templateUrl: 'directive_component.html',
-  directives: const [materialDirectives, COMMON_DIRECTIVES, CORE_DIRECTIVES,
-  MaterialExpansionPanel, MaterialExpansionPanelSet],
+  directives: const [
+    materialDirectives,
+    COMMON_DIRECTIVES,
+    CORE_DIRECTIVES,
+    MaterialExpansionPanel,
+    MaterialExpansionPanelSet
+  ],
   providers: const [materialProviders],
 )
-
-class DirectiveComponent{
+class DirectiveComponent {
   @Input()
   Goal goal;
 
@@ -29,11 +33,9 @@ class DirectiveComponent{
   DirectiveComponent(this.fbService4);
   Dir selectedDir;
 
-
   String inputTextName = "";
   String inputTextDescription = "";
   num inputMax = null;
-
 
   void add4(Goal goal, Strategy strat, Initiative init) {
     String name2Text = inputTextName.trim();
@@ -42,31 +44,29 @@ class DirectiveComponent{
 
     if (name2Text.isEmpty) return;
     if (desc2Text.isEmpty) return;
-    if(max==null) return;
+    if (max == null) return;
 
     fbService4.addDir(goal, strat, init, name2Text, desc2Text, max);
   }
 
-  void delete4(Goal goal, Strategy strat, Initiative init, Dir dir){
+  void delete4(Goal goal, Strategy strat, Initiative init, Dir dir) {
     fbService4.deleteDir(goal.key, strat.key, init.key, dir.key);
     init.directives.remove(dir);
   }
 
-  void change4Name(Goal goal, Strategy strat, Initiative init, Dir dir){
+  void change4Name(Goal goal, Strategy strat, Initiative init, Dir dir) {
     fbService4.changeDirName(goal, strat, init, dir);
   }
 
-  void change4Desc(Goal goal, Strategy strat, Initiative init, Dir dir){
+  void change4Desc(Goal goal, Strategy strat, Initiative init, Dir dir) {
     fbService4.changeDirDescription(goal, strat, init, dir);
   }
 
-  void changeMax (Goal goal, Strategy strat, Initiative init, Dir dir){
+  void changeMax(Goal goal, Strategy strat, Initiative init, Dir dir) {
     fbService4.changeDirMax(goal, strat, init, dir);
   }
 
-  void onSelect(Dir dir){
+  void onSelect(Dir dir) {
     selectedDir = dir;
   }
-
-
 }

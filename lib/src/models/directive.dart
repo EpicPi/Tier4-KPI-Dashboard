@@ -6,8 +6,7 @@ const String desc4TagText = "description";
 const String maxValTagText = "max value";
 const String valuesTagText = "values";
 
-
-class Dir{
+class Dir {
   String key;
   String name;
   String description;
@@ -16,8 +15,7 @@ class Dir{
 
   Dir(this.name, this.description, this.maxValue, this.values, [this.key]);
 
-  Map toMap(Dir dir) =>
-      {
+  Map toMap(Dir dir) => {
         name4TagText: dir.name,
         desc4TagText: dir.description,
         maxValTagText: dir.maxValue,
@@ -25,5 +23,4 @@ class Dir{
       };
 
   num get percentage => 0;
-
 }
