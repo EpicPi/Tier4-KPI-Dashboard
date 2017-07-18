@@ -43,7 +43,7 @@ class FirebaseService {
 
     if (user != null) {
       years = [];
-      await _fbRefYears.limitToLast(60).onChildAdded.listen(_newYear);
+      await _fbRefYears.limitToLast(20).onChildAdded.listen(_newYear);
     }
   }
 

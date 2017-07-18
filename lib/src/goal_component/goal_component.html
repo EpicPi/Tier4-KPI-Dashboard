@@ -1,56 +1,62 @@
 
-
 <div [hidden] = "fbService.user == null" hidden;>
-    <div class="goals">
-
-        <div *ngFor="let goal of year.goals" >
-            <h3>Goal</h3>
-                <div class="name" (click)="onSelect(goal)">
-                    Name: {{goal.name}}</div>
-                <div class="description" (click)="onSelect(goal)">
-                    Description: {{goal.description}}</div>
-            <button class="delete" (click)="delete(year,goal)">Delete</button>
-            <button class="editintro" (click)="onSelect(goal)">Edit</button>
-            <br>
-            <br>
-            <my-strategy [year]=year [goal]="goal"></my-strategy>
-
-            <br>
+<material-dropdown-select [width]="1">
+    <material-select-item *ngFor="let year of fbService.years">
+        <div (click)="pickYear(year)" >
+            {{year.toNum(year)}}
         </div>
-    </div>
+    </material-select-item>
+</material-dropdown-select>
 
 
-    <div class ="edit"*ngIf="selectedGoal != null" >
-        <h3>Edit Goal:</h3>
+        <div class="goals">
+
+            <div *ngFor="let goal of year.goals" >
+                <h3>Goal</h3>
+                    <div class="name" (click)="onSelect(goal)">
+                        Name: {{goal.name}}</div>
+                    <div class="description" (click)="onSelect(goal)">
+                        Description: {{goal.description}}</div>
+                <button class="delete" (click)="delete(year,goal)">Delete</button>
+                <button class="editintro" (click)="onSelect(goal)">Edit</button>
+                <br>
+                <br>
+                <my-strategy [year]=year [goal]="goal"></my-strategy>
+
+                <br>
+            </div>
+        </div>
+
+
+        <div class ="edit"*ngIf="selectedGoal != null" >
+            <h3>Edit Goal:</h3>
+            <div>
+                <label>Name: </label>
+                <input [(ngModel)]="selectedGoal.name" (keyup.enter)="changeName(year, selectedGoal)"
+                       (keyup.enter)="changeDesc(year, selectedGoal)" (keyup.enter)="selectedGoal = null">
+                <label>Description: </label>
+                <input [(ngModel)]="selectedGoal.description" (keyup.enter)="changeDesc(year, selectedGoal)"
+                       (keyup.enter)="changeName(year, selectedGoal)" (keyup.enter)="selectedGoal = null">
+            </div>
+        </div>
+
+
         <div>
-            <label>Name: </label>
-            <input [(ngModel)]="selectedGoal.name" (keyup.enter)="changeName(year, selectedGoal)"
-                   (keyup.enter)="changeDesc(year, selectedGoal)" (keyup.enter)="selectedGoal = null">
-            <label>Description: </label>
-            <input [(ngModel)]="selectedGoal.description" (keyup.enter)="changeDesc(year, selectedGoal)"
-                   (keyup.enter)="changeName(year, selectedGoal)" (keyup.enter)="selectedGoal = null">
+            <h3>Add Goal:</h3>
+            <label>Goal Name:</label>
+            <input type="text" [(ngModel)] = 'inputNameText' (keyup.enter)="add(year)" (keyup.enter)="inputNameText ='' "
+                (keyup.enter)="inputDescText=''">
+            <br>
+            <label>Goal Description:</label>
+            <input type="text" [(ngModel)] = 'inputDescText' (keyup.enter)="add(year)" (keyup.enter)="inputDescText=''"
+                   (keyup.enter)="inputNameText='' ">
+            <button (click)="add(year)" (click)="inputDescText=''" (click)="inputNameText =''" >
+                Add
+            </button>
         </div>
-    </div>
-
-
-    <div>
-        <h3>Add Goal:</h3>
-        <label>Goal Name:</label>
-        <input type="text" [(ngModel)] = 'inputNameText' (keyup.enter)="add(year)" (keyup.enter)="inputNameText ='' "
-            (keyup.enter)="inputDescText=''">
-        <br>
-        <label>Goal Description:</label>
-        <input type="text" [(ngModel)] = 'inputDescText' (keyup.enter)="add(year)" (keyup.enter)="inputDescText=''"
-               (keyup.enter)="inputNameText='' ">
-        <button (click)="add(year)" (click)="inputDescText=''" (click)="inputNameText =''" >
-            Add
-        </button>
-    </div>
+    <br>
+    <br>
 </div>
-<br>
-<br>
-
-
 
 <!--<header class="horiz">-->
     <!--<div id="sign-in" *ngIf="fbService.user == null" class="horiz">-->

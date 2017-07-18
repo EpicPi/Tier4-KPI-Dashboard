@@ -11,6 +11,10 @@ import 'package:kpi_dash/src/year_component/year_component.dart';
     templateUrl: 'summary_component.html',
     providers: const [])
 class SummaryComponent implements AfterContentInit, AfterViewInit {
+
+  @Input()
+  Year year;
+
   @ViewChild('canvasMain')
   ElementRef canvas;
   CanvasElement canvasElement;
@@ -65,6 +69,6 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
     var canvas2 = new CanvasElement();
     divElement.append(canvas2);
 
-    createGaugeChart(canvas2, fbService.goals[index].dataTable);
+    createGaugeChart(canvas2, year.goals[index].dataTable);
   }
 }

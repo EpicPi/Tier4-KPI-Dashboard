@@ -21,12 +21,15 @@ import 'package:kpi_dash/src/vu_scroll_down.dart';
     StrategyComponent,
     InitiativeComponent,
     DirectiveComponent,
+    MaterialExpansionPanel,
+    MaterialExpansionPanelSet,
+    MaterialDropdownSelectComponent,
+    MaterialSelectComponent,
   ],
   providers: const [materialProviders],
 )
 class GoalComponent {
-  @Input()
-  Year year;
+
 
   final FirebaseService fbService;
   GoalComponent(this.fbService);
@@ -35,6 +38,21 @@ class GoalComponent {
 
   String inputNameText = "";
   String inputDescText = "";
+
+  Year year = new Year(2015, []);
+
+  num toNum(Year y){
+    return y.year;
+  }
+
+  void pickYear(Year y) {
+    year = y;
+    print(year);
+  }
+
+  Year returnYear(){
+    return year;
+  }
 
   void add(Year year) {
     String goalName = inputNameText.trim();
