@@ -14,7 +14,8 @@ import 'package:kpi_dash/src/val_component/val_component.dart';
   selector: 'my-app',
   styleUrls: const ['app_component.css'],
   templateUrl: 'app_component.html',
-  directives: const [materialDirectives, DetailComponent, GoalComponent, ValComponent, ROUTER_DIRECTIVES],
+  directives: const [materialDirectives, COMMON_DIRECTIVES,
+  CORE_DIRECTIVES, DetailComponent, GoalComponent, ValComponent, ROUTER_DIRECTIVES],
   providers: const [materialProviders, FirebaseService, ROUTER_PROVIDERS],
 )
 
@@ -23,6 +24,10 @@ import 'package:kpi_dash/src/val_component/val_component.dart';
       path: '/value',
       name: 'Data Entry Page',
       component: ValComponent),
+  const Route(
+      path: '/admin',
+      name: 'Admin',
+      component: GoalComponent)
 ])
 class AppComponent {
   var goals;

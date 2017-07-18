@@ -20,7 +20,6 @@ import 'package:kpi_dash/src/vu_scroll_down.dart';
     StrategyComponent,
     InitiativeComponent,
     DirectiveComponent,
-    VuScrollDown
   ],
   providers: const [materialProviders],
 )
