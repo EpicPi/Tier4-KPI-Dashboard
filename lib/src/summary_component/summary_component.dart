@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'package:angular2/angular2.dart';
+import 'package:angular_components/angular_components.dart';
 import 'package:kpi_dash/pi_charts/pi_charts.dart';
 import 'package:kpi_dash/src/models/year.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
@@ -9,11 +10,32 @@ import 'package:kpi_dash/src/year_component/year_component.dart';
     selector: 'my-summary',
     styleUrls: const ['summary_component.css'],
     templateUrl: 'summary_component.html',
+    directives: const [materialDirectives,
+    COMMON_DIRECTIVES,
+    CORE_DIRECTIVES,
+    MaterialExpansionPanel,
+    MaterialExpansionPanelSet,
+    MaterialDropdownSelectComponent,
+    MaterialSelectComponent,],
     providers: const [])
 class SummaryComponent implements AfterContentInit, AfterViewInit {
+  Year year = null;
+//      new Year(2015, []);
 
-  @Input()
-  Year year;
+  num toNum(Year y){
+    if (y==null) return null;
+    return y.year;
+  }
+
+  void pickYear(Year y) {
+    year = y;
+    print(year);
+  }
+
+  Year returnYear(){
+    return year;
+  }
+
 
   @ViewChild('canvasMain')
   ElementRef canvas;
@@ -32,6 +54,8 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
   var chart;
   bool isOneEnabled = true;
   CanvasRenderingContext2D context;
+
+
 
   @override
   ngAfterContentInit() {

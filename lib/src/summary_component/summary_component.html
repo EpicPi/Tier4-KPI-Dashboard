@@ -1,9 +1,22 @@
-<!--<body>-->
-<!--<div class="graph-main">-->
-    <!--<canvas #canvasMain id="canvas0" height="450" width="600"></canvas>-->
-<!--</div>-->
+<body>
+Select Year:
+<div *ngIf="year != null">
+    {{year.toNum(year)}}
+</div>
+<material-dropdown-select [width]="1">
+    <material-select-item *ngFor="let year of fbService5.years">
+        <div (click)="pickYear(year)" >
+            {{year.toNum(year)}}
+        </div>
+    </material-select-item>
+</material-dropdown-select>
 
-<!--<div #canvas1 class="graph" >-->
-<!--</div>-->
 
-<!--</body>-->
+<div class="graph-main">
+    <canvas #canvasMain id="canvas0" height="450" width="600"></canvas>
+</div>
+
+<div #canvas1 class="graph" >
+</div>
+
+</body>

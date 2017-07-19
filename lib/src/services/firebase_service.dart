@@ -113,7 +113,7 @@ class FirebaseService {
               fb.DataSnapshot data = event5.snapshot;
               var val = data.val();
               var v = new Value(
-                  val[monthTagText], val[yearTagText], val[valTagText],
+                  val[monthTagText], val[valTagText],
                   data.key);
               dir.values.add(v);
             });
@@ -228,11 +228,11 @@ class FirebaseService {
   }
 
   Future addVal(Year year,Goal goal, Strategy strat, Initiative init, Dir dir,
-      String month, num y, num v) async{
+      String month, num v) async{
     try{
-      Value val = new Value(month, y, v);
+      Value val = new Value(month, v);
       for(int i=0; i<dir.values.length; i++){
-        if(month==dir.values[i].month && year==dir.values[i].year)
+        if(month==dir.values[i].month)
           return;
       }
       await _fbRefYears.child(year.key).child("goals").child(goal.key).child("strategies").

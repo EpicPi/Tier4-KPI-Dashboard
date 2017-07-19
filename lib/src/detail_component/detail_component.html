@@ -1,6 +1,19 @@
 <div class="container">
+    Select Year:
+    <div *ngIf="year != null">
+        {{year.toNum(year)}}
+    </div>
+    <material-dropdown-select [width]="1">
+        <material-select-item *ngFor="let year of fbService.years">
+            <div (click)="pickYear(year)" >
+                {{year.toNum(year)}}
+            </div>
+        </material-select-item>
+    </material-dropdown-select>
+
+    <div *ngIf="year != null">
     <material-expansionpanel-set>
-        <material-expansionpanel *ngFor="let goal of fbService.goals"
+        <material-expansionpanel *ngFor="let goal of year.goals"
                                  name="{{goal.name}}" ;
                                  secondaryText="{{goal.description}}"
                                  [showSaveCancel]="false">
@@ -33,5 +46,5 @@
             </material-expansionpanel-set>
         </material-expansionpanel>
     </material-expansionpanel-set>
-
+    </div>
 </div>
