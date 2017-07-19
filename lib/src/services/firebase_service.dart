@@ -24,28 +24,22 @@ class FirebaseService {
 
     _fbDatabase = fb.database();
     _fbRefYears = _fbDatabase.ref("years");
-    _fbGoogleAuthProvider = new fb.GoogleAuthProvider();
-    _fbAuth = fb.auth();
-    _fbAuth.onAuthStateChanged.listen(_authChanged);
+//    _fbGoogleAuthProvider = new fb.GoogleAuthProvider();
+//    _fbAuth = fb.auth();
+    years = [];
+//    _fbAuth.onAuthStateChanged.listen(_authChanged);
+    _fbRefYears.limitToLast(20).onChildAdded.listen(_newYear);
   }
+
 
 //  Future _authChanged(fb.AuthEvent event) async {
 //    user = event.user;
 //
 //    if (user != null) {
-//      goals = [];
-//      await _fbRefGoals.limitToLast(60).onChildAdded.listen(_newGoal);
+//
+//      await _fbRefYears.limitToLast(20).onChildAdded.listen(_newYear);
 //    }
 //  }
-
-  Future _authChanged(fb.AuthEvent event) async {
-    user = event.user;
-
-    if (user != null) {
-      years = [];
-      await _fbRefYears.limitToLast(20).onChildAdded.listen(_newYear);
-    }
-  }
 
   Future _newYear(fb.QueryEvent e) async{
     fb.DataSnapshot data = e.snapshot;

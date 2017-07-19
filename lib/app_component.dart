@@ -36,7 +36,7 @@ import 'package:kpi_dash/src/val_component/val_component.dart';
     NgFor,
     SummaryComponent,
   ],
-  providers: const [materialProviders, FirebaseService, ROUTER_PROVIDERS],
+  providers: const [materialProviders, FirebaseService],
 )
 class AppComponent {
   Year year = null;

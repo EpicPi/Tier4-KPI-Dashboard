@@ -32,22 +32,6 @@ class ValComponent {
   ValComponent(this.fbService);
 
 
-  num toNum(Year y){
-    if (y==null) return null;
-    return y.year;
-  }
-
-  void pickYear(Year y) {
-    year = y;
-    print(year);
-  }
-
-  Year returnYear(){
-    return year;
-  }
-
-
-
   var months = const <String>[
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -58,7 +42,6 @@ class ValComponent {
     month = m;
     print (month);
   }
-
 
 
   num inputVal = null;
