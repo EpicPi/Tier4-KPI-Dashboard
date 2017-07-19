@@ -7,7 +7,6 @@ import 'package:kpi_dash/src/initiative_component/initiative_component.dart';
 import 'package:kpi_dash/src/models/models.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
 import 'package:kpi_dash/src/strategy_component/strategy_component.dart';
-import 'package:kpi_dash/src/vu_scroll_down.dart';
 
 @Component(
   selector: 'my-goal',

@@ -4,7 +4,6 @@ import 'package:angular_components/angular_components.dart';
 import 'package:kpi_dash/pi_charts/pi_charts.dart';
 import 'package:kpi_dash/src/models/year.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
-import 'package:kpi_dash/src/year_component/year_component.dart';
 
 @Component(
     selector: 'my-summary',

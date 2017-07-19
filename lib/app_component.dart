@@ -13,7 +13,6 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
 import 'package:kpi_dash/src/strategy_component/strategy_component.dart';
 import 'package:kpi_dash/src/summary_component/summary_component.dart';
 import 'package:kpi_dash/src/val_component/val_component.dart';
-import 'package:kpi_dash/src/year_component/year_component.dart';
 
 @Component(
   selector: 'my-app',
@@ -34,7 +33,8 @@ import 'package:kpi_dash/src/year_component/year_component.dart';
     MaterialSelectComponent,
     MaterialExpansionPanel,
     MaterialExpansionPanelSet,
-    NgFor
+    NgFor,
+    SummaryComponent,
   ],
   providers: const [materialProviders, FirebaseService, ROUTER_PROVIDERS],
 )

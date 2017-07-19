@@ -1,4 +1,3 @@
-import 'package:kpi_dash/pi_charts/src/datatable.dart';
 import 'goal.dart';
 
 String yearTagText = "year";
