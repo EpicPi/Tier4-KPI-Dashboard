@@ -1,87 +1,76 @@
-<div [hidden] = "fbService.user == null" hidden; >
-    Select Year:
-    <div *ngIf="year != null">
-        {{year.toNum(year)}}
-    </div>
-    <br>
-    <material-dropdown-select [width]="1">
-        <material-select-item *ngFor="let year of fbService.years">
-            <div (click)="pickYear(year)" >
-                {{year.toNum(year)}}
-            </div>
-        </material-select-item>
-    </material-dropdown-select>
+<div [hidden]="fbService.user == null" hidden;>
+
     <br>
     <br>
     Select Month:
     <div>{{month}}</div>
     <material-dropdown-select [width]="1">
         <material-select-item *ngFor="let month of months">
-            <div (click)="pickMonth(month)" >
+            <div (click)="pickMonth(month)">
                 {{month}}
             </div>
         </material-select-item>
     </material-dropdown-select>
 
 
-    <div *ngIf="month != null && year != null">
-        <div *ngFor="let goal of year.goals" >
-            <div class="goal">
-                <h3>Goal</h3>
-                <div class="name">
-                    Name: {{goal.name}}
+    <div *ngFor="let goal of year.goals">
+        <div class="goal">
+            <h3>Goal</h3>
+            <div class="name">
+                Name: {{goal.name}}
+            </div>
+        </div>
+        <div *ngFor="let strat of goal.strategies">
+            <div class="strat">
+                <h3>Strategy</h3>
+                <div class="name2">
+                    Name: {{strat.name}}
                 </div>
             </div>
-            <div *ngFor="let strat of goal.strategies" >
-                <div class="strat">
-                    <h3>Strategy</h3>
-                    <div class="name2">
-                        Name: {{strat.name}}
+            <div *ngFor="let init of strat.initiatives">
+                <div class="init">
+                    <h3>Initiative</h3>
+                    <div class="name3">
+                        Name: {{init.name}}
                     </div>
                 </div>
-                <div *ngFor="let init of strat.initiatives" >
-                    <div class="init">
-                        <h3>Initiative</h3>
-                        <div class="name3">
-                            Name: {{init.name}}
+                <div *ngFor="let dir of init.directives">
+                    <div class="dir">
+                        <h3>Directive</h3>
+                        <div class="name4">
+                            Name: {{dir.name}}
                         </div>
-                    </div>
-                    <div *ngFor="let dir of init.directives" >
-                        <div class="dir">
-                            <h3>Directive</h3>
-                            <div class="name4">
-                                Name: {{dir.name}}
-                            </div>
-                            <div *ngFor="let val of dir.values">
-                                <div *ngIf="val.month == month">
-                                    <div class="val">
-                                        <div class="name5">
-                                            <h3>Value: {{val.value}}</h3>
-                                        </div>
-                                        <button (click)="deleteValue(year, goal, strat, init, dir, val)">Delete</button>
-                                        <button (click)="onSelect(val)">Edit</button>
+                        <div *ngFor="let val of dir.values">
+                            <div *ngIf="val.month == month">
+                                <div class="val">
+                                    <div class="name5">
+                                        <h3>Value: {{val.value}}</h3>
                                     </div>
-                                    <div class="edit" *ngIf="selectedVal != null">
-                                        <h5>Edit Value:</h5>
-                                        <div>
-                                            <label>Value: </label>
-                                            <input type="number" [(ngModel)]="selectedVal.value" (keyup.enter)="changeValue(year, goal, strat, init, dir, selectedVal)"
-                                                   (keyup.enter)="selectedVal=null">
-                                        </div>
+                                    <button (click)="deleteValue(year, goal, strat, init, dir, val)">Delete</button>
+                                    <button (click)="onSelect(val)">Edit</button>
+                                </div>
+                                <div class="edit" *ngIf="selectedVal != null">
+                                    <h5>Edit Value:</h5>
+                                    <div>
+                                        <label>Value: </label>
+                                        <input type="number" [(ngModel)]="selectedVal.value"
+                                               (keyup.enter)="changeValue(year, goal, strat, init, dir, selectedVal)"
+                                               (keyup.enter)="selectedVal=null">
                                     </div>
                                 </div>
                             </div>
-                            <div class="add">
-                                <h3>Add Value:</h3>
-                                <label>Value: </label>
-                                <input type="number" [(ngModel)] = "inputVal"   value="0" (keyup.enter)="addValue(year, goal, strat, init, dir)"
-                                       (keyup.enter)="inputVal = null ">
-                                <br>
-                                <button (click)="addValue(year, goal, strat, init, dir)"
-                                        (click)="inputVal = null ">
-                                    Add
-                                </button>
-                            </div>
+                        </div>
+                        <div class="add">
+                            <h3>Add Value:</h3>
+                            <label>Value: </label>
+                            <input type="number" [(ngModel)]="inputVal" value="0"
+                                   (keyup.enter)="addValue(year, goal, strat, init, dir)"
+                                   (keyup.enter)="inputVal = null ">
+                            <br>
+                            <button (click)="addValue(year, goal, strat, init, dir)"
+                                    (click)="inputVal = null ">
+                                Add
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -89,74 +78,75 @@
         </div>
     </div>
 
+
     <!--<div *ngIf="month != null && year != null">-->
-        <!--<div *ngFor="let goal of year.goals" >-->
-            <!--<div class="goal">-->
-            <!--<h3>Goal</h3>-->
-                <!--<div class="name">-->
-                    <!--Name: {{goal.name}}-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div *ngFor="let strat of goal.strategies" >-->
-                <!--<div class="strat">-->
-                    <!--<h3>Strategy</h3>-->
-                    <!--<div class="name2">-->
-                        <!--Name: {{strat.name}}-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div *ngFor="let init of strat.initiatives" >-->
-                    <!--<div class="init">-->
-                    <!--<h3>Initiative</h3>-->
-                        <!--<div class="name3">-->
-                            <!--Name: {{init.name}}-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div *ngFor="let dir of init.directives" >-->
-                        <!--<div>-->
-                        <!--<div class="dir">-->
-                            <!--<h3>Directive</h3>-->
-                            <!--<div class="name4">-->
-                                <!--Name: {{dir.name}}-->
-                            <!--</div>-->
-                            <!--<div *ngFor="let val of dir.values">-->
-                                <!--<div *ngIf="val.month == month">-->
-                                    <!--<div class="val">-->
-                                        <!--<div class="name5">-->
-                                            <!--<h3>Value: {{val.value}}</h3>-->
-                                        <!--</div>-->
-                                        <!--<button (click)="deleteValue(year, goal, strat, init, dir, val)">Delete</button>-->
-                                        <!--<button (click)="onSelect(val)">Edit</button>-->
-                                    <!--</div>-->
-                                        <!--<div class="edit" *ngIf="selectedVal != null">-->
-                                            <!--<h5>Edit Value:</h5>-->
-                                            <!--<div>-->
-                                                <!--<label>Value: </label>-->
-                                                <!--<input type="number" [(ngModel)]="selectedVal.value" (keyup.enter)="changeValue(year, goal, strat, init, dir, selectedVal)"-->
-                                                       <!--(keyup.enter)="selectedVal=null">-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-
-
-                                <!--</div>-->
-
-                        <!--</div>-->
-                            <!--<div class="add">-->
-                                <!--<h3>Add Value:</h3>-->
-                                <!--<label>Value: </label>-->
-                                <!--<input type="number" [(ngModel)] = "inputVal"-->
-                                       <!--(keyup.enter)="addValue(year, goal, strat, init, dir)"-->
-                                       <!--(keyup.enter)="inputVal = null ">-->
-                                <!--<br>-->
-                                <!--<button (click)="addValue(year, goal, strat, init, dir)"-->
-                                        <!--(click)="inputVal = null ">-->
-                                    <!--Add-->
-                                <!--</button>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+    <!--<div *ngFor="let goal of year.goals" >-->
+    <!--<div class="goal">-->
+    <!--<h3>Goal</h3>-->
+    <!--<div class="name">-->
+    <!--Name: {{goal.name}}-->
     <!--</div>-->
-<!--</div>-->
+    <!--</div>-->
+    <!--<div *ngFor="let strat of goal.strategies" >-->
+    <!--<div class="strat">-->
+    <!--<h3>Strategy</h3>-->
+    <!--<div class="name2">-->
+    <!--Name: {{strat.name}}-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div *ngFor="let init of strat.initiatives" >-->
+    <!--<div class="init">-->
+    <!--<h3>Initiative</h3>-->
+    <!--<div class="name3">-->
+    <!--Name: {{init.name}}-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div *ngFor="let dir of init.directives" >-->
+    <!--<div>-->
+    <!--<div class="dir">-->
+    <!--<h3>Directive</h3>-->
+    <!--<div class="name4">-->
+    <!--Name: {{dir.name}}-->
+    <!--</div>-->
+    <!--<div *ngFor="let val of dir.values">-->
+    <!--<div *ngIf="val.month == month">-->
+    <!--<div class="val">-->
+    <!--<div class="name5">-->
+    <!--<h3>Value: {{val.value}}</h3>-->
+    <!--</div>-->
+    <!--<button (click)="deleteValue(year, goal, strat, init, dir, val)">Delete</button>-->
+    <!--<button (click)="onSelect(val)">Edit</button>-->
+    <!--</div>-->
+    <!--<div class="edit" *ngIf="selectedVal != null">-->
+    <!--<h5>Edit Value:</h5>-->
+    <!--<div>-->
+    <!--<label>Value: </label>-->
+    <!--<input type="number" [(ngModel)]="selectedVal.value" (keyup.enter)="changeValue(year, goal, strat, init, dir, selectedVal)"-->
+    <!--(keyup.enter)="selectedVal=null">-->
+    <!--</div>-->
+    <!--</div>-->
+
+
+    <!--</div>-->
+
+    <!--</div>-->
+    <!--<div class="add">-->
+    <!--<h3>Add Value:</h3>-->
+    <!--<label>Value: </label>-->
+    <!--<input type="number" [(ngModel)] = "inputVal"-->
+    <!--(keyup.enter)="addValue(year, goal, strat, init, dir)"-->
+    <!--(keyup.enter)="inputVal = null ">-->
+    <!--<br>-->
+    <!--<button (click)="addValue(year, goal, strat, init, dir)"-->
+    <!--(click)="inputVal = null ">-->
+    <!--Add-->
+    <!--</button>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
 </div>

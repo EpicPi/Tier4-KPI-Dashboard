@@ -23,7 +23,8 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
 class ValComponent {
 
   String month = null;
-  Year year = null;
+  @Input()
+  Year year;
   Value selectedVal;
 
   final FirebaseService fbService;

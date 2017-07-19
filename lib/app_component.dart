@@ -19,35 +19,33 @@ import 'package:kpi_dash/src/year_component/year_component.dart';
   selector: 'my-app',
   styleUrls: const ['app_component.css'],
   templateUrl: 'app_component.html',
-  directives: const [materialDirectives,
-  COMMON_DIRECTIVES, CORE_DIRECTIVES,
-  DetailComponent, GoalComponent, StrategyComponent,
-  InitiativeComponent, DirectiveComponent,
-  materialDirectives, COMMON_DIRECTIVES, CORE_DIRECTIVES,
-  ValComponent, ROUTER_DIRECTIVES],
+  directives: const [
+    materialDirectives,
+    COMMON_DIRECTIVES,
+    CORE_DIRECTIVES,
+    DetailComponent,
+    GoalComponent,
+    StrategyComponent,
+    InitiativeComponent,
+    DirectiveComponent,
+    ValComponent,
+    ROUTER_DIRECTIVES,
+    MaterialDropdownSelectComponent,
+    MaterialSelectComponent,
+    MaterialExpansionPanel,
+    MaterialExpansionPanelSet,
+    NgFor
+  ],
   providers: const [materialProviders, FirebaseService, ROUTER_PROVIDERS],
 )
-
-@RouteConfig(const [
-  const Route(
-      path: '/value',
-      name: 'Data Entry Page',
-      component: ValComponent),
-  const Route(
-      path: '/admin',
-      name: 'Admin',
-      component: GoalComponent),
-  const Route(
-    path: '/details',
-    name: 'Details',
-    component: DetailComponent)
-])
 class AppComponent {
+  Year year = null;
 
+  void pickYear(Year y) {
+    year = y;
+    print(year);
+  }
 
   final FirebaseService fbService;
   AppComponent(this.fbService);
-
-
-  String title = "Summary";
 }

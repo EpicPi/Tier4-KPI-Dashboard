@@ -38,22 +38,9 @@ class GoalComponent {
   String inputNameText = "";
   String inputDescText = "";
 
-  Year year = null;
-//      new Year(2015, []);
+  @Input()
+  Year year;
 
-  num toNum(Year y){
-    if (y==null) return null;
-    return y.year;
-  }
-
-  void pickYear(Year y) {
-    year = y;
-    print(year);
-  }
-
-  Year returnYear(){
-    return year;
-  }
 
   void add(Year year) {
     String goalName = inputNameText.trim();

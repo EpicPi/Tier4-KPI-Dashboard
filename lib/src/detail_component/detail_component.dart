@@ -24,23 +24,9 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
       materialProviders
     ])
 class DetailComponent implements OnInit {
-  Year year = null;
-//      new Year(2015, []);
+  @Input()
+  Year year;
 
-  num toNum(Year y){
-    if (y==null) return null;
-    return y.year;
-  }
-
-  void pickYear(Year y) {
-    year = y;
-    print(year);
-  }
-
-  Year returnYear(){
-    return year;
-  }
-  var goals;
   final FirebaseService fbService;
   DetailComponent(this.fbService);
   @override

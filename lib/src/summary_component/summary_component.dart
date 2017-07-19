@@ -19,23 +19,8 @@ import 'package:kpi_dash/src/year_component/year_component.dart';
     MaterialSelectComponent,],
     providers: const [])
 class SummaryComponent implements AfterContentInit, AfterViewInit {
-  Year year = null;
-//      new Year(2015, []);
-
-  num toNum(Year y){
-    if (y==null) return null;
-    return y.year;
-  }
-
-  void pickYear(Year y) {
-    year = y;
-    print(year);
-  }
-
-  Year returnYear(){
-    return year;
-  }
-
+  @Input()
+  Year year;
 
   @ViewChild('canvasMain')
   ElementRef canvas;
