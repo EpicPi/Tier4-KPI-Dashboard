@@ -13,10 +13,10 @@ class Initiative {
   Initiative(this.name, this.description, this.directives, [this.key]);
 
   Map toMap(Initiative init) => {
-        name3TagText: init.name,
-        desc3TagText: init.description,
-        directivesTagText: init.directives
-      };
+    name3TagText: init.name,
+    desc3TagText: init.description,
+    directivesTagText: init.directives
+  };
 
   num get percentage {
     var total = 0;

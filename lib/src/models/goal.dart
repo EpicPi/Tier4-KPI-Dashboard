@@ -14,10 +14,10 @@ class Goal {
   Goal(this.name, this.description, this.strategies, [this.key]) {}
 
   Map toMap(Goal item) => {
-        nameTagText: item.name,
-        descTagText: item.description,
-        stratTagText: item.strategies
-      };
+    nameTagText: item.name,
+    descTagText: item.description,
+    stratTagText: item.strategies
+  };
 
   DataTable get dataTable {
     List<List> data = new List<List>();

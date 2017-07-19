@@ -95,11 +95,11 @@ class SummaryComponent implements AfterContentInit, AfterViewInit,DoCheck {
   @override
   ngDoCheck() {
     if(yr!=year.year)
-      {
-        canvasElement = canvas.nativeElement;
-        while (canvasElement.childNodes.length > 0) canvasElement.childNodes.last.remove();
-        createChart();
-      }
+    {
+      canvasElement = canvas.nativeElement;
+      while (canvasElement.childNodes.length > 0) canvasElement.childNodes.last.remove();
+      createChart();
+    }
 
   }
 }

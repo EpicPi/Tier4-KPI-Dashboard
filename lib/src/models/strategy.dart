@@ -13,10 +13,10 @@ class Strategy {
   Strategy(this.name, this.description, this.initiatives, [this.key]);
 
   Map toMap(Strategy strat) => {
-        name2TagText: strat.name,
-        desc2TagText: strat.description,
-        initiativesTagText: strat.initiatives
-      };
+    name2TagText: strat.name,
+    desc2TagText: strat.description,
+    initiativesTagText: strat.initiatives
+  };
 
   num get percentage {
     var total = 0;
