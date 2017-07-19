@@ -17,18 +17,21 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
     MaterialDropdownSelectComponent,
     MaterialSelectComponent,],
     providers: const [])
-class SummaryComponent implements AfterContentInit, AfterViewInit {
+class SummaryComponent implements AfterContentInit, AfterViewInit,DoCheck {
   @Input()
   Year year;
 
+  int yr;
+
   @ViewChild('canvasMain')
   ElementRef canvas;
-  CanvasElement canvasElement;
+  DivElement canvasElement;
 
   @ViewChild('canvas1')
   ElementRef div;
   DivElement divElement;
 
+  List<List> data;
   final FirebaseService fbService;
   SummaryComponent(
       this.fbService
@@ -36,8 +39,6 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
 
   var goals;
   var chart;
-  bool isOneEnabled = true;
-  CanvasRenderingContext2D context;
 
 
 
@@ -46,16 +47,27 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
     canvasElement = canvas.nativeElement;
     canvasElement.onClick.listen(createSubGraph);
     divElement = div.nativeElement;
+
   }
 
   @override
   ngAfterViewInit() {
+//    createChart();
+  }
+
+  void createChart()
+  {
+    yr = year.year;
     List<List> data = new List<List>();
     data.add(["name", "value"]);
 
     for (var goal in year.goals) data.add([goal.name, goal.percentage]);
 
-    chart = createGaugeChart(canvasElement, new DataTable(data));
+    var canvas2 = new CanvasElement();
+
+    canvasElement.append(canvas2);
+
+    chart = createGaugeChart(canvas2, new DataTable(data));
   }
 
   num getIndex(MouseEvent e) {
@@ -78,5 +90,16 @@ class SummaryComponent implements AfterContentInit, AfterViewInit {
     divElement.append(canvas2);
 
     createGaugeChart(canvas2, year.goals[index].dataTable);
+  }
+
+  @override
+  ngDoCheck() {
+    if(yr!=year.year)
+      {
+        canvasElement = canvas.nativeElement;
+        while (canvasElement.childNodes.length > 0) canvasElement.childNodes.last.remove();
+        createChart();
+      }
+
   }
 }
