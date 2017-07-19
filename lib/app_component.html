@@ -4,32 +4,32 @@
 </head>
 <body>
 <div class="page">
-    <header class="horiz">
-        <div id="sign-in" *ngIf="fbService.user == null" class="horiz">
-            <button class="btn btn-outline-secondary btn-sm"
-                    (click)="fbService.signIn()">Google Sign In
-            </button>
-        </div>
+    <!--<header class="horiz">-->
+        <!--<div id="sign-in" *ngIf="fbService.user == null" class="horiz">-->
+            <!--<button class="btn btn-outline-secondary btn-sm"-->
+                    <!--(click)="fbService.signIn()">Google Sign In-->
+            <!--</button>-->
+        <!--</div>-->
 
-        <div id="sign-out" *ngIf="fbService.user != null" class="horiz">
-            <div id="user-name">{{fbService.user?.displayName}}</div>
-            <button class="btn btn-outline-secondary btn-sm"
-                    (click)="fbService.signOut()">Sign Out
-            </button>
-        </div>
-    </header>
+        <!--<div id="sign-out" *ngIf="fbService.user != null" class="horiz">-->
+            <!--<div id="user-name">{{fbService.user?.displayName}}</div>-->
+            <!--<button class="btn btn-outline-secondary btn-sm"-->
+                    <!--(click)="fbService.signOut()">Sign Out-->
+            <!--</button>-->
+        <!--</div>-->
+    <!--</header>-->
     Select Year:
     <div *ngIf="year != null">
         {{year.toNum(year)}}
     </div>
     <br>
-    <material-dropdown-select [width]="1">
+    <material-select [width]="0">
         <material-select-item *ngFor="let year of fbService.years">
             <div (click)="pickYear(year)" >
                 {{year.toNum(year)}}
             </div>
         </material-select-item>
-    </material-dropdown-select>
+    </material-select>
     <br>
     <material-tab-panel>
         <material-tab label="summary">
@@ -55,7 +55,6 @@
         </material-tab>
     </material-tab-panel>
 </div>
-
 </body>
 </html>
 

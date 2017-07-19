@@ -23,6 +23,7 @@ class Strategy {
     for (var init in initiatives) {
       total += init.percentage;
     }
-    return total ~/ initiatives.length ?? 0;
+//    return total ~/ initiatives.length ?? 0;
+    return 5;
   }
 }

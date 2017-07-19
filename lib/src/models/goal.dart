@@ -34,6 +34,7 @@ class Goal {
     for (var strat in strategies) {
       total += strat.percentage;
     }
-    return total ~/ strategies.length ?? 10;
+//    return total ~/ strategies.length ?? 10;
+    return 10;
   }
 }
