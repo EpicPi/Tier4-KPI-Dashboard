@@ -22,5 +22,13 @@ class Dir {
         valuesTagText: dir.values
       };
 
-  num get percentage => 1;
+  num get percentage
+  {
+    num total = 0;
+   for(var val in values)
+     {
+       total +=val.value;
+     }
+     return total~/maxValue;
+  }
 }

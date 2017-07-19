@@ -23,6 +23,6 @@ class Initiative {
     for (var dir in directives) {
       total += dir.percentage;
     }
-    return total ~/ directives.length ?? 1;
+    return directives.length>0? total ~/ directives.length : 1;
   }
 }
