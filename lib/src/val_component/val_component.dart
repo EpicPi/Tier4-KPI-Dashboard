@@ -60,7 +60,7 @@ class ValComponent {
 
 
 
-  num inputVal = 0;
+  num inputVal = null;
   void addValue(Year year, Goal goal, Strategy strat, Initiative init, Dir dir,) {
     num value = inputVal;
 
