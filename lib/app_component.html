@@ -18,42 +18,44 @@
             <!--</button>-->
         <!--</div>-->
     <!--</header>-->
-    Select Year:
-    <div *ngIf="year != null">
-        {{year.toNum(year)}}
+    <div>
+        Select Year:
+        <div *ngIf="year != null">
+            {{year.toNum(year)}}
+        </div>
+        <br>
+        <material-select [width]="0">
+            <material-select-item *ngFor="let year of fbService.years">
+                <div (click)="pickYear(year)" >
+                    {{year.toNum(year)}}
+                </div>
+            </material-select-item>
+        </material-select>
     </div>
     <br>
-    <material-select [width]="0">
-        <material-select-item *ngFor="let year of fbService.years">
-            <div (click)="pickYear(year)" >
-                {{year.toNum(year)}}
-            </div>
-        </material-select-item>
-    </material-select>
-    <br>
-    <material-tab-panel>
-        <material-tab label="summary">
+    <!--<material-tab-panel>-->
+        <!--<material-tab label="summary">-->
             <div *ngIf="year !=null">
                 <my-summary [year]="year"></my-summary>
             </div>
-        </material-tab>
-        <material-tab label="details">
+        <!--</material-tab>-->
+        <!--<material-tab label="details">-->
             <div *ngIf="year !=null">
                 <detail [year]="year"></detail>
             </div>
 
-        </material-tab>
-        <material-tab label="admin">
+        <!--</material-tab>-->
+        <!--<material-tab label="admin">-->
             <div *ngIf="year !=null">
                 <my-goal [year]="year"></my-goal>
             </div>
-        </material-tab>
-        <material-tab label="data entry">
+        <!--</material-tab>-->
+        <!--<material-tab label="data entry">-->
             <div *ngIf="year !=null">
                 <my-val [year]="year"></my-val>
             </div>
-        </material-tab>
-    </material-tab-panel>
+        <!--</material-tab>-->
+    <!--</material-tab-panel>-->
 </div>
 </body>
 </html>
