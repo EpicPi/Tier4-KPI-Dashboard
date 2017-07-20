@@ -53,7 +53,7 @@ class DirectiveComponent {
     fbService4.addDir(year, goal, strat, init, name2Text, desc2Text, max);
   }
 
-  void delete4(Goal goal, Strategy strat, Initiative init, Dir dir) {
+  void delete4(Year year, Goal goal, Strategy strat, Initiative init, Dir dir) {
     fbService4.deleteDir(year.key, goal.key, strat.key, init.key, dir.key);
     init.directives.remove(dir);
   }

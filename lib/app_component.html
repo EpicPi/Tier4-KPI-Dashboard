@@ -5,57 +5,56 @@
 <body>
 <div class="page">
     <!--<header class="horiz">-->
-        <!--<div id="sign-in" *ngIf="fbService.user == null" class="horiz">-->
-            <!--<button class="btn btn-outline-secondary btn-sm"-->
-                    <!--(click)="fbService.signIn()">Google Sign In-->
-            <!--</button>-->
-        <!--</div>-->
+    <!--<div id="sign-in" *ngIf="fbService.user == null" class="horiz">-->
+    <!--<button class="btn btn-outline-secondary btn-sm"-->
+    <!--(click)="fbService.signIn()">Google Sign In-->
+    <!--</button>-->
+    <!--</div>-->
 
-        <!--<div id="sign-out" *ngIf="fbService.user != null" class="horiz">-->
-            <!--<div id="user-name">{{fbService.user?.displayName}}</div>-->
-            <!--<button class="btn btn-outline-secondary btn-sm"-->
-                    <!--(click)="fbService.signOut()">Sign Out-->
-            <!--</button>-->
-        <!--</div>-->
+    <!--<div id="sign-out" *ngIf="fbService.user != null" class="horiz">-->
+    <!--<div id="user-name">{{fbService.user?.displayName}}</div>-->
+    <!--<button class="btn btn-outline-secondary btn-sm"-->
+    <!--(click)="fbService.signOut()">Sign Out-->
+    <!--</button>-->
+    <!--</div>-->
     <!--</header>-->
-    <div>
-        Select Year:
-        <div *ngIf="year != null">
-            {{year.toNum(year)}}
-        </div>
-        <br>
-        <material-select [width]="0">
-            <material-select-item *ngFor="let year of fbService.years">
-                <div (click)="pickYear(year)" >
-                    {{year.toNum(year)}}
-                </div>
-            </material-select-item>
-        </material-select>
+    Select Year:
+    <div *ngIf="year != null">
+        {{year.toNum(year)}}
     </div>
     <br>
-    <!--<material-tab-panel>-->
-        <!--<material-tab label="summary">-->
+    <material-select [width]="0">
+        <material-select-item *ngFor="let year of fbService.years">
+            <div (click)="pickYear(year)" >
+                {{year.toNum(year)}}
+            </div>
+        </material-select-item>
+    </material-select>
+    <br>
+    <material-tab-panel>
+        <material-tab label="summary">
             <div *ngIf="year !=null">
                 <my-summary [year]="year"></my-summary>
             </div>
-        <!--</material-tab>-->
-        <!--<material-tab label="details">-->
-            <div *ngIf="year !=null">
-                <detail [year]="year"></detail>
-            </div>
+        </material-tab>
 
+        <!--<material-tab label="details">-->
+            <!--<div *ngIf="year !=null">-->
+                <!--<detail [year]="year"></detail>-->
+            <!--</div>-->
         <!--</material-tab>-->
-        <!--<material-tab label="admin">-->
+
+        <material-tab label="admin">
             <div *ngIf="year !=null">
                 <my-goal [year]="year"></my-goal>
             </div>
-        <!--</material-tab>-->
-        <!--<material-tab label="data entry">-->
+        </material-tab>
+        <material-tab label="data entry">
             <div *ngIf="year !=null">
                 <my-val [year]="year"></my-val>
             </div>
-        <!--</material-tab>-->
-    <!--</material-tab-panel>-->
+        </material-tab>
+    </material-tab-panel>
 </div>
 </body>
 </html>

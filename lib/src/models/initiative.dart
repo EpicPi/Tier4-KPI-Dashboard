@@ -26,3 +26,4 @@ class Initiative {
     return directives.length>0? total ~/ directives.length : 1;
   }
 }
+
