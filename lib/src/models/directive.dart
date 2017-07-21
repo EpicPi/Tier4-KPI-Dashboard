@@ -24,13 +24,12 @@ class Dir {
 
   num get percentage
   {
-    double total = 0.0;
+    num total = 0;
     for(var val in values)
     {
       total +=val.value;
     }
-    print(total/(maxValue.toDouble()).toDouble());
-    return (total/(maxValue.toDouble())).toDouble() * 100;
+    return values.length>0?(total/(maxValue.toDouble())).toDouble() * 100 : 0;
   }
 }
 

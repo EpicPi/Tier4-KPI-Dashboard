@@ -19,13 +19,12 @@ class Initiative {
   };
 
   num get percentage {
-    double total = 0.0;
+    var total = 0;
     for (var dir in directives) {
-
       total += dir.percentage;
     }
-
     return directives.length>0? (total / (directives.length.toDouble())).toDouble() : 1;
   }
 }
+
 

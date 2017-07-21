@@ -232,7 +232,7 @@ class Chart {
 
   /// The subscription tracker for legend items' events.
   StreamSubscriptionTracker _legendItemSubscriptionTracker =
-      new StreamSubscriptionTracker();
+  new StreamSubscriptionTracker();
 
   StreamSubscription _mouseMoveSub;
 
@@ -297,14 +297,14 @@ class Chart {
   }
 
   //TODO have this be incremental as in each percentage has an individual color
-  String _getColorByValue(double value) {
+  String _getColorByValue(int value) {
     var colors = _options['colors'] as List<String>;
     if(value<33)
       return colors[0];
     if(value<66)
       return colors[1];
     return colors[2];
-    }
+  }
 
   String _getHighlightColor(String color) => _changeColorAlpha(color, .5);
 
@@ -407,7 +407,7 @@ class Chart {
   }
 
   _Entity _createEntity(int seriesIndex, int entityIndex, value, String color,
-          String highlightColor) =>
+      String highlightColor) =>
       null;
 
   List<_Series> _createSeriesList(int start, int end) {
@@ -418,7 +418,7 @@ class Chart {
       var color = _getColor(start);
       var highlightColor = _getHighlightColor(color);
       var entities =
-          _createEntities(start, 0, entityCount, color, highlightColor);
+      _createEntities(start, 0, entityCount, color, highlightColor);
       result.add(new _Series(name, color, highlightColor, entities));
       start++;
     }

@@ -295,7 +295,7 @@ class DataTable {
   void _onCellChanged(int rowIndex, int columnIndex, oldValue, newValue) {
     if (_cellChangeController != null) {
       var record =
-          new DataCellChangeRecord(rowIndex, columnIndex, oldValue, newValue);
+      new DataCellChangeRecord(rowIndex, columnIndex, oldValue, newValue);
       _cellChangeController.add(record);
     }
   }
