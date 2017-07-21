@@ -22,6 +22,8 @@
     <div *ngIf="year != null">
         {{year.toNum(year)}}
     </div>
+
+
     <br>
     <material-select [width]="0">
         <material-select-item *ngFor="let year of fbService.years">
@@ -31,12 +33,21 @@
         </material-select-item>
     </material-select>
     <br>
+
+
+    <div *ngIf="year !=null">
+        <h1>Summary</h1>
+        <my-summary [year]="year"></my-summary>
+    </div>
+    <!--<div *ngIf="year !=null">-->
+        <!--<detail [year]="year"></detail>-->
+    <!--</div>-->
     <material-tab-panel>
-        <material-tab label="summary">
-            <div *ngIf="year !=null">
-                <my-summary [year]="year"></my-summary>
-            </div>
-        </material-tab>
+        <!--<material-tab label="summary">-->
+            <!--<div *ngIf="year !=null">-->
+                <!--<my-summary [year]="year"></my-summary>-->
+            <!--</div>-->
+        <!--</material-tab>-->
 
         <!--<material-tab label="details">-->
             <!--<div *ngIf="year !=null">-->
