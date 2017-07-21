@@ -33,6 +33,6 @@ class Goal {
     for (var strat in strategies) {
       total += strat.percentage;
     }
-    return strategies.length>0 ? total ~/ strategies.length : 10;
+    return strategies.length>0 ? (total / (strategies.length.toDouble())).toDouble() : 10;
   }
 }

@@ -19,12 +19,11 @@ class Strategy {
   };
 
   num get percentage {
-    var total = 0;
+    double total = 0.0;
     for (var init in initiatives) {
       total += init.percentage;
     }
-
-    return initiatives.length>0 ? total ~/ initiatives.length: 1;
+    return initiatives.length>0 ? (total / (initiatives.length.toDouble())).toDouble(): 1;
 
   }
 }

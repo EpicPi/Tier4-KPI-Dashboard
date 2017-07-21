@@ -18,7 +18,7 @@ class Initiative {
     directivesTagText: init.directives
   };
 
-  double get percentage {
+  num get percentage {
     double total = 0.0;
     for (var dir in directives) {
 

@@ -22,7 +22,7 @@ class Dir {
     valuesTagText: dir.values
   };
 
-  double get percentage
+  num get percentage
   {
     double total = 0.0;
     for(var val in values)
