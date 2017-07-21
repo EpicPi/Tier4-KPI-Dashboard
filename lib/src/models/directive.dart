@@ -22,14 +22,15 @@ class Dir {
     valuesTagText: dir.values
   };
 
-  num get percentage
+  double get percentage
   {
-    num total = 0;
+    double total = 0.0;
     for(var val in values)
     {
       total +=val.value;
     }
-    return total~/maxValue;
+    print(total/(maxValue.toDouble()).toDouble());
+    return (total/(maxValue.toDouble())).toDouble() * 100;
   }
 }
 

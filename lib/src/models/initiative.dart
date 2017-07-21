@@ -18,12 +18,14 @@ class Initiative {
     directivesTagText: init.directives
   };
 
-  num get percentage {
-    var total = 0;
+  double get percentage {
+    double total = 0.0;
     for (var dir in directives) {
+
       total += dir.percentage;
     }
-    return directives.length>0? total ~/ directives.length : 1;
+
+    return directives.length>0? (total / (directives.length.toDouble())).toDouble() : 1;
   }
 }
 

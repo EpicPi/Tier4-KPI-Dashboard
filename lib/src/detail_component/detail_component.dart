@@ -23,12 +23,10 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
     providers: const [
       materialProviders
     ])
-class DetailComponent implements OnInit {
+class DetailComponent{
   @Input()
   Year year;
 
   final FirebaseService fbService;
   DetailComponent(this.fbService);
-  @override
-  ngOnInit() {}
 }

@@ -1,38 +1,81 @@
-<div class="container">
+<!--<div class="container">-->
+    <!--<material-expansionpanel-set>-->
+        <!--<material-expansionpanel *ngFor="let goal of year.goals"-->
+                                 <!--name="{{goal.name}}" ;-->
+                                 <!--secondaryText="{{goal.description}}"-->
+                                 <!--[showSaveCancel]="false">-->
+            <!--&lt;!&ndash;<material-progress class="red"&ndash;&gt;-->
+                               <!--&lt;!&ndash;[activeProgress]="9">&ndash;&gt;-->
 
+            <!--&lt;!&ndash;</material-progress>&ndash;&gt;-->
+            <!--<material-expansionpanel-set>-->
+                <!--<material-expansionpanel wide *ngFor="let strat of goal.strategies"-->
+                                         <!--name="{{strat.name}}"-->
+                                         <!--secondaryText="{{strat.description}}"-->
+                                         <!--[showSaveCancel]="false">-->
+
+                    <!--<material-expansionpanel-set>-->
+                        <!--<material-expansionpanel wide *ngFor="let init of strat.initiatives"-->
+                                                 <!--name="{{init.name}}"-->
+                                                 <!--secondaryText="{{init.description}}"-->
+                                                 <!--[showSaveCancel]="false">-->
+                            <!--<material-expansionpanel-set>-->
+                                <!--<material-expansionpanel wide *ngFor="let dir of init.directives"-->
+                                                         <!--name="{{dir.name}}"-->
+                                                         <!--secondaryText="{{dir.description}}"-->
+                                                         <!--[showSaveCancel]="false">-->
+                                <!--</material-expansionpanel>-->
+                            <!--</material-expansionpanel-set>-->
+                        <!--</material-expansionpanel>-->
+                    <!--</material-expansionpanel-set>-->
+                <!--</material-expansionpanel>-->
+            <!--</material-expansionpanel-set>-->
+        <!--</material-expansionpanel>-->
+    <!--</material-expansionpanel-set>-->
+<!--</div>-->
+
+<div class="container">
     <material-expansionpanel-set>
-        <material-expansionpanel *ngFor="let goal of year.goals"
-                                 name="{{goal.name}}" ;
+        <div *ngFor="let goal of year.goals">
+        <material-expansionpanel name="{{goal.name}}" ;
                                  secondaryText="{{goal.description}}"
                                  [showSaveCancel]="false">
             <material-progress class="red"
-                               [activeProgress]="9">
-
+            [activeProgress]="9">
             </material-progress>
+
             <material-expansionpanel-set>
-                <material-expansionpanel wide *ngFor="let strat of goal.strategies"
+                <div *ngFor="let strat of goal.strategies">
+
+                <material-expansionpanel wide
                                          name="{{strat.name}}"
                                          secondaryText="{{strat.description}}"
                                          [showSaveCancel]="false">
 
                     <material-expansionpanel-set>
-                        <material-expansionpanel wide *ngFor="let init of strat.initiatives"
+                        <div *ngFor="let init of strat.initiatives">
+                        <material-expansionpanel wide
                                                  name="{{init.name}}"
                                                  secondaryText="{{init.description}}"
                                                  [showSaveCancel]="false">
                             <material-expansionpanel-set>
-                                <material-expansionpanel wide *ngFor="let dir of init.directives"
+                                <div *ngFor="let dir of init.directives">
+                                <material-expansionpanel wide
                                                          name="{{dir.name}}"
                                                          secondaryText="{{dir.description}}"
                                                          [showSaveCancel]="false">
                                 </material-expansionpanel>
+                                </div>
                             </material-expansionpanel-set>
                         </material-expansionpanel>
+                        </div>
                     </material-expansionpanel-set>
                 </material-expansionpanel>
-
+                </div>
             </material-expansionpanel-set>
         </material-expansionpanel>
+        </div>
     </material-expansionpanel-set>
 </div>
+
 
