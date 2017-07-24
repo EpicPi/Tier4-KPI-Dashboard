@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:angular_components/angular_components.dart';
+import 'package:angular_components/src/utils/angular/properties/properties.dart';
 import 'package:kpi_dash/pi_charts/pi_charts.dart';
 import 'package:kpi_dash/src/models/year.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
@@ -21,6 +22,8 @@ class SummaryComponent implements AfterContentInit, AfterViewInit,DoCheck {
   @Input()
   Year year;
 
+
+
   int yr;
 
   @ViewChild('canvasMain')
@@ -33,9 +36,7 @@ class SummaryComponent implements AfterContentInit, AfterViewInit,DoCheck {
 
   List<List> data;
   final FirebaseService fbService;
-  SummaryComponent(
-      this.fbService
-      );
+  SummaryComponent(this.fbService);
 
   var goals;
   var chart;
@@ -79,6 +80,8 @@ class SummaryComponent implements AfterContentInit, AfterViewInit,DoCheck {
 
   // TODO: need to make this create multiple rows if necessary
   void createSubGraph(MouseEvent e) {
+
+
     //if you didn't click on a graph, do nothing
     var index = getIndex(e);
     if (index < 0) return;
@@ -88,9 +91,10 @@ class SummaryComponent implements AfterContentInit, AfterViewInit,DoCheck {
 
     var canvas2 = new CanvasElement();
     divElement.append(canvas2);
-
     createGaugeChart(canvas2, year.goals[index].dataTable);
+
   }
+
 
   @override
   ngDoCheck() {

@@ -40,6 +40,7 @@ import 'package:kpi_dash/src/val_component/val_component.dart';
 class AppComponent {
   Year year = null;
 
+
   void pickYear(Year y) {
     year = y;
     print(year);

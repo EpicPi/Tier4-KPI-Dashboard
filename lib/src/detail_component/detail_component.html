@@ -34,48 +34,55 @@
     <!--</material-expansionpanel-set>-->
 <!--</div>-->
 
-<div class="container">
-    <material-expansionpanel-set>
-        <div *ngFor="let goal of year.goals">
-        <material-expansionpanel name="{{goal.name}}" ;
-                                 secondaryText="{{goal.description}}"
-                                 [showSaveCancel]="false">
-            <material-progress class="red"
-            [activeProgress]="9">
-            </material-progress>
 
-            <material-expansionpanel-set>
-                <div *ngFor="let strat of goal.strategies">
 
-                <material-expansionpanel wide
-                                         name="{{strat.name}}"
-                                         secondaryText="{{strat.description}}"
-                                         [showSaveCancel]="false">
+Details not working?
 
-                    <material-expansionpanel-set>
-                        <div *ngFor="let init of strat.initiatives">
-                        <material-expansionpanel wide
-                                                 name="{{init.name}}"
-                                                 secondaryText="{{init.description}}"
-                                                 [showSaveCancel]="false">
-                            <material-expansionpanel-set>
-                                <div *ngFor="let dir of init.directives">
-                                <material-expansionpanel wide
-                                                         name="{{dir.name}}"
-                                                         secondaryText="{{dir.description}}"
-                                                         [showSaveCancel]="false">
-                                </material-expansionpanel>
-                                </div>
-                            </material-expansionpanel-set>
-                        </material-expansionpanel>
-                        </div>
-                    </material-expansionpanel-set>
-                </material-expansionpanel>
-                </div>
-            </material-expansionpanel-set>
-        </material-expansionpanel>
-        </div>
-    </material-expansionpanel-set>
-</div>
+
+
+
+<!--<div class="container">-->
+    <!--<material-expansionpanel-set>-->
+        <!--<div *ngFor="let goal of year.goals">-->
+        <!--<material-expansionpanel name="{{goal.name}}" ;-->
+                                 <!--secondaryText="{{goal.description}}"-->
+                                 <!--[showSaveCancel]="false">-->
+            <!--<material-progress class="red"-->
+            <!--[activeProgress]="9">-->
+            <!--</material-progress>-->
+
+            <!--<material-expansionpanel-set>-->
+                <!--<div *ngFor="let strat of goal.strategies">-->
+
+                <!--<material-expansionpanel wide-->
+                                         <!--name="{{strat.name}}"-->
+                                         <!--secondaryText="{{strat.description}}"-->
+                                         <!--[showSaveCancel]="false">-->
+
+                    <!--<material-expansionpanel-set>-->
+                        <!--<div *ngFor="let init of strat.initiatives">-->
+                        <!--<material-expansionpanel wide-->
+                                                 <!--name="{{init.name}}"-->
+                                                 <!--secondaryText="{{init.description}}"-->
+                                                 <!--[showSaveCancel]="false">-->
+                            <!--<material-expansionpanel-set>-->
+                                <!--<div *ngFor="let dir of init.directives">-->
+                                <!--<material-expansionpanel wide-->
+                                                         <!--name="{{dir.name}}"-->
+                                                         <!--secondaryText="{{dir.description}}"-->
+                                                         <!--[showSaveCancel]="false">-->
+                                <!--</material-expansionpanel>-->
+                                <!--</div>-->
+                            <!--</material-expansionpanel-set>-->
+                        <!--</material-expansionpanel>-->
+                        <!--</div>-->
+                    <!--</material-expansionpanel-set>-->
+                <!--</material-expansionpanel>-->
+                <!--</div>-->
+            <!--</material-expansionpanel-set>-->
+        <!--</material-expansionpanel>-->
+        <!--</div>-->
+    <!--</material-expansionpanel-set>-->
+<!--</div>-->
 
 

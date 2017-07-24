@@ -27,6 +27,7 @@ h1 {
     width: 170px;
     height: 40px;
     left: 10px;
+    bottom: 20px;
     border: 3px solid darkblue;
     background-color: ghostwhite;
 }
@@ -34,6 +35,6 @@ h1 {
 div.title{
     position: relative;
     left: 14px;
-    top: 8px;
+    top: 7px;
 }
 
