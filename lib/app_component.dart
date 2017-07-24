@@ -39,11 +39,18 @@ import 'package:kpi_dash/src/val_component/val_component.dart';
 )
 class AppComponent{
   Year year;
+  String pass = "";
+  bool b = false;
 
 
   void pickYear(Year y) {
     year = y;
     print(year);
+  }
+
+  void changeBool(){
+    if(pass == "fourtier")
+      b=true;
   }
 
   final FirebaseService fbService;

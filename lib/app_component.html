@@ -5,6 +5,10 @@
 <body>
 <div class="page">
 
+    Password:<input type="text" [(ngModel)]="pass">
+    <button (click)="changeBool()">Enter</button>
+
+
     <!--<header class="horiz">-->
         <!--<div id="sign-in" *ngIf="fbService.user == null" class="horiz">-->
             <!--<div id="google-icon" class="icon"></div>-->
@@ -24,7 +28,7 @@
 
 
 
-
+<div *ngIf = "b==true">
     Select Year:
     <div *ngIf="year != null">
         {{year.toNum(year)}}
@@ -65,6 +69,7 @@
             </div>
         </material-tab>
     </material-tab-panel>
+</div>
 </div>
 <!--</div>-->
 </body>
