@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'package:angular2/core.dart';
 import 'dart:core';
 import 'package:angular2/angular2.dart';
@@ -70,7 +71,8 @@ class DirectiveComponent {
     fbService4.changeDirMax(year, goal, strat, init, dir);
   }
 
-  void onSelect(Dir dir) {
-    selectedDir = dir;
+  void alert(String s)
+  {
+    window.alert(s);
   }
 }

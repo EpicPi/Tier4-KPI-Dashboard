@@ -61,9 +61,7 @@ class GoalComponent {
 
   }
 
-  void onSelect(Goal goal) {
-    selectedGoal = goal;
-  }
+
   void alert(String s)
   {
     window.alert(s);

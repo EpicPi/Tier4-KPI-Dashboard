@@ -1,5 +1,5 @@
 import 'package:angular2/core.dart';
-
+import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:angular_components/angular_components.dart';
 import 'package:kpi_dash/src/directive_component/directive_component.dart';
@@ -65,7 +65,8 @@ class InitiativeComponent {
     fbService.changeInitDescription(year, goal, strat, init);
   }
 
-  void onSelect(Initiative init) {
-    selectedInit = init;
+  void alert(String s)
+  {
+    window.alert(s);
   }
 }

@@ -79,7 +79,6 @@ class SummaryComponent implements AfterContentInit, DoCheck{
     var canvas2 = new CanvasElement();
     divElement.hidden = false;
     divElement.append(canvas2);
-    window.alert()
     createGaugeChart(canvas2, year.goals[index].dataTable);
 
   }
@@ -90,9 +89,9 @@ class SummaryComponent implements AfterContentInit, DoCheck{
     if(yr!=year.year)
     {
       if(canvasElement == null)
-      canvasElement = canvas.nativeElement;
+        canvasElement = canvas.nativeElement;
       if(divElement == null)
-      divElement = div.nativeElement;
+        divElement = div.nativeElement;
       while (canvasElement.childNodes.length > 0) canvasElement.childNodes.last.remove();
       while (divElement.childNodes.length>0 )divElement.childNodes.last.remove();
       createChart();

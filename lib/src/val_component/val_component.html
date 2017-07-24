@@ -48,7 +48,8 @@ Select Month:
                                         <h3>Value: <input type="number" [(ngModel)]="val.value"></h3>
                                     </div>
                                     <button (click)="deleteValue(year, goal, strat, init, dir, val)">Delete</button>
-                                    <button (click)="changeValue(year, goal, strat, init, dir, val)">Save Edit</button>
+                                    <button (click)="changeValue(year, goal, strat, init, dir, val)"
+                                            (click)="alert('Your edit has been saved.')">Save Edit</button>
                                 </div>
                             </div>
                         </div>

@@ -11,7 +11,8 @@
                 </span>
                 <button class="editintro" (click)="change4Name(year, goal, strat, init, dir)"
                         (click)="change4Desc(year, goal, strat, init, dir)"
-                        (click)="changeMax(year, goal, strat, init, dir)">Save Edit</button>
+                        (click)="changeMax(year, goal, strat, init, dir)"
+                        (click)="alert('Your edit has been saved.')">Save Edit</button>
                 <br>
                 <span class="uuu">
                     Max Value: <input type="number" [(ngModel)]="dir.maxValue">

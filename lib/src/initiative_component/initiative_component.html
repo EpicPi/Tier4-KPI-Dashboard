@@ -12,7 +12,7 @@
                     Description: <input [(ngModel)]="init.description">
                 </span>
                 <button class="editintro" (click)="change3Name(year, goal, strat, init)"
-                        (click)="change3Desc(year, goal, strat, init)">
+                        (click)="change3Desc(year, goal, strat, init)" (click)="alert('Your edit has been saved.')">
                     Save Edit
                 </button>
                 <my-dir [year]=year [goal]="goal" [strat]="strat" [init]="init"></my-dir>

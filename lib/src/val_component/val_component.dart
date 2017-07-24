@@ -4,6 +4,7 @@ import 'package:angular2/angular2.dart';
 import 'package:angular_components/angular_components.dart';
 import 'package:kpi_dash/src/models/models.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
+import 'dart:html';
 
 
 @Component(
@@ -62,8 +63,9 @@ class ValComponent {
     fbService.changeVal(year, goal, strat, init, dir, val);
   }
 
-  void onSelect(Value val){
-    selectedVal = val;
+  void alert(String s)
+  {
+    window.alert(s);
   }
 
 

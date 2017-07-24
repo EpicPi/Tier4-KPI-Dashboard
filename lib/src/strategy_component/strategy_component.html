@@ -12,7 +12,8 @@
                     Description: <input [(ngModel)]="strat.description">
                 </span>
                 <button class="editintro" (click)="change2Name(year, goal, strat)"
-                        (click)="change2Desc(year, goal, strat)">Save Edit</button>
+                        (click)="change2Desc(year, goal, strat)"
+                        (click)="alert('Your edit has been saved.')">Save Edit</button>
                 <br>
                 <br>
                 <my-init [year]=year [goal]=goal [strat]="strat"></my-init>

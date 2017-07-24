@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'package:kpi_dash/src/directive_component/directive_component.dart';
 import 'package:kpi_dash/src/initiative_component/initiative_component.dart';
 import 'package:kpi_dash/src/models/goal.dart';
@@ -67,7 +68,8 @@ class StrategyComponent {
     fbService2.changeStratDescription(year, goal, strat);
   }
 
-  void onSelect(Strategy strat) {
-    selectedStrat = strat;
+  void alert(String s)
+  {
+    window.alert(s);
   }
 }

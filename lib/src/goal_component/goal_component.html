@@ -12,7 +12,7 @@
             </div>
             <button class="delete" (click)="delete(year,goal)">Delete</button>
             <button class="editintro" (click)="changeName(year, goal)"
-                    (click)="changeDesc(year, goal)">Save Edit</button>
+                    (click)="changeDesc(year, goal)" (click)="alert('Your edit has been saved.')">Save Edit</button>
             <br>
             <br>
             <my-strategy [year]=year [goal]="goal"></my-strategy>
