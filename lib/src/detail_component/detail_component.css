@@ -1,5 +1,25 @@
-.red
-{
-    color: red;
-    background-color: yellow;
+/*.red*/
+/*{*/
+    /*color: red;*/
+    /*background-color: yellow;*/
+/*}*/
+
+div.goals{
+    position: relative;
+    left:10px;
+}
+
+div.strat{
+    position: relative;
+    left:40px;
+}
+
+div.init{
+    position: relative;
+    left:70px;
+}
+
+div.dir{
+    position: relative;
+    left:100px;
 }

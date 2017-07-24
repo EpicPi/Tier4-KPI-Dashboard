@@ -35,54 +35,28 @@
 <!--</div>-->
 
 
+<div class="container">
 
-Details not working?
+        <div class="goals" *ngFor="let goal of year.goals">
+            name: {{goal.name}}
+            secondaryText: {{goal.description}}
+                <div class="strat"*ngFor="let strat of goal.strategies">
+                    name: {{strat.name}}
+                    secondaryText: {{strat.description}}
+                        <div class="init" *ngFor="let init of strat.initiatives">
+                            name: {{init.name}}
+                            secondaryText: {{init.description}}
+                                <div class= "dir" *ngFor="let dir of init.directives">
+                                    name: {{dir.name}}
+                                    secondaryText: {{dir.description}}
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
 
 
 
 
-<!--<div class="container">-->
-    <!--<material-expansionpanel-set>-->
-        <!--<div *ngFor="let goal of year.goals">-->
-        <!--<material-expansionpanel name="{{goal.name}}" ;-->
-                                 <!--secondaryText="{{goal.description}}"-->
-                                 <!--[showSaveCancel]="false">-->
-            <!--<material-progress class="red"-->
-            <!--[activeProgress]="9">-->
-            <!--</material-progress>-->
-
-            <!--<material-expansionpanel-set>-->
-                <!--<div *ngFor="let strat of goal.strategies">-->
-
-                <!--<material-expansionpanel wide-->
-                                         <!--name="{{strat.name}}"-->
-                                         <!--secondaryText="{{strat.description}}"-->
-                                         <!--[showSaveCancel]="false">-->
-
-                    <!--<material-expansionpanel-set>-->
-                        <!--<div *ngFor="let init of strat.initiatives">-->
-                        <!--<material-expansionpanel wide-->
-                                                 <!--name="{{init.name}}"-->
-                                                 <!--secondaryText="{{init.description}}"-->
-                                                 <!--[showSaveCancel]="false">-->
-                            <!--<material-expansionpanel-set>-->
-                                <!--<div *ngFor="let dir of init.directives">-->
-                                <!--<material-expansionpanel wide-->
-                                                         <!--name="{{dir.name}}"-->
-                                                         <!--secondaryText="{{dir.description}}"-->
-                                                         <!--[showSaveCancel]="false">-->
-                                <!--</material-expansionpanel>-->
-                                <!--</div>-->
-                            <!--</material-expansionpanel-set>-->
-                        <!--</material-expansionpanel>-->
-                        <!--</div>-->
-                    <!--</material-expansionpanel-set>-->
-                <!--</material-expansionpanel>-->
-                <!--</div>-->
-            <!--</material-expansionpanel-set>-->
-        <!--</material-expansionpanel>-->
-        <!--</div>-->
-    <!--</material-expansionpanel-set>-->
-<!--</div>-->
 
 
