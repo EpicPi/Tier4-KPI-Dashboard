@@ -3,28 +3,22 @@
         <div class="strategies">
             <div *ngFor="let strat of goal.strategies">
                 <h4>Strategy</h4>
-                <span (click)="onSelect(strat)">Name: {{strat.name}}</span>
+                <span class=""name>
+                    Name: <input [(ngModel)]="strat.name">
+                </span>
                 <button class="delete" (click)="delete2(year, goal, strat)">Delete</button>
                 <br>
-                <span class="badge" (click)="onSelect(strat)">Description: {{strat.description}}</span>
-                <button class="editintro" (click)="onSelect(strat)">Edit</button>
+                <span class="description">
+                    Description: <input [(ngModel)]="strat.description">
+                </span>
+                <button class="editintro" (click)="change2Name(year, goal, strat)"
+                        (click)="change2Desc(year, goal, strat)">Save Edit</button>
                 <br>
                 <br>
                 <my-init [year]=year [goal]=goal [strat]="strat"></my-init>
 
             </div>
             <br>
-            <div *ngIf="selectedStrat != null" class="edit">
-                <h4>Edit Strategy:</h4>
-                <div>
-                    <label>Name: </label>
-                    <input [(ngModel)]="selectedStrat.name" (keyup.enter)="change2Name(year, goal, selectedStrat)"
-                           (keyup.enter)="change2Desc(year, goal, selectedStrat)" (keyup.enter)="selectedStrat=null">
-                    <label>Description: </label>
-                    <input [(ngModel)]="selectedStrat.description" (keyup.enter)="change2Desc(year, goal, selectedStrat)"
-                           (keyup.enter)="change2Name(year, goal, selectedStrat)" (keyup.enter)="selectedStrat=null">
-                </div>
-            </div>
             <br>
         </div>
         <div>

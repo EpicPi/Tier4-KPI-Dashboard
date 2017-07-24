@@ -3,25 +3,20 @@
         <div class="initiatives">
             <div *ngFor="let init of strat.initiatives">
                 <h4>Initiative</h4>
-                <span (click)="onSelect(init)">Name: {{init.name}}</span>
+                <span>
+                    Name: <input [(ngModel)]="init.name">
+                </span>
                 <button class="delete" (click)="delete3(year, goal, strat, init)">Delete</button>
                 <br>
-                <span (click)="onSelect(init)">Description: {{init.description}}</span>
-                <button class="editintro" (click)="onSelect(init)">Edit</button>
+                <span>
+                    Description: <input [(ngModel)]="init.description">
+                </span>
+                <button class="editintro" (click)="change3Name(year, goal, strat, init)"
+                        (click)="change3Desc(year, goal, strat, init)">
+                    Save Edit
+                </button>
                 <my-dir [year]=year [goal]="goal" [strat]="strat" [init]="init"></my-dir>
                 <br>
-            </div>
-            <div class="edit" *ngIf="selectedInit != null">
-                <h4>Edit Initiative:</h4>
-                <div>
-                    <label>Name: </label>
-                    <input [(ngModel)]="selectedInit.name" (keyup.enter)="change3Name(year, goal, strat, selectedInit)"
-                           (keyup.enter)="change3Desc(year, goal, strat, selectedInit)"  (keyup.enter)="selectedInit=null">
-                    <br>
-                    <label>Description: </label>
-                    <input [(ngModel)]="selectedInit.description" (keyup.enter)="change3Desc(year, goal, strat, selectedInit)"
-                           (keyup.enter)="change3Name(year, goal, strat, selectedInit)" (keyup.enter)="selectedInit=null">
-                </div>
             </div>
         </div>
         <div>

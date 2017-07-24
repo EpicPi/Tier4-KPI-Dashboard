@@ -1,17 +1,18 @@
 <!--<div [hidden]="fbService.user == null" hidden;>-->
 
     <div class="goals">
-        <h3>Goals</h3>
-        <div *ngFor="let goal of year.goals">
 
-            <div class="name" (click)="onSelect(goal)">
-                Name: {{goal.name}}
+        <div *ngFor="let goal of year.goals">
+            <h3>Goal</h3>
+            <div class="name">
+                Name: <input type="text" [(ngModel)]="goal.name">
             </div>
-            <div class="description" (click)="onSelect(goal)">
-                Description: {{goal.description}}
+            <div class="description">
+                Description: <input [(ngModel)]="goal.description">
             </div>
             <button class="delete" (click)="delete(year,goal)">Delete</button>
-            <button class="editintro" (click)="onSelect(goal)">Edit</button>
+            <button class="editintro" (click)="changeName(year, goal)"
+                    (click)="changeDesc(year, goal)">Save Edit</button>
             <br>
             <br>
             <my-strategy [year]=year [goal]="goal"></my-strategy>
@@ -19,20 +20,6 @@
             <br>
         </div>
     </div>
-
-
-    <div class="edit" *ngIf="selectedGoal != null">
-        <h3>Edit Goal:</h3>
-        <div>
-            <label>Name: </label>
-            <input [(ngModel)]="selectedGoal.name" (keyup.enter)="changeName(year, selectedGoal)"
-                   (keyup.enter)="changeDesc(year, selectedGoal)" (keyup.enter)="selectedGoal = null">
-            <label>Description: </label>
-            <input [(ngModel)]="selectedGoal.description" (keyup.enter)="changeDesc(year, selectedGoal)"
-                   (keyup.enter)="changeName(year, selectedGoal)" (keyup.enter)="selectedGoal = null">
-        </div>
-    </div>
-
 
     <div>
         <h3>Add Goal:</h3>
@@ -50,20 +37,5 @@
     <br>
     <br>
 <!--</div>-->
-
-<!--<header class="horiz">-->
-<!--<div id="sign-in" *ngIf="fbService.user == null" class="horiz">-->
-<!--<div id="google-icon" class="icon"></div>-->
-<!--<button class="btn btn-outline-secondary btn-sm"-->
-<!--(click)="fbService.signIn()">Google Sign In</button>-->
 <!--</div>-->
 
-<!--<div id="sign-out" *ngIf="fbService.user != null" class="horiz">-->
-<!--<img class="icon" [src]="fbService.user?.photoURL">-->
-<!--<div id="user-name">{{fbService.user?.displayName}}</div>-->
-<!--<button class="btn btn-outline-secondary btn-sm"-->
-<!--(click)="fbService.signOut()">Sign Out</button>-->
-<!--</div>-->
-<!--</header>-->
-<!--<br>-->
-<!--<br>-->

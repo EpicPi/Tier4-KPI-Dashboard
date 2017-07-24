@@ -1,34 +1,23 @@
 <h4>Directives:</h4>
         <div class="directives">
             <ul *ngFor="let dir of init.directives">
-                <span (click)="onSelect(dir)">Name: {{dir.name}}</span>
+                <span>
+                    Name: <input [(ngModel)]="dir.name">
+                </span>
                 <button class="delete" (click)="delete4(year, goal, strat, init, dir)">Delete</button>
                 <br>
-                <span class="badge" (click)="onSelect(dir)">Description: {{dir.description}}</span>
-                <button class="editintro" (click)="onSelect(dir)">Edit</button>
+                <span class="desc">
+                    Description: <input [(ngModel)]="dir.description">
+                </span>
+                <button class="editintro" (click)="change4Name(year, goal, strat, init, dir)"
+                        (click)="change4Desc(year, goal, strat, init, dir)"
+                        (click)="changeMax(year, goal, strat, init, dir)">Save Edit</button>
                 <br>
-                <span class="uuu" (click)="onSelect(dir)">Max Value: {{dir.maxValue}}</span>
+                <span class="uuu">
+                    Max Value: <input type="number" [(ngModel)]="dir.maxValue">
+                </span>
                 <br>
             </ul>
-            <div class="edit" *ngIf="selectedDir != null">
-                <h4>Edit Directive:</h4>
-                <div>
-                    <label>Name: </label>
-                    <input [(ngModel)]="selectedDir.name" (keyup.enter)="change4Name(year, goal, strat, init, selectedDir)"
-                           (keyup.enter)="change4Desc(year, goal, strat, init, selectedDir)" (keyup.enter)="changeMax(year, goal, strat, init, selectedDir)"
-                           (keyup.enter)="selectedDir=null">
-                    <br>
-                    <label>Description: </label>
-                    <input [(ngModel)]="selectedDir.description" (keyup.enter)="change4Desc(year, goal, strat, init, selectedDir)"
-                           (keyup.enter)="change4Name(year, goal, strat, init, selectedDir)" (keyup.enter)="changeMax(year, goal, strat, init, selectedDir)"
-                           (keyup.enter)="selectedDir=null">
-                    <br>
-                    <label>Max Value: </label>
-                    <input type="number" [(ngModel)]="selectedDir.maxValue" (keyup.enter)="changeMax(year, goal, strat, init, selectedDir)"
-                           (keyup.enter)="change4Name(year, goal, strat, init, selectedDir)" (keyup.enter)="change4Desc(year, goal, strat, init, selectedDir)"
-                           (keyup.enter)="selectedDir=null">
-                </div>
-            </div>
         </div>
         <div>
             <h4>Add Directive:</h4>

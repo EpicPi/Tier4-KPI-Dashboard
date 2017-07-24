@@ -45,19 +45,10 @@ Select Month:
                             <div *ngIf="val.month == month">
                                 <div class="val">
                                     <div class="name5">
-                                        <h3>Value: {{val.value}}</h3>
+                                        <h3>Value: <input type="number" [(ngModel)]="val.value"></h3>
                                     </div>
                                     <button (click)="deleteValue(year, goal, strat, init, dir, val)">Delete</button>
-                                    <button (click)="onSelect(val)">Edit</button>
-                                </div>
-                                <div class="edit" *ngIf="selectedVal != null">
-                                    <h5>Edit Value:</h5>
-                                    <div>
-                                        <label>Value: </label>
-                                        <input type="number" [(ngModel)]="selectedVal.value"
-                                               (keyup.enter)="changeValue(year, goal, strat, init, dir, selectedVal)"
-                                               (keyup.enter)="selectedVal=null">
-                                    </div>
+                                    <button (click)="changeValue(year, goal, strat, init, dir, val)">Save Edit</button>
                                 </div>
                             </div>
                         </div>
@@ -79,3 +70,4 @@ Select Month:
         </div>
     </div>
 </div>
+<!--</div>-->
