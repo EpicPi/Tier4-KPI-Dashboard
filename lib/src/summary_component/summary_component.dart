@@ -50,10 +50,9 @@ class SummaryComponent implements AfterContentInit, DoCheck {
     for (var goal in year.goals) data.add([goal.name, goal.percentage]);
 
     var canvas2 = new CanvasElement();
-//    canvas2
+    canvas2
 //      ..style.width = "400px"
-//      ..style.height = "800px"
-//      ..style.maxWidth = "100%";
+      ..style.height = "400px";
 
     canvasElement.append(canvas2);
 
