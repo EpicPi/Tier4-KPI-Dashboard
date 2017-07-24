@@ -1,6 +1,4 @@
 <material-expansionpanel-set>
-    <!--<div *ngFor="let goal of year.goals"-->
-
     <material-expansionpanel *ngFor="let goal of year.goals"
                              name="{{goal.name}}"
                              secondaryText="{{goal.description}}"
@@ -23,32 +21,10 @@
                         secondaryText: {{dir.description}}
                     </div>
                 </div>
-
             </material-expansionpanel>
         </material-expansionpanel-set>
     </material-expansionpanel>
 </material-expansionpanel-set>
-
-
-<div class="container">
-
-    <div class="goals" *ngFor="let goal of year.goals">
-        name: {{goal.name}}
-        secondaryText: {{goal.description}}
-        <div class="strat" *ngFor="let strat of goal.strategies">
-            name: {{strat.name}}
-            secondaryText: {{strat.description}}
-            <div class="init" *ngFor="let init of strat.initiatives">
-                name: {{init.name}}
-                secondaryText: {{init.description}}
-                <div class="dir" *ngFor="let dir of init.directives">
-                    name: {{dir.name}}
-                    secondaryText: {{dir.description}}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 

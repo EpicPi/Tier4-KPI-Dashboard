@@ -37,8 +37,8 @@ import 'package:kpi_dash/src/val_component/val_component.dart';
   ],
   providers: const [materialProviders, FirebaseService],
 )
-class AppComponent {
-  Year year = null;
+class AppComponent{
+  Year year;
 
 
   void pickYear(Year y) {

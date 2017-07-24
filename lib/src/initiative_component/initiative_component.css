@@ -1,23 +1,23 @@
 material-expansionpanel{
-    width: 900px;
+    /*width: 900px;*/
 }
 
 button.delete{
     position:absolute;
-    left: 700px;
+    /*left: 700px;*/
 }
 
 button.editintro{
     position:absolute;
-    left: 700px;
+    /*left: 700px;*/
 }
 
 my-dir{
     position:relative;
-    left: 70px;
+    /*left: 70px;*/
 }
 
 div.edit{
     position:relative;
-    left:50px;
+    /*left:50px;*/
 }

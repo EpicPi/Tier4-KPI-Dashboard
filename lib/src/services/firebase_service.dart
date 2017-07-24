@@ -15,7 +15,7 @@ class FirebaseService {
 //  fb.DatabaseReference _fbRefGoals;
   List<Year> years;
 
-  FirebaseService() {
+  FirebaseService(){
     fb.initializeApp(
         apiKey: "AIzaSyAgK7z0NAOG87I1Fgi-5wkA-sJlsW00L44",
         authDomain: "fir-tier-4-kpi-dashboard.firebaseapp.com",
@@ -28,9 +28,13 @@ class FirebaseService {
 //    _fbAuth = fb.auth();
     years = [];
 //    _fbAuth.onAuthStateChanged.listen(_authChanged);
-    _fbRefYears.limitToLast(20).onChildAdded.listen(_newYear);
+    initYears();
   }
 
+  Future initYears() async
+  {
+    await _fbRefYears.limitToLast(20).onChildAdded.listen(_newYear);
+  }
 
 //  Future _authChanged(fb.AuthEvent event) async {
 //    user = event.user;

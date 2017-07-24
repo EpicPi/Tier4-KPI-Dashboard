@@ -14,7 +14,7 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
     COMMON_DIRECTIVES,
     CORE_DIRECTIVES],
     providers: const [])
-class SummaryComponent implements AfterContentInit, DoCheck {
+class SummaryComponent implements AfterContentInit, DoCheck{
   @Input()
   Year year;
   int yr = 2016;
@@ -101,4 +101,5 @@ class SummaryComponent implements AfterContentInit, DoCheck {
     }
 
   }
+
 }
