@@ -12,19 +12,12 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
     templateUrl: 'summary_component.html',
     directives: const [materialDirectives,
     COMMON_DIRECTIVES,
-    CORE_DIRECTIVES,
-    MaterialExpansionPanel,
-    MaterialExpansionPanelSet,
-    MaterialDropdownSelectComponent,
-    MaterialSelectComponent,],
+    CORE_DIRECTIVES],
     providers: const [])
-class SummaryComponent implements AfterContentInit, AfterViewInit,DoCheck {
+class SummaryComponent implements AfterContentInit, DoCheck {
   @Input()
   Year year;
-
-
-
-  int yr;
+  int yr = 2016;
 
   @ViewChild('canvasMain')
   ElementRef canvas;
@@ -41,19 +34,11 @@ class SummaryComponent implements AfterContentInit, AfterViewInit,DoCheck {
   var goals;
   var chart;
 
-
-
   @override
   ngAfterContentInit() {
     canvasElement = canvas.nativeElement;
     canvasElement.onClick.listen(createSubGraph);
     divElement = div.nativeElement;
-
-  }
-
-  @override
-  ngAfterViewInit() {
-//    createChart();
   }
 
   void createChart()
@@ -65,8 +50,13 @@ class SummaryComponent implements AfterContentInit, AfterViewInit,DoCheck {
     for (var goal in year.goals) data.add([goal.name, goal.percentage]);
 
     var canvas2 = new CanvasElement();
+//    canvas2
+//      ..style.width = "400px"
+//      ..style.height = "800px"
+//      ..style.maxWidth = "100%";
 
     canvasElement.append(canvas2);
+
 
     chart = createGaugeChart(canvas2, new DataTable(data));
   }
@@ -87,9 +77,10 @@ class SummaryComponent implements AfterContentInit, AfterViewInit,DoCheck {
     if (index < 0) return;
 
     //only one display open at a a time
-    if (divElement.childNodes.length > 1) divElement.childNodes.last.remove();
+    if (divElement.childNodes.length > 0) divElement.childNodes.last.remove();
 
     var canvas2 = new CanvasElement();
+    divElement.hidden = false;
     divElement.append(canvas2);
     createGaugeChart(canvas2, year.goals[index].dataTable);
 
@@ -100,11 +91,14 @@ class SummaryComponent implements AfterContentInit, AfterViewInit,DoCheck {
   ngDoCheck() {
     if(yr!=year.year)
     {
+      if(canvasElement == null)
       canvasElement = canvas.nativeElement;
+      if(divElement == null)
+      divElement = div.nativeElement;
       while (canvasElement.childNodes.length > 0) canvasElement.childNodes.last.remove();
-      if(divElement!=null)
       while (divElement.childNodes.length>0 )divElement.childNodes.last.remove();
       createChart();
+      divElement.hidden = true;
     }
 
   }

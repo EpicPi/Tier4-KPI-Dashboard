@@ -21,8 +21,6 @@ import 'package:kpi_dash/src/strategy_component/strategy_component.dart';
     DirectiveComponent,
     MaterialExpansionPanel,
     MaterialExpansionPanelSet,
-    MaterialDropdownSelectComponent,
-    MaterialSelectComponent,
   ],
   providers: const [materialProviders],
 )

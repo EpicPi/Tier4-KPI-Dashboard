@@ -37,4 +37,12 @@ div.title{
     left: 14px;
     top: 7px;
 }
+.tab{
+    /*width: 800px;*/
+    /*max-width: 1000%;*/
+    /*text-align: center;*/
+    /*position: relative;*/
+    width: 100%;
+}
+
 

@@ -35,41 +35,31 @@
     <br>
 
 
-    <div *ngIf="year !=null">
-        <h1>
-            <div class="title">
-            Summary
-            </div>
-        </h1>
-        <my-summary [year]="year"></my-summary>
-    </div>
-    <!--<div *ngIf="year !=null">-->
-        <!--<detail [year]="year"></detail>-->
-    <!--</div>-->
     <material-tab-panel>
-        <!--<material-tab label="summary">-->
-            <!--<div *ngIf="year !=null">-->
-                <!--<my-summary [year]="year"></my-summary>-->
-            <!--</div>-->
-        <!--</material-tab>-->
+        <material-tab label="summary">
+            <div *ngIf="year !=null" class="tab" >
+                <my-summary [year]="year" ></my-summary>
+            </div>
+        </material-tab>
 
         <material-tab label="details">
-            <div *ngIf="year !=null">
+            <div *ngIf="year !=null" class="tab">
                 <detail [year]="year"></detail>
             </div>
         </material-tab>
         <material-tab label="admin">
-            <div *ngIf="year !=null">
+            <div *ngIf="year !=null" class="tab">
                 <my-goal [year]="year"></my-goal>
             </div>
         </material-tab>
         <material-tab label="data entry">
-            <div *ngIf="year !=null">
+            <div *ngIf="year !=null" class="tab">
                 <my-val [year]="year"></my-val>
             </div>
         </material-tab>
     </material-tab-panel>
 </div>
+<!--</div>-->
 </body>
 </html>
 
