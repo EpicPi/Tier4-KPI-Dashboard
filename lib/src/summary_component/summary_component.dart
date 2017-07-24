@@ -1,7 +1,6 @@
 import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:angular_components/angular_components.dart';
-import 'package:angular_components/src/utils/angular/properties/properties.dart';
 import 'package:kpi_dash/pi_charts/pi_charts.dart';
 import 'package:kpi_dash/src/models/year.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
