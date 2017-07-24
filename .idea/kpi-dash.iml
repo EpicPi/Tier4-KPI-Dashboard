@@ -9,12 +9,7 @@
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/test/packages" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
-      <excludeFolder url="file://$MODULE_DIR$/web/build/packages" />
       <excludeFolder url="file://$MODULE_DIR$/web/packages" />
-      <excludeFolder url="file://$MODULE_DIR$/../kpi-dash/build" />
-      <excludeFolder url="file://$MODULE_DIR$/../kpi-dash/packages" />
-      <excludeFolder url="file://$MODULE_DIR$/../kpi-dash/test/packages" />
-      <excludeFolder url="file://$MODULE_DIR$/../kpi-dash/web/packages" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

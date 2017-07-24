@@ -102,6 +102,8 @@ class SummaryComponent implements AfterContentInit, AfterViewInit,DoCheck {
     {
       canvasElement = canvas.nativeElement;
       while (canvasElement.childNodes.length > 0) canvasElement.childNodes.last.remove();
+      if(divElement!=null)
+      while (divElement.childNodes.length>0 )divElement.childNodes.last.remove();
       createChart();
     }
 

@@ -16,9 +16,6 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
       CORE_DIRECTIVES,
       MaterialExpansionPanel,
       MaterialExpansionPanelSet,
-      MaterialDropdownSelectComponent,
-      MaterialSelectComponent,
-      NgFor
     ],
     providers: const [
       materialProviders
