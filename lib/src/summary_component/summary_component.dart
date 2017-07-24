@@ -55,7 +55,6 @@ class SummaryComponent implements AfterContentInit, DoCheck{
 
     canvasElement.append(canvas2);
 
-
     chart = createGaugeChart(canvas2, new DataTable(data));
   }
 
