@@ -9,11 +9,10 @@
             </div>
             <my-strategy [year]=year [goal]="goal"></my-strategy>
             <br>
-            <material-fab raised mini class="delete" (click)="delete(year,goal)">
+            <material-fab raised mini (click)="delete(year,goal)">
                 <glyph icon="delete"></glyph>
             </material-fab>
-            <material-fab raised class="editintro" (click)="changeName(year, goal)"
-                          (click)="changeDesc(year, goal)" >
+            <material-fab raised (click)="updateGoal(year, goal)" >
                 <glyph icon="save"></glyph>
             </material-fab>
             <br>

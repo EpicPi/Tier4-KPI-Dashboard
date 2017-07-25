@@ -59,13 +59,10 @@ class GoalComponent {
     year.goals.remove(goal);
   }
 
-  void changeName(Year year, Goal goal) {
-    fbService.changeGoalName(year, goal);
-    saveDialog = !preventAdditional;
-  }
-
-  void changeDesc(Year year, Goal goal) {
+  void updateGoal(Year year, Goal goal)
+  {
     fbService.changeGoalDescription(year, goal);
+    fbService.changeGoalName(year, goal);
     saveDialog = !preventAdditional;
   }
 
