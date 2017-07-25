@@ -6,8 +6,10 @@
 <div class="page">
 
     <div *ngIf="b!=true">
-        Password:<input type="password" [(ngModel)]="pass" (keyup.enter)="changeBool()">
-        <button (click)="changeBool()">Enter</button>
+        <material-input floatingLabel label="Password" type="password" [(ngModel)]="pass" (keyup.enter)="changeBool()"></material-input>
+        <material-fab raised (click)="changeBool()">
+            <glyph icon="keyboard_arrow_right"></glyph>
+        </material-fab>
     </div>
 
     <!--<header class="horiz">-->

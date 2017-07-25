@@ -34,6 +34,8 @@ import 'package:kpi_dash/src/val_component/val_component.dart';
     MaterialExpansionPanelSet,
     NgFor,
     SummaryComponent,
+    MaterialButtonComponent,
+    MaterialFabComponent,
   ],
   providers: const [materialProviders, FirebaseService],
 )
