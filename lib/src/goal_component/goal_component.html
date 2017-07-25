@@ -1,27 +1,27 @@
 <!--<div [hidden]="fbService.user == null" hidden;>-->
 
-    <div class="goals">
-        <h3>Goals</h3>
-        <div *ngFor="let goal of year.goals">
+        <div class="goals">
+            <h3>Goals</h3>
+            <div *ngFor="let goal of year.goals">
 
-            <div class="name">
-                Name: <input type="text" [(ngModel)]="goal.name">
-            </div>
-            <div class="description">
-                Description: <input [(ngModel)]="goal.description">
-            </div>
-            <button class="delete" (click)="delete(year,goal)">Delete</button>
-            <button class="editintro" (click)="changeName(year, goal)"
-                    (click)="changeDesc(year, goal)" (click)="alert('Your edit has been saved.')">Save Edit</button>
+                <div class="name">
+                    Name: <input type="text" [(ngModel)]="goal.name">
+                </div>
+                <div class="description">
+                    Description: <input [(ngModel)]="goal.description">
+                </div>
+                <button class="delete" (click)="delete(year,goal)">Delete</button>
+                <button class="editintro" (click)="changeName(year, goal)"
+                        (click)="changeDesc(year, goal)" (click)="alert('Your edit has been saved.')">Save Edit</button>
             <br>
             <br>
             <my-strategy [year]=year [goal]="goal"></my-strategy>
 
-            <br>
+                <br>
+            </div>
         </div>
-    </div>
 
-    <div>
+        <div>
         <h3>Add Goal:</h3>
         <label>Goal Name:</label>
         <input type="text" [(ngModel)]='inputNameText' (keyup.enter)="add(year)" (keyup.enter)="inputNameText ='' "
@@ -33,9 +33,17 @@
         <button (click)="add(year)" (click)="inputDescText=''" (click)="inputNameText =''">
             Add
         </button>
-    </div>
+            <br>
+            <br>
+            <h3>Set Password:</h3>
+            <div>
+                <input type="text" [(ngModel)]="password" (keyup.enter)="setPassword(password)" (keyup.enter)="password='' ">
+                <button (click)="setPassword(password)" (click)="password=''">Set Password</button>
+            </div>
+
+
+        </div>
     <br>
     <br>
-<!--</div>-->
-<!--</div>-->
+
 

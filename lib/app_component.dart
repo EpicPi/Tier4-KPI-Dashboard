@@ -49,7 +49,8 @@ class AppComponent{
   }
 
   void changeBool(){
-    if(pass == "fourtier")
+    print(fbService.password);
+    if(pass == fbService.password)
       b=true;
   }
 

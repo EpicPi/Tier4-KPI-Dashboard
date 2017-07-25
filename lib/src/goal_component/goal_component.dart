@@ -61,6 +61,12 @@ class GoalComponent {
 
   }
 
+  String password = "";
+
+  void setPassword(String s){
+    fbService.changePass(s);
+  }
+
 
   void alert(String s)
   {
