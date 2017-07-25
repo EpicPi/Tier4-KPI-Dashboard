@@ -7,13 +7,13 @@ import 'package:kpi_dash/src/models/year.dart';
 @Injectable()
 class FirebaseService {
   fb.User user;
-//  List<Goal> goals;
   fb.DatabaseReference _fbRefYears;
   fb.Auth _fbAuth;
   fb.GoogleAuthProvider _fbGoogleAuthProvider;
   fb.Database _fbDatabase;
-//  fb.DatabaseReference _fbRefGoals;
   List<Year> years;
+  String password;
+  fb.DatabaseReference fbPass;
 
   FirebaseService(){
     fb.initializeApp(
@@ -23,12 +23,20 @@ class FirebaseService {
         storageBucket: "fir-tier-4-kpi-dashboard.appspot.com");
 
     _fbDatabase = fb.database();
+    fbPass = _fbDatabase.ref("pass");
     _fbRefYears = _fbDatabase.ref("years");
     _fbGoogleAuthProvider = new fb.GoogleAuthProvider();
    _fbAuth = fb.auth();
+    password = "";
+    initPass();
     years = [];
-//    _fbAuth.onAuthStateChanged.listen(_authChanged);
     initYears();
+  }
+
+  Future initPass() async
+  {
+    await fbPass.limitToLast(20).onChildAdded.listen(_newPass);
+
   }
 
   Future initYears() async
@@ -44,6 +52,13 @@ class FirebaseService {
 //      await _fbRefYears.limitToLast(20).onChildAdded.listen(_newYear);
 //    }
 //  }
+
+  Future _newPass (fb.QueryEvent ev) async{
+    fb.DataSnapshot data = ev.snapshot;
+    var val = data.val();
+    var item = val.toString();
+    password = item;
+  }
 
   Future _newYear(fb.QueryEvent e) async{
     fb.DataSnapshot data = e.snapshot;
@@ -319,6 +334,10 @@ class FirebaseService {
         .child(val.key)
         .child("value")
         .set(val.value);
+  }
+
+  Future changePass(String s) async {
+    await fbPass.child("password").set(s);
   }
 
   Future deleteGoal(String key1, String key2) async {
