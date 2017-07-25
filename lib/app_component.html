@@ -6,7 +6,7 @@
 <div class="page">
 
     <div *ngIf="b!=true">
-        Password:<input type="text" [(ngModel)]="pass">
+        Password:<input type="text" [(ngModel)]="pass" (keyup.enter)="changeBool()">
         <button (click)="changeBool()">Enter</button>
     </div>
 
