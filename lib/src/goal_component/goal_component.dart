@@ -21,16 +21,23 @@ import 'package:kpi_dash/src/strategy_component/strategy_component.dart';
     DirectiveComponent,
     MaterialExpansionPanel,
     MaterialExpansionPanelSet,
+    MaterialListComponent,
+    MaterialListItemComponent,
+    AutoDismissDirective,
+    AutoFocusDirective,
+    MaterialButtonComponent,
+    MaterialDialogComponent,
+    ModalComponent,
   ],
   providers: const [materialProviders],
 )
 class GoalComponent {
 
-
   final FirebaseService fbService;
   GoalComponent(this.fbService);
-  Goal selectedGoal;
-  bool b = true;
+
+  bool saveDialog = false;
+  bool preventAdditional = false;
 
   String inputNameText = "";
   String inputDescText = "";
@@ -54,22 +61,17 @@ class GoalComponent {
 
   void changeName(Year year, Goal goal) {
     fbService.changeGoalName(year, goal);
+    saveDialog = !preventAdditional;
   }
 
   void changeDesc(Year year, Goal goal) {
     fbService.changeGoalDescription(year, goal);
-
+    saveDialog = !preventAdditional;
   }
 
   String password = "";
 
   void setPassword(String s){
     fbService.changePass(s);
-  }
-
-
-  void alert(String s)
-  {
-    window.alert(s);
   }
 }

@@ -2,37 +2,33 @@
 
 <div class="goals">
     <h3>Goals</h3>
-    <div *ngFor="let goal of year.goals">
-
-        <div class="name">
-            Name:
-            <material-input floatingLabel label="Goal Name"type="text" [(ngModel)]="goal.name"></material-input>
+        <div group *ngFor="let goal of year.goals">
+            <div class="name">
+                <material-input style="width:47%" floatingLabel label="Goal Name" type="text" [(ngModel)]="goal.name"></material-input>
+                <material-input style="width:47%" floatingLabel label="Goal Description" [(ngModel)]="goal.description"></material-input>
+            </div>
+            <my-strategy [year]=year [goal]="goal"></my-strategy>
+            <br>
+            <material-fab raised mini class="delete" (click)="delete(year,goal)">
+                <glyph icon="delete"></glyph>
+            </material-fab>
+            <material-fab raised class="editintro" (click)="changeName(year, goal)"
+                          (click)="changeDesc(year, goal)" >
+                <glyph icon="save"></glyph>
+            </material-fab>
+            <br>
+            <br>
+            <br>
         </div>
-        <div class="description">
-            Description:
-            <material-input floatingLabel label="Goal Description" [(ngModel)]="goal.description"></material-input>
-        </div>
-        <material-fab raised mini class="delete" (click)="delete(year,goal)">
-            <glyph icon="delete"></glyph>
-        </material-fab>
-        <material-fab raised class="editintro" (click)="changeName(year, goal)"
-                         (click)="changeDesc(year, goal)" (click)="alert('Your edit has been saved.')">
-            <glyph icon = "save"></glyph>
-        </material-fab>
-        <br>
-        <br>
-        <my-strategy [year]=year [goal]="goal"></my-strategy>
-
-        <br>
-    </div>
 </div>
 
 <div>
     <h3>Add Goal:</h3>
-    <material-input style = "width:600px" floatingLabel label="Goal Name" type="text" [(ngModel)]='inputNameText' (keyup.enter)="add(year)"
+    <material-input style="width:47%" floatingLabel label="Goal Name" type="text" [(ngModel)]='inputNameText'
+                    (keyup.enter)="add(year)"
                     (keyup.enter)="inputNameText ='' "
                     (keyup.enter)="inputDescText=''"></material-input>
-    <material-input style = "width:600px" floatingLabel label="Goal Description" type="text" [(ngModel)]='inputDescText'
+    <material-input style="width:47%" floatingLabel label="Goal Description" type="text" [(ngModel)]='inputDescText'
                     (keyup.enter)="add(year)" (keyup.enter)="inputDescText=''"
                     (keyup.enter)="inputNameText='' "></material-input>
     <material-fab raised mini (click)="add(year)" (click)="inputDescText=''" (click)="inputNameText =''">
@@ -46,10 +42,26 @@
                         (keyup.enter)="setPassword(password)" (keyup.enter)="password='' "></material-input>
         <material-button (click)="setPassword(password)" (click)="password=''">Set Password</material-button>
     </div>
-
-
 </div>
 <br>
 <br>
+<modal [(visible)]="saveDialog">
+    <material-dialog
+            info
+            [autoDismissable]="true"
+            (dismiss)="saveDialog = false">
+
+        <div header>
+            <material-button icon autoFocus (trigger)="saveDialog = false">
+                <glyph icon="close"></glyph>
+            </material-button>
+
+            <h3>Edit Saved</h3>
+        </div>
+        <material-button (trigger)="preventAdditional = true" (trigger)="saveDialog=false">
+            prevent additional
+        </material-button>
+    </material-dialog>
+</modal>
 
 
