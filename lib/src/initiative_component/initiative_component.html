@@ -6,15 +6,17 @@
                 <span>
                     Name: <input [(ngModel)]="init.name">
                 </span>
-                <button class="delete" (click)="delete3(year, goal, strat, init)">Delete</button>
+                <material-fab raised class="delete" (click)="delete3(year, goal, strat, init)">
+                    <glyph icon="delete"></glyph>
+                </material-fab>
                 <br>
                 <span>
                     Description: <input [(ngModel)]="init.description">
                 </span>
-                <button class="editintro" (click)="change3Name(year, goal, strat, init)"
+                <material-fab raised class="editintro" (click)="change3Name(year, goal, strat, init)"
                         (click)="change3Desc(year, goal, strat, init)" (click)="alert('Your edit has been saved.')">
-                    Save Edit
-                </button>
+                    <glyph icon = "save"></glyph>
+                </material-fab>
                 <my-dir [year]=year [goal]="goal" [strat]="strat" [init]="init"></my-dir>
                 <br>
             </div>

@@ -38,8 +38,10 @@
     <h3>Set Password:</h3>
     <div>
         <material-input floatinglabel label="New Password" type="text" [(ngModel)]="password"
-                        (keyup.enter)="setPassword(password)" (keyup.enter)="password='' "></material-input>
-        <material-button (click)="setPassword(password)" (click)="password=''">Set Password</material-button>
+                        (keyup.enter)="setPassword(password)" (keyup.enter)="password='' "
+                        (keyup.enter)="alert('Your password has been changed.')"></material-input>
+        <material-button (click)="setPassword(password)" (click)="password=''"
+                         (click)="alert('Your password has been changed.')">Set Password</material-button>
     </div>
 </div>
 <br>
