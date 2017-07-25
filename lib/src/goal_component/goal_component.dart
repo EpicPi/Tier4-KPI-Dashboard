@@ -57,6 +57,7 @@ class GoalComponent {
   void delete(Year year, Goal goal) {
     fbService.deleteGoal(year.key, goal.key);
     year.goals.remove(goal);
+
   }
 
   void updateGoal(Year year, Goal goal)
