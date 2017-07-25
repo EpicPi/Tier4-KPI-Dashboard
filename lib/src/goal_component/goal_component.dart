@@ -39,19 +39,17 @@ class GoalComponent {
   bool saveDialog = false;
   bool preventAdditional = false;
 
-  String inputNameText = "";
-  String inputDescText = "";
+  String message;
 
   @Input()
   Year year;
 
 
-  void add(Year year) {
-    String goalName = inputNameText.trim();
-    String goalDesc = inputDescText.trim();
+  void add(Year year, String name, String desc) {
 
-    if (goalName.isEmpty || goalDesc.isEmpty) return;
-    fbService.addGoal(year, goalName, goalDesc);
+
+    if (name.isEmpty || desc.isEmpty) return;
+    fbService.addGoal(year, name, desc);
   }
 
   void delete(Year year, Goal goal) {
@@ -60,16 +58,20 @@ class GoalComponent {
 
   }
 
-  void updateGoal(Year year, Goal goal)
+  void updateGoal(Year year, Goal goal,String name, String desc)
   {
-    fbService.changeGoalDescription(year, goal);
-    fbService.changeGoalName(year, goal);
+    fbService.changeGoalDescription(year, goal, desc);
+    fbService.changeGoalName(year, goal, name);
+    message = "Edit Saved";
     saveDialog = !preventAdditional;
   }
 
   String password = "";
 
   void setPassword(String s){
+    saveDialog = true;
+    message = "Password Saved";
     fbService.changePass(s);
+    password = "";
   }
 }

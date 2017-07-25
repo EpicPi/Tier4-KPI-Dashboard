@@ -6,16 +6,16 @@
         <h3>
             Goal {{year.goals.indexOf(goal,0)+1}}
         </h3>
-        <material-input style="width:47%" floatingLabel label="Goal Name" type="text"
+        <material-input #goalName style="width:47%" floatingLabel label="Goal Name" type="text"
                         [(ngModel)]="goal.name"></material-input>
-        <material-input style="width:47%" floatingLabel label="Goal Description"
+        <material-input #goalDesc style="width:47%" floatingLabel label="Goal Description"
                         [(ngModel)]="goal.description"></material-input>
         <my-strategy [year]=year [goal]="goal"></my-strategy>
         <br>
-        <material-fab raised class = "red" mini (click)="delete(year,goal)">
+        <material-fab raised class="red" mini (click)="delete(year,goal)">
             <glyph icon="delete"></glyph>
         </material-fab>
-        <material-fab raised (click)="updateGoal(year, goal)">
+        <material-fab raised class="blue" (click)="updateGoal(year, goal,goalName.inputText, goalDesc.inputText)">
             <glyph icon="save"></glyph>
         </material-fab>
         <br>
@@ -27,25 +27,20 @@
 
 <div>
     <h3>Add Goal:</h3>
-    <material-input style="width:47%" floatingLabel label="Goal Name" type="text" [(ngModel)]='inputNameText'
-                    (keyup.enter)="add(year)"
-                    (keyup.enter)="inputNameText ='' "
-                    (keyup.enter)="inputDescText=''"></material-input>
-    <material-input style="width:47%" floatingLabel label="Goal Description" type="text" [(ngModel)]='inputDescText'
-                    (keyup.enter)="add(year)" (keyup.enter)="inputDescText=''"
-                    (keyup.enter)="inputNameText='' "></material-input>
-    <material-fab raised mini (click)="add(year)" (click)="inputDescText=''" (click)="inputNameText =''">
+    <material-input #name style="width:47%" floatingLabel label="Goal Name" type="text"></material-input>
+    <material-input #desc style="width:47%" floatingLabel label="Goal Description" type="text"
+                    (keyup.enter)="add(year,name.inputText, desc.inputText)"></material-input>
+    <material-fab raised mini class="blue" (click)="add(year,name.inputText, desc.inputText)">
         <glyph icon="add_circle"></glyph>
     </material-fab>
     <br>
     <br>
     <h3>Set Password:</h3>
     <div>
-        <material-input floatinglabel label="New Password" type="text" [(ngModel)]="password"
-                        (keyup.enter)="setPassword(password)" (keyup.enter)="password='' "
-                        (keyup.enter)="alert('Your password has been changed.')"></material-input>
-        <material-button (click)="setPassword(password)" (click)="password=''"
-                         (click)="alert('Your password has been changed.')">Set Password
+
+        <material-input type="password"  floatinglabel label="New Password" #newPass
+                        (keyup.enter)="setPassword(newPass.inputText)"></material-input>
+        <material-button raised class="gray" (click)="setPassword(newPass.inputText)">Set Password
         </material-button>
     </div>
 </div>
@@ -56,15 +51,15 @@
             info
             [autoDismissable]="true"
             (dismiss)="saveDialog = false">
-
         <div header>
             <material-button icon autoFocus (trigger)="saveDialog = false">
                 <glyph icon="close"></glyph>
             </material-button>
-
-            <h3>Edit Saved</h3>
+            <h3>{{message}}</h3>
         </div>
-        <material-button (trigger)="preventAdditional = true" (trigger)="saveDialog=false">
+        <br>
+        <br>
+        <material-button raised class="gray" (trigger)="preventAdditional = true" (trigger)="saveDialog=false">
             prevent additional
         </material-button>
     </material-dialog>
