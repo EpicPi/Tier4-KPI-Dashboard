@@ -23,6 +23,9 @@ import 'dart:html';
 
 class ValComponent {
 
+  String protocol;
+  bool disable=false;
+
   String month = null;
   @Input()
   Year year;

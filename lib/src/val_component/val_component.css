@@ -22,3 +22,18 @@ div.val{
     position:relative;
     left:20px
 }
+
+.blue{
+    background-color: dodgerblue;
+    color: whitesmoke;
+}
+
+.red{
+    background-color: crimson;
+    color: whitesmoke;
+}
+
+.idk{
+    background-color: greenyellow;
+    color: rebeccapurple;
+}

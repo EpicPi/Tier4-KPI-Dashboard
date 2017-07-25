@@ -4,7 +4,7 @@
 <br>
 Select Month:
 <div>{{month}}</div>
-<material-dropdown-select [width]="1">
+<material-dropdown-select [width]="0">
     <material-select-item *ngFor="let month of months">
         <div (click)="pickMonth(month)">
             {{month}}
@@ -47,9 +47,13 @@ Select Month:
                                     <div class="name5">
                                         <h3>Value: <input type="number" [(ngModel)]="val.value"></h3>
                                     </div>
-                                    <button (click)="deleteValue(year, goal, strat, init, dir, val)">Delete</button>
-                                    <button (click)="changeValue(year, goal, strat, init, dir, val)"
-                                            (click)="alert('Your edit has been saved.')">Save Edit</button>
+                                    <material-button raised class="red" (click)="deleteValue(year, goal, strat, init, dir, val)">
+                                        Delete
+                                    </material-button>
+                                    <material-button raised class="idk" (click)="changeValue(year, goal, strat, init, dir, val)"
+                                                     (click)="alert('Your edit has been saved.')">
+                                        Save Edit
+                                    </material-button>
                                 </div>
                             </div>
                         </div>
@@ -60,10 +64,11 @@ Select Month:
                                    (keyup.enter)="addValue(year, goal, strat, init, dir)"
                                    (keyup.enter)="inputVal = null ">
                             <br>
-                            <button (click)="addValue(year, goal, strat, init, dir)"
+                            <br>
+                            <material-button raised class="blue" (click)="addValue(year, goal, strat, init, dir)"
                                     (click)="inputVal = null ">
                                 Add
-                            </button>
+                            </material-button>
                         </div>
                     </div>
                 </div>

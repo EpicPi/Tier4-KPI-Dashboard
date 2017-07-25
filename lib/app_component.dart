@@ -43,6 +43,7 @@ class AppComponent{
   Year year;
   String pass = "";
   bool b = false;
+  String pro;
 
 
   void pickYear(Year y) {

@@ -17,11 +17,11 @@
         <div *ngIf="year != null">
             {{year.toNum(year)}}
         </div>
-
-
         <br>
-        <material-select [width]="0">
-            <material-select-item *ngFor="let year of fbService.years">
+        <material-select [width]="0" class="bordered-list">
+            <material-select-item *ngFor="let year of fbService.years"
+                                  (trigger)="pro = year"
+                                  [selected]="pro == year">
                 <div (click)="pickYear(year)">
                     {{year.toNum(year)}}
                 </div>
