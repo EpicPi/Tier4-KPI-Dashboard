@@ -17,10 +17,10 @@ class FirebaseService {
 
   FirebaseService(){
     fb.initializeApp(
-        apiKey: "AIzaSyAgK7z0NAOG87I1Fgi-5wkA-sJlsW00L44",
-        authDomain: "fir-tier-4-kpi-dashboard.firebaseapp.com",
-        databaseURL: "https://fir-tier-4-kpi-dashboard.firebaseio.com",
-        storageBucket: "fir-tier-4-kpi-dashboard.appspot.com");
+        apiKey: "AIzaSyAGY9I2J49szDBu3VJZY14WnC6xWMJOta4",
+        authDomain: "fir-kpi-dashboard.firebaseapp.com",
+        databaseURL: "https://fir-kpi-dashboard.firebaseio.com",
+        storageBucket: "fir-kpi-dashboard.appspot.com");
 
     _fbDatabase = fb.database();
     fbPass = _fbDatabase.ref("pass");
