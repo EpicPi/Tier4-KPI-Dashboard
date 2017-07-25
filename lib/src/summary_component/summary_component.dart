@@ -18,6 +18,8 @@ class SummaryComponent implements AfterContentInit, DoCheck{
   Year year;
   int yr = 2016;
 
+  double width;
+
   @ViewChild('canvasMain')
   ElementRef canvas;
   DivElement canvasElement;
@@ -83,8 +85,10 @@ class SummaryComponent implements AfterContentInit, DoCheck{
     for (var goal in year.goals) data.add([goal.name, goal.percentage]);
 
     var canvas2 = new CanvasElement();
-    canvas2.style.height = "400px";
-
+    canvas2.style..width = "80%";
+   var text = new HeadingElement.h1();
+   text.innerHtml=year.year.toString();
+   canvasElement.append(text);
     canvasElement.append(canvas2);
 
     chart = createGaugeChart(canvas2, new DataTable(data), options1);
@@ -109,7 +113,9 @@ class SummaryComponent implements AfterContentInit, DoCheck{
     while (divElement.childNodes.length > 0) divElement.childNodes.last.remove();
 
     var canvas2 = new CanvasElement();
-    canvas2.style.height = "250px";
+    canvas2.style
+      ..width = "80%";
+//    ..height="250px%";
     divElement.hidden = false;
     var text = new HeadingElement.h2();
     text
@@ -134,6 +140,7 @@ class SummaryComponent implements AfterContentInit, DoCheck{
       createChart();
       divElement.hidden = true;
     }
+
 
   }
 
