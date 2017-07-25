@@ -58,7 +58,7 @@ class GoalComponent {
 
   }
 
-  void updateGoal(Year year, Goal goal,String name, String desc)
+  void updateGoal(Year year, Goal goal ,String name, String desc)
   {
     fbService.changeGoalDescription(year, goal, desc);
     fbService.changeGoalName(year, goal, name);

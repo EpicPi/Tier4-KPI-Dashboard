@@ -47,13 +47,13 @@ Select Month:
                                     <div class="name5">
                                         <h3>Value: <input type="number" [(ngModel)]="val.value"></h3>
                                     </div>
-                                    <material-button raised class="red" (click)="deleteValue(year, goal, strat, init, dir, val)">
-                                        Delete
-                                    </material-button>
-                                    <material-button raised class="idk" (click)="changeValue(year, goal, strat, init, dir, val)"
+                                    <material-fab raised class="red" (click)="deleteValue(year, goal, strat, init, dir, val)">
+                                        <glyph icon="delete"></glyph>
+                                    </material-fab>
+                                    <material-fab raised class="idk" (click)="changeValue(year, goal, strat, init, dir, val)"
                                                      (click)="alert('Your edit has been saved.')">
-                                        Save Edit
-                                    </material-button>
+                                        <glyph icon="save"></glyph>
+                                    </material-fab>
                                 </div>
                             </div>
                         </div>
