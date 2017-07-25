@@ -18,6 +18,8 @@ class SummaryComponent implements AfterContentInit, DoCheck{
   Year year;
   int yr = 2016;
 
+  double width;
+
   @ViewChild('canvasMain')
   ElementRef canvas;
   DivElement canvasElement;
@@ -33,6 +35,40 @@ class SummaryComponent implements AfterContentInit, DoCheck{
   var goals;
   var chart;
 
+  var options1={
+    // String - The background color of the gauges.
+    'gaugeBackgroundColor': '#dbdbdb',
+
+    // Map - An object that controls the gauge labels.
+    'gaugeLabels': {
+      // bool - Whether to show the labels.
+      'enabled': true,
+
+      // Map - An object that controls the styling of the gauge labels.
+      'style': {
+        'color': '#212121',
+        'fontSize': 17,
+        'fontStyle': 'normal'
+      }
+    }
+  };
+  var options2={
+    // String - The background color of the gauges.
+    'gaugeBackgroundColor': '#dbdbdb',
+
+    // Map - An object that controls the gauge labels.
+    'gaugeLabels': {
+      // bool - Whether to show the labels.
+      'enabled': true,
+
+      // Map - An object that controls the styling of the gauge labels.
+      'style': {
+        'color': '#212121',
+        'fontSize': 13,
+        'fontStyle': 'normal'
+      }
+    }
+  };
   @override
   ngAfterContentInit() {
     canvasElement = canvas.nativeElement;
@@ -49,13 +85,13 @@ class SummaryComponent implements AfterContentInit, DoCheck{
     for (var goal in year.goals) data.add([goal.name, goal.percentage]);
 
     var canvas2 = new CanvasElement();
-    canvas2
-//      ..style.width = "400px"
-      ..style.height = "400px";
-
+    canvas2.style..width = "80%";
+   var text = new HeadingElement.h1();
+   text.innerHtml=year.year.toString();
+   canvasElement.append(text);
     canvasElement.append(canvas2);
 
-    chart = createGaugeChart(canvas2, new DataTable(data));
+    chart = createGaugeChart(canvas2, new DataTable(data), options1);
   }
 
   num getIndex(MouseEvent e) {
@@ -74,12 +110,19 @@ class SummaryComponent implements AfterContentInit, DoCheck{
     if (index < 0) return;
 
     //only one display open at a a time
-    if (divElement.childNodes.length > 0) divElement.childNodes.last.remove();
+    while (divElement.childNodes.length > 0) divElement.childNodes.last.remove();
 
     var canvas2 = new CanvasElement();
+    canvas2.style
+      ..width = "80%";
+//    ..height="250px%";
     divElement.hidden = false;
+    var text = new HeadingElement.h2();
+    text
+      ..innerHtml = year.goals[index].name;
+    divElement.append(text);
     divElement.append(canvas2);
-    createGaugeChart(canvas2, year.goals[index].dataTable);
+    createGaugeChart(canvas2, year.goals[index].dataTable, options2);
 
   }
 
@@ -97,6 +140,7 @@ class SummaryComponent implements AfterContentInit, DoCheck{
       createChart();
       divElement.hidden = true;
     }
+
 
   }
 
