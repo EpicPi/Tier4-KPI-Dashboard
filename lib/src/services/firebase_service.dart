@@ -209,17 +209,22 @@ class FirebaseService {
     }
   }
 
-  Future changeGoalName(Year year, Goal goal) async {
-    await _fbRefYears.child(year.key).child("goals").child(goal.key).child("name").set(goal.name);
+  Future changeGoalName(Year year, Goal goal, String name) async {
+    await _fbRefYears
+        .child(year.key)
+        .child("goals")
+        .child(goal.key)
+        .child("name")
+        .set(name);
   }
 
-  Future changeGoalDescription(Year year, Goal goal) async {
+  Future changeGoalDescription(Year year, Goal goal, String desc) async {
     await _fbRefYears
         .child(year.key)
         .child("goals")
         .child(goal.key)
         .child("description")
-        .set(goal.description);
+        .set(desc);
   }
 
   Future changeStratName(Year year, Goal goal, Strategy strat) async {
