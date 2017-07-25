@@ -4,15 +4,19 @@
                 <span>
                     Name: <input [(ngModel)]="dir.name">
                 </span>
-                <button class="delete" (click)="delete4(year, goal, strat, init, dir)">Delete</button>
+                <material-fab raised class="delete" (click)="delete4(year, goal, strat, init, dir)">
+                    <glyph icon="delete"></glyph>
+                </material-fab>
                 <br>
                 <span class="desc">
                     Description: <input [(ngModel)]="dir.description">
                 </span>
-                <button class="editintro" (click)="change4Name(year, goal, strat, init, dir)"
+                <material-fab raised class="editintro" (click)="change4Name(year, goal, strat, init, dir)"
                         (click)="change4Desc(year, goal, strat, init, dir)"
                         (click)="changeMax(year, goal, strat, init, dir)"
-                        (click)="alert('Your edit has been saved.')">Save Edit</button>
+                              (click)="alert('Your edit has been saved.')">
+                    <glyph icon = "save"></glyph>
+                </material-fab>
                 <br>
                 <span class="uuu">
                     Max Value: <input type="number" [(ngModel)]="dir.maxValue">
