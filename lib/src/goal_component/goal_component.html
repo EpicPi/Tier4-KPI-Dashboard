@@ -1,49 +1,55 @@
 <!--<div [hidden]="fbService.user == null" hidden;>-->
 
-        <div class="goals">
-            <h3>Goals</h3>
-            <div *ngFor="let goal of year.goals">
+<div class="goals">
+    <h3>Goals</h3>
+    <div *ngFor="let goal of year.goals">
 
-                <div class="name">
-                    Name: <input type="text" [(ngModel)]="goal.name">
-                </div>
-                <div class="description">
-                    Description: <input [(ngModel)]="goal.description">
-                </div>
-                <button class="delete" (click)="delete(year,goal)">Delete</button>
-                <button class="editintro" (click)="changeName(year, goal)"
-                        (click)="changeDesc(year, goal)" (click)="alert('Your edit has been saved.')">Save Edit</button>
-            <br>
-            <br>
-            <my-strategy [year]=year [goal]="goal"></my-strategy>
-
-                <br>
-            </div>
+        <div class="name">
+            Name:
+            <material-input floatingLabel label="Goal Name"type="text" [(ngModel)]="goal.name"></material-input>
         </div>
-
-        <div>
-        <h3>Add Goal:</h3>
-        <label>Goal Name:</label>
-        <input type="text" [(ngModel)]='inputNameText' (keyup.enter)="add(year)" (keyup.enter)="inputNameText ='' "
-               (keyup.enter)="inputDescText=''">
+        <div class="description">
+            Description:
+            <material-input floatingLabel label="Goal Description" [(ngModel)]="goal.description"></material-input>
+        </div>
+        <material-fab raised mini class="delete" (click)="delete(year,goal)">
+            <glyph icon="delete"></glyph>
+        </material-fab>
+        <material-fab raised class="editintro" (click)="changeName(year, goal)"
+                         (click)="changeDesc(year, goal)" (click)="alert('Your edit has been saved.')">
+            <glyph icon = "save"></glyph>
+        </material-fab>
         <br>
-        <label>Goal Description:</label>
-        <input type="text" [(ngModel)]='inputDescText' (keyup.enter)="add(year)" (keyup.enter)="inputDescText=''"
-               (keyup.enter)="inputNameText='' ">
-        <button (click)="add(year)" (click)="inputDescText=''" (click)="inputNameText =''">
-            Add
-        </button>
-            <br>
-            <br>
-            <h3>Set Password:</h3>
-            <div>
-                <input type="text" [(ngModel)]="password" (keyup.enter)="setPassword(password)" (keyup.enter)="password='' ">
-                <button (click)="setPassword(password)" (click)="password=''">Set Password</button>
-            </div>
+        <br>
+        <my-strategy [year]=year [goal]="goal"></my-strategy>
 
+        <br>
+    </div>
+</div>
 
-        </div>
+<div>
+    <h3>Add Goal:</h3>
+    <material-input style = "width:600px" floatingLabel label="Goal Name" type="text" [(ngModel)]='inputNameText' (keyup.enter)="add(year)"
+                    (keyup.enter)="inputNameText ='' "
+                    (keyup.enter)="inputDescText=''"></material-input>
+    <material-input style = "width:600px" floatingLabel label="Goal Description" type="text" [(ngModel)]='inputDescText'
+                    (keyup.enter)="add(year)" (keyup.enter)="inputDescText=''"
+                    (keyup.enter)="inputNameText='' "></material-input>
+    <material-fab raised mini (click)="add(year)" (click)="inputDescText=''" (click)="inputNameText =''">
+        <glyph icon="add_circle"></glyph>
+    </material-fab>
     <br>
     <br>
+    <h3>Set Password:</h3>
+    <div>
+        <material-input floatinglabel label="New Password" type="text" [(ngModel)]="password"
+                        (keyup.enter)="setPassword(password)" (keyup.enter)="password='' "></material-input>
+        <material-button (click)="setPassword(password)" (click)="password=''">Set Password</material-button>
+    </div>
+
+
+</div>
+<br>
+<br>
 
 
