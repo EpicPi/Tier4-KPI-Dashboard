@@ -52,6 +52,8 @@ class GoalComponent {
 
     if (goalName.isEmpty || goalDesc.isEmpty) return;
     fbService.addGoal(year, goalName, goalDesc);
+    inputDescText = "";
+    inputNameText = "";
   }
 
   void delete(Year year, Goal goal) {
