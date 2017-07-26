@@ -3,31 +3,27 @@
     <meta charset="utf-8">
 </head>
 <body>
-<div class="page">
 
-    <div *ngIf="b!=true">
-        <material-input floatingLabel label="Password" type="password" [(ngModel)]="pass" (keyup.enter)="changeBool()"></material-input>
-        <material-fab raised (click)="changeBool()">
-            <glyph icon="keyboard_arrow_right"></glyph>
-        </material-fab>
-    </div>
+<div *ngIf="!authen">
+    <material-input #pass floatingLabel label="Password" type="password"
+                    (keyup.enter)="checkPass(pass.inputText)"></material-input>
+    <material-fab raised (click)="checkPass(pass.inputText)">
+        <glyph icon="keyboard_arrow_right"></glyph>
+    </material-fab>
+</div>
 
-    <div *ngIf="b==true">
-        Select Year:
-        <div *ngIf="year != null">
-            {{year.toNum(year)}}
-        </div>
-        <br>
-        <material-select [width]="0" class="bordered-list">
-            <material-select-item *ngFor="let year of fbService.years"
-                                  (trigger)="pro = year"
-                                  [selected]="pro == year">
-                <div (click)="pickYear(year)">
-                    {{year.toNum(year)}}
-                </div>
-            </material-select-item>
-        </material-select>
-        <br>
+<div *ngIf="authen">
+    <br>
+    <material-select [width]="0" class="bordered-list">
+        <material-select-item *ngFor="let year of fbService.years"
+                              (trigger)="pro = year"
+                              [selected]="pro == year">
+            <div (click)="pickYear(year)">
+                {{year.toNum(year)}}
+            </div>
+        </material-select-item>
+    </material-select>
+    <br>
         <div *ngIf="admin!=true">
             <material-input floatingLabel label="Password" type="password" [(ngModel)]="key" (keyup.enter)="changeBool2()"></material-input>
             <material-fab raised (click)="changeBool2()">
@@ -36,32 +32,41 @@
         </div>
 
 
-        <material-tab-panel>
-            <material-tab label="summary">
-                <div *ngIf="year !=null" class="tab">
-                    <my-summary [year]="year"></my-summary>
-                </div>
-            </material-tab>
+    <material-tab-panel>
+        <material-tab label="summary">
+            <div *ngIf="year !=null" class="tab">
+                <my-summary [year]="year"></my-summary>
+            </div>
+        </material-tab>
 
-            <material-tab label="details">
-                <div *ngIf="year !=null" class="tab">
-                    <detail [year]="year"></detail>
-                </div>
-            </material-tab>
-            <material-tab label="admin">
-                <div *ngIf="year !=null && admin == true" class="tab">
-                    <my-goal [year]="year"></my-goal>
-                </div>
-            </material-tab>
-            <material-tab label="data entry">
-                <div *ngIf="year !=null" class="tab">
-                    <my-val [year]="year"></my-val>
-                </div>
-            </material-tab>
-        </material-tab-panel>
-    </div>
+        <material-tab label="details">
+            <div *ngIf="year !=null" class="tab">
+                <detail [year]="year"></detail>
+            </div>
+        </material-tab>
+        <material-tab label="admin">
+            <div *ngIf="year !=null && admin == true" class="tab">
+                <my-goal [year]="year"></my-goal>
+            </div>
+        </material-tab>
+        <material-tab label="data entry">
+            <div *ngIf="year !=null" class="tab">
+                <my-val [year]="year"></my-val>
+            </div>
+        </material-tab>
+    </material-tab-panel>
 </div>
 </body>
+<modal [(visible)]="saveDialog">
+    <material-dialog
+            info
+            [autoDismissable]="true"
+            (dismiss)="saveDialog = false">
+        <div header>
+            <h3>{{message}}</h3>
+        </div>
+    </material-dialog>
+</modal>
 </html>
 
 

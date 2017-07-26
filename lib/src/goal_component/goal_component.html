@@ -23,8 +23,10 @@
 <h3>Add Goal:</h3>
 <material-input #name style="width:47%" floatingLabel label="Goal Name" type="text"></material-input>
 <material-input #desc style="width:47%" floatingLabel label="Goal Description" type="text"
-                (keyup.enter)="add(year,name.inputText, desc.inputText)"></material-input>
-<material-fab raised mini class="blue" (click)="add(year,name.inputText, desc.inputText)">
+                (keyup.enter)="add(year,name.inputText, desc.inputText)" (keyup.enter)="name.inputText=''"
+                (keyup.enter)="desc.inputText=''"></material-input>
+<material-fab raised mini class="blue" (click)="add(year,name.inputText, desc.inputText)" (click)="name.inputText=''"
+              (click)="desc.inputText=''">
     <glyph icon="add_circle"></glyph>
 </material-fab>
 <br>
@@ -35,7 +37,8 @@
 <br>
 <material-input type="password" floatinglabel label="New Password Again" #newPass2></material-input>
 <br>
-<material-button raised class="gray" (click)="setPassword(newPass.inputText, newPass2.inputText)">
+<material-button raised class="gray" (click)="setPassword(newPass.inputText, newPass2.inputText)" (click)="newPass.inputText=''"
+                 (click)="newPass2.inputText=''">
     Set Password
 </material-button>
 <br>
@@ -57,17 +60,16 @@
             info
             [autoDismissable]="true"
             (dismiss)="saveDialog = false">
-        <div header>
-            <material-button icon autoFocus (trigger)="saveDialog = false">
-                <glyph icon="close"></glyph>
-            </material-button>
+        <div header style="text-align: center">
             <h3>{{message}}</h3>
         </div>
-        <br>
-        <br>
-        <material-button raised class="gray" (trigger)="preventAdditional = true" (trigger)="saveDialog=false">
-            prevent additional
-        </material-button>
+        <div *ngIf = "showPrevent">
+            <br>
+            <br>
+            <material-button raised class="gray" (trigger)="preventAdditional = true" (trigger)="saveDialog=false">
+                prevent additional
+            </material-button>
+        </div>
     </material-dialog>
 </modal>
 

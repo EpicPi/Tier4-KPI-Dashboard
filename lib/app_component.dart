@@ -45,17 +45,25 @@ class AppComponent{
   String key = "";
   bool b = false;
   bool admin = false;
+  bool authen = false;
   String pro;
 
+  bool saveDialog = false;
+  String message;
 
   void pickYear(Year y) {
     year = y;
     print(year);
   }
 
-  void changeBool(){
+  void checkPass(String pass){
     if(pass == fbService.password)
-      b=true;
+      authen=true;
+    else
+      {
+        saveDialog = true;
+        message="Incorrect Password";
+      }
   }
 
   void changeBool2(){
