@@ -7,7 +7,7 @@
 <div *ngIf="!authen">
     <material-input #pass floatingLabel label="Password" type="password"
                     (keyup.enter)="checkPass(pass.inputText)"></material-input>
-    <material-fab raised (click)="checkPass(pass.inputText)">
+    <material-fab mini raised (click)="checkPass(pass.inputText)">
         <glyph icon="keyboard_arrow_right"></glyph>
     </material-fab>
 </div>
@@ -22,7 +22,6 @@
         </material-select-item>
     </material-select>
     <br>
-
     <material-tab-panel>
         <material-tab label="summary">
             <div *ngIf="year !=null" class="tab">
