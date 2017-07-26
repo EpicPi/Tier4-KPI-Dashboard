@@ -2,7 +2,7 @@
     <material-expansionpanel flat name="Directives" [showSaveCancel]="false" [hideExpandedHeader]="true">
         <div *ngFor="let dir of init.directives">
             <h3>
-                Directive {{init.directives.indexOf(dir,0)+1}}
+                Directive {{init.directives.indexOf(dir)+1}}
             </h3>
             <material-input style="width:43%" floatingLabel label="Directive Name"
                             [(ngModel)]="dir.name"></material-input>

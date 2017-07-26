@@ -8,7 +8,7 @@
 <div *ngIf="admin">
     <div *ngFor="let goal of year.goals">
         <h3>
-            Goal {{year.goals.indexOf(goal,0)+1}}
+            Goal {{year.goals.indexOf(goal)+1}}
         </h3>
         <material-input style="width:47%" floatingLabel label="Goal Name" type="text"
                         [(ngModel)]="goal.name"></material-input>

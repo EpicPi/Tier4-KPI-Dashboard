@@ -2,7 +2,7 @@
     <material-expansionpanel flat name="Initiatives" [showSaveCancel] = "false" [hideExpandedHeader]="true">
             <div *ngFor="let init of strat.initiatives">
                 <h3>
-                    Initiative {{strat.initiatives.indexOf(init,0)+1}}
+                    Initiative {{strat.initiatives.indexOf(init)+1}}
                 </h3>
                 <material-input style="width:47%" floatingLabel label="Initiative Name"
                                 [(ngModel)]="init.name"></material-input>
