@@ -1,60 +1,71 @@
-<div *ngFor="let goal of year.goals">
-    <h3>
-        Goal {{year.goals.indexOf(goal,0)+1}}
-    </h3>
-    <material-input style="width:47%" floatingLabel label="Goal Name" type="text"
-                    [(ngModel)]="goal.name"></material-input>
-    <material-input style="width:47%" floatingLabel label="Goal Description"
-                    [(ngModel)]="goal.description"></material-input>
-    <my-strategy [year]=year [goal]="goal"></my-strategy>
-    <br>
-    <material-fab raised class="red" mini (click)="delete(year,goal)">
-        <glyph icon="delete"></glyph>
+<div *ngIf="!admin">
+    <material-input floatingLabel label="Password" type="password" #pass
+                    (keyup.enter)="checkPass(pass.inputText)"></material-input>
+    <material-fab raised (click)="checkPass(pass.inputText)">
+        <glyph icon="keyboard_arrow_right"></glyph>
     </material-fab>
-    <material-fab raised class="blue" (click)="updateGoal(year, goal)">
-        <glyph icon="save"></glyph>
+</div>
+<div *ngIf="admin">
+    <div *ngFor="let goal of year.goals">
+        <h3>
+            Goal {{year.goals.indexOf(goal,0)+1}}
+        </h3>
+        <material-input style="width:47%" floatingLabel label="Goal Name" type="text"
+                        [(ngModel)]="goal.name"></material-input>
+        <material-input style="width:47%" floatingLabel label="Goal Description"
+                        [(ngModel)]="goal.description"></material-input>
+        <my-strategy [year]=year [goal]="goal"></my-strategy>
+        <br>
+        <material-fab raised class="red" mini (click)="delete(year,goal)">
+            <glyph icon="delete"></glyph>
+        </material-fab>
+        <material-fab raised class="blue" (click)="updateGoal(year, goal)">
+            <glyph icon="save"></glyph>
+        </material-fab>
+        <br>
+        <br>
+        <hr>
+        <br>
+    </div>
+
+    <h3>Add Goal:</h3>
+    <material-input #name style="width:47%" floatingLabel label="Goal Name" type="text"></material-input>
+    <material-input #desc style="width:47%" floatingLabel label="Goal Description" type="text"
+                    (keyup.enter)="add(year,name.inputText, desc.inputText)" (keyup.enter)="name.inputText=''"
+                    (keyup.enter)="desc.inputText=''"></material-input>
+    <material-fab raised mini class="blue" (click)="add(year,name.inputText, desc.inputText)"
+                  (click)="name.inputText=''"
+                  (click)="desc.inputText=''">
+        <glyph icon="add_circle"></glyph>
     </material-fab>
     <br>
     <br>
-    <hr>
+
+    <h3>Set Password:</h3>
+    <material-input type="password" floatinglabel label="New Password" #newPass></material-input>
+    <br>
+    <material-input type="password" floatinglabel label="New Password Again" #newPass2></material-input>
+    <br>
+    <material-button raised class="gray" (click)="setPassword(newPass.inputText, newPass2.inputText)"
+                     (click)="newPass.inputText=''"
+                     (click)="newPass2.inputText=''">
+        Set Password
+    </material-button>
+    <br>
+    <br>
+
+    <h3>Set Admin Password:</h3>
+    <material-input type="password" floatinglabel label="New Admin Key" #newAdmin></material-input>
+    <br>
+    <material-input type="password" floatinglabel label="New Password Again" #newAdmin2></material-input>
+    <br>
+    <material-button raised class="gray" (click)="setAdminPass(newAdmin.inputText, newAdmin2.inputText)"
+                     (click)="newAdmin.inputText=''" (click)="newAdmin2.inputText=''">
+        Set Admin Key
+    </material-button>
+    <br>
     <br>
 </div>
-
-<h3>Add Goal:</h3>
-<material-input #name style="width:47%" floatingLabel label="Goal Name" type="text"></material-input>
-<material-input #desc style="width:47%" floatingLabel label="Goal Description" type="text"
-                (keyup.enter)="add(year,name.inputText, desc.inputText)" (keyup.enter)="name.inputText=''"
-                (keyup.enter)="desc.inputText=''"></material-input>
-<material-fab raised mini class="blue" (click)="add(year,name.inputText, desc.inputText)" (click)="name.inputText=''"
-              (click)="desc.inputText=''">
-    <glyph icon="add_circle"></glyph>
-</material-fab>
-<br>
-<br>
-
-<h3>Set Password:</h3>
-<material-input type="password" floatinglabel label="New Password" #newPass></material-input>
-<br>
-<material-input type="password" floatinglabel label="New Password Again" #newPass2></material-input>
-<br>
-<material-button raised class="gray" (click)="setPassword(newPass.inputText, newPass2.inputText)" (click)="newPass.inputText=''"
-                 (click)="newPass2.inputText=''">
-    Set Password
-</material-button>
-<br>
-<br>
-
-<h3>Set Admin Key:</h3>
-<material-input type="password" floatinglabel label="New Admin Key" #newKey></material-input>
-<br>
-<material-input type="password" floatinglabel label="New Password Again" #newKey2></material-input>
-<br>
-<material-button raised class="gray" (click)="setKey(newKey.inputText, newKey2.inputText)">
-    Set Admin Key
-</material-button>
-<br>
-<br>
-
 <modal [(visible)]="saveDialog">
     <material-dialog
             info
@@ -63,7 +74,7 @@
         <div header style="text-align: center">
             <h3>{{message}}</h3>
         </div>
-        <div *ngIf = "showPrevent">
+        <div *ngIf="showPrevent">
             <br>
             <br>
             <material-button raised class="gray" (trigger)="preventAdditional = true" (trigger)="saveDialog=false">

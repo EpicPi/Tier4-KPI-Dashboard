@@ -33,7 +33,7 @@ class GoalComponent {
   bool saveDialog = false;
   bool preventAdditional = false;
   String message;
-
+  bool admin = false;
   bool showPrevent =true;
 
   @Input()
@@ -75,13 +75,17 @@ class GoalComponent {
   }
 
 
-  void setKey(String s, String s2) {
+  void setAdminPass(String s, String s2) {
     saveDialog = true;
     if (s == s2 && !s.trim().isEmpty) {
-      message = "Admin Key Saved";
+      message = "Admin Password Saved";
       fbService.changeKey(s);
     } else {
       message = "No Match!";
     }
+  }
+  void checkPass(String pass){
+    if(pass == fbService.key)
+      admin=true;
   }
 }
