@@ -42,17 +42,10 @@ import 'package:kpi_dash/src/val_component/val_component.dart';
 class AppComponent{
   Year year;
   bool authen = false;
-  String pro;
 
   bool saveDialog = false;
   String message;
 
-
-
-  void pickYear(Year y) {
-    year = y;
-    print(year);
-  }
 
   void checkPass(String pass){
     if(pass == fbService.password)
