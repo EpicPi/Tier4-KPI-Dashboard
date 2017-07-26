@@ -1,39 +1,36 @@
 <material-expansionpanel-set>
-    <material-expansionpanel name="Initiatives" [showSaveCancel] = "false">
-        <div class="initiatives">
+    <material-expansionpanel name="Initiatives" [showSaveCancel] = "false" [hideExpandedHeader]="true">
             <div *ngFor="let init of strat.initiatives">
-                <h4>Initiative</h4>
-                <span>
-                    Name: <input [(ngModel)]="init.name">
-                </span>
-                <material-fab raised class="delete" (click)="delete3(year, goal, strat, init)">
+                <h3>
+                    Initiative {{strat.initiatives.indexOf(init,0)+1}}
+                </h3>
+                <material-input style="width:47%" floatingLabel label="Initiative Name"
+                                [(ngModel)]="init.name"></material-input>
+                <material-input style="width:47%" floatingLabel label="Initiative Description"
+                                [(ngModel)]="init.description"></material-input>
+                <my-dir [year]=year [goal]="goal" [strat]="strat" [init]="init"></my-dir>
+                <material-fab raised mini class="red" (click)="delete(init)">
                     <glyph icon="delete"></glyph>
                 </material-fab>
-                <br>
-                <span>
-                    Description: <input [(ngModel)]="init.description">
-                </span>
-                <material-fab raised class="editintro" (click)="change3Name(year, goal, strat, init)"
-                        (click)="change3Desc(year, goal, strat, init)" (click)="alert('Your edit has been saved.')">
-                    <glyph icon = "save"></glyph>
+                <material-fab raised class="blue" (click)="update(init)">
+                    <glyph icon="save"></glyph>
                 </material-fab>
-                <my-dir [year]=year [goal]="goal" [strat]="strat" [init]="init"></my-dir>
+                <br>
+                <br>
+                <hr>
                 <br>
             </div>
-        </div>
-        <div>
-            <h4>Add Initiative:</h4>
-            <label>Initiative Name:</label>
-            <input type="text" [(ngModel)] = 'inputTextName' (keyup.enter)="add3(year, goal, strat)" (keyup.enter)="inputTextName='' "
-                (keyup.enter)="inputTextDesc = ''">
-            <br>
-            <label>Initiative Description:</label>
-            <input type="text" [(ngModel)] = 'inputTextDesc' (keyup.enter)="add3(year, goal, strat)" (keyup.enter)="inputTextDesc=''"
-                   (keyup.enter)="inputTextName='' ">
-            <button (click)="add3(year, goal, strat)" (click)="inputTextDesc=''" (click)="inputTextName='' ">
-                Add
-            </button>
-        </div>
+            <h3>Add Initiative</h3>
+        <material-input #name style="width:47%" type="text" floatingLabel label="Initiative Name"></material-input>
+        <material-input #desc style="width:47%" type="text" floatingLabel label="Initiative Description"
+                        (keyup.enter)="add(name.inputText,desc.inputText)" (keyup.enter)="name.inputText=''"
+                        (keyup.enter)="desc.inputText=''"></material-input>
+        <material-fab raised mini class="blue" (click)="add(name.inputText, desc.inputText)"
+                      (click)="name.inputText=''" (click)="desc.inputText=''">
+            <glyph icon="add_circle"></glyph>
+        </material-fab>
+        <br>
+        <br>
 
 
     </material-expansionpanel>
