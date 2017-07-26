@@ -1,7 +1,7 @@
-import 'dart:html';
-import 'package:angular2/core.dart';
 import 'dart:core';
+
 import 'package:angular2/angular2.dart';
+import 'package:angular2/core.dart';
 import 'package:angular_components/angular_components.dart';
 import 'package:kpi_dash/src/models/models.dart';
 import 'package:kpi_dash/src/models/year.dart';
@@ -32,47 +32,39 @@ class DirectiveComponent {
 
   @Input()
   Initiative init;
-  //
 
-  final FirebaseService fbService4;
-  DirectiveComponent(this.fbService4);
-  Dir selectedDir;
+  bool saveDialog = false;
+  String message;
 
-  String inputTextName = "";
-  String inputTextDescription = "";
-  num inputMax = null;
+  final FirebaseService fbService;
 
-  void add4(Year year, Goal goal, Strategy strat, Initiative init) {
-    String name2Text = inputTextName.trim();
-    String desc2Text = inputTextDescription.trim();
-    num max = inputMax;
+  DirectiveComponent(this.fbService);
 
-    if (name2Text.isEmpty) return;
-    if (desc2Text.isEmpty) return;
-    if (max == null) return;
+  void add(String name, String desc, String m) {
+    num max = int.parse(m);
+    if (name.isEmpty || desc.isEmpty || max == null || max <= 0) return;
+    fbService.addDir(year, goal, strat, init, name, desc, max);
 
-    fbService4.addDir(year, goal, strat, init, name2Text, desc2Text, max);
+    saveDialog = !fbService.preventAdditional;
+    message = "Directive Added";
   }
 
-  void delete4(Year year, Goal goal, Strategy strat, Initiative init, Dir dir) {
-    fbService4.deleteDir(year.key, goal.key, strat.key, init.key, dir.key);
+  void delete(Dir dir) {
+    fbService.deleteDir(year.key, goal.key, strat.key, init.key, dir.key);
     init.directives.remove(dir);
+
+    saveDialog = !fbService.preventAdditional;
+    message = "Directive Deleted";
   }
 
-  void change4Name(Year year, Goal goal, Strategy strat, Initiative init, Dir dir) {
-    fbService4.changeDirName(year, goal, strat, init, dir);
-  }
+  void update(Dir dir, String maxValue) {
+    num max = int.parse(maxValue);
 
-  void change4Desc(Year year, Goal goal, Strategy strat, Initiative init, Dir dir) {
-    fbService4.changeDirDescription(year, goal, strat, init, dir);
-  }
+    fbService.changeDirName(year, goal, strat, init, dir);
+    fbService.changeDirDescription(year, goal, strat, init, dir);
+    fbService.changeDirMax(year, goal, strat, init, dir, max);
 
-  void changeMax(Year year, Goal goal, Strategy strat, Initiative init, Dir dir) {
-    fbService4.changeDirMax(year, goal, strat, init, dir);
-  }
-
-  void alert(String s)
-  {
-    window.alert(s);
+    saveDialog = !fbService.preventAdditional;
+    message = "Edit Saved";
   }
 }

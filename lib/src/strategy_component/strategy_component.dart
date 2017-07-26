@@ -43,6 +43,7 @@ class StrategyComponent {
   void add(String name, String description) {
     if (name.isEmpty||description.isEmpty) return;
     fbService.addStrat(year, goal, name, description);
+
     saveDialog = !fbService.preventAdditional;
     message = "Strategy Added";
   }
@@ -50,6 +51,7 @@ class StrategyComponent {
   void delete(Strategy strat) {
     fbService.deleteStrategy(year.key, goal.key, strat.key);
     goal.strategies.remove(strat);
+
     saveDialog = !fbService.preventAdditional;
     message = "Strategy Deleted";
   }
@@ -58,6 +60,7 @@ class StrategyComponent {
   {
     fbService.changeStratName(year, goal, strat);
     fbService.changeStratDescription(year, goal, strat);
+
     saveDialog = !fbService.preventAdditional;
     message = "Edit Saved";
   }

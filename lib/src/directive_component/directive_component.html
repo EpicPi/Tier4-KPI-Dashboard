@@ -1,46 +1,56 @@
-<h4>Directives:</h4>
-        <div class="directives">
-            <ul *ngFor="let dir of init.directives">
-                <span>
-                    Name: <input [(ngModel)]="dir.name">
-                </span>
-                <material-fab raised class="delete" (click)="delete4(year, goal, strat, init, dir)">
-                    <glyph icon="delete"></glyph>
-                </material-fab>
-                <br>
-                <span class="desc">
-                    Description: <input [(ngModel)]="dir.description">
-                </span>
-                <material-fab raised class="editintro" (click)="change4Name(year, goal, strat, init, dir)"
-                        (click)="change4Desc(year, goal, strat, init, dir)"
-                        (click)="changeMax(year, goal, strat, init, dir)"
-                              (click)="alert('Your edit has been saved.')">
-                    <glyph icon = "save"></glyph>
-                </material-fab>
-                <br>
-                <span class="uuu">
-                    Max Value: <input type="number" [(ngModel)]="dir.maxValue">
-                </span>
-                <br>
-            </ul>
-        </div>
-        <div>
-            <h4>Add Directive:</h4>
-            <label>Directive Name:</label>
-            <input type="text" [(ngModel)] = 'inputTextName' (keyup.enter)="add4(year, goal, strat, init)" (keyup.enter)="inputTextDescription='' "
-                   (keyup.enter)="inputTextName=''" (keyup.enter)="inputMax = null ">
+<material-expansionpanel-set>
+    <material-expansionpanel flat name="Directives" [showSaveCancel]="false" [hideExpandedHeader]="true">
+        <div *ngFor="let dir of init.directives">
+            <h3>
+                Directive {{init.directives.indexOf(dir,0)+1}}
+            </h3>
+            <material-input style="width:43%" floatingLabel label="Directive Name"
+                            [(ngModel)]="dir.name"></material-input>
+            <material-input style="width:43%" floatingLabel label="Directive Description"
+                            [(ngModel)]="dir.description"></material-input>
+            <material-input #maxVal style="width:10%" floatingLabel label="Directive Max Value"
+                            [ngModel]="dir.maxValue.toString()"></material-input>
             <br>
-            <label>Directive Description:</label>
-            <input type="text" [(ngModel)] = 'inputTextDescription' (keyup.enter)="add4(year, goal, strat, init)" (keyup.enter)="inputTextName=''"
-                   (keyup.enter)="inputTextDescription=''" (keyup.enter)="inputMax = null ">
+            <material-fab raised mini class="red" (click)="delete(dir)">
+                <glyph icon="delete"></glyph>
+            </material-fab>
+            <material-fab raised class="blue" (click)="update(dir,maxVal.inputText)">
+                <glyph icon="save"></glyph>
+            </material-fab>
             <br>
-            <div>
-            <label>Directive Max Value: </label>
-            <input type="number" [(ngModel)] = "inputMax"   value="0" (keyup.enter)="add4(year, goal, strat, init)" (keyup.enter)="inputTextName=''"
-                   (keyup.enter)="inputTextDescription=''" (keyup.enter)="inputMax = null ">
-            </div>
-            <button (click)="add4(year, goal, strat, init)" (click)="inputTextName=''"
-                    (click)="inputTextDescription=''" (click)="inputMax = null ">
-                Add
-            </button>
+            <br>
+            <hr>
+            <br>
         </div>
+        <h3>Add Directive</h3>
+        <material-input #name style="width:42%" type="text" floatingLabel label="Directive Name"></material-input>
+        <material-input #desc style="width:42%" type="text" floatingLabel label="Directive Description"></material-input>
+        <material-input #maxv style="width:10%" type="number" floatingLabel label="Max Value"
+                        (keyup.enter)="add(name.inputText,desc.inputText,maxv.inputText)" (keyup.enter)="name.inputText=''"
+                        (keyup.enter)="desc.inputText=''"(keyup.enter)="maxv.inputText=''"></material-input>
+
+        <material-fab raised mini class="blue" (click)="add(name.inputText, desc.inputText, maxv.inputText)"
+                      (click)="name.inputText=''" (click)="desc.inputText=''"
+                      (click)="maxv.inputText=''">
+            <glyph icon="add_circle"></glyph>
+        </material-fab>
+        <br>
+        <br>
+    </material-expansionpanel>
+</material-expansionpanel-set>
+
+<modal [(visible)]="saveDialog">
+    <material-dialog
+            info
+            [autoDismissable]="true"
+            (dismiss)="saveDialog = false">
+        <div header style="text-align: center">
+            <h3>{{message}}</h3>
+        </div>
+        <br>
+        <br>
+        <material-button raised class="gray" (trigger)="fbService.preventAdditional = true" (trigger)="saveDialog=false">
+            prevent additional
+        </material-button>
+    </material-dialog>
+</modal>

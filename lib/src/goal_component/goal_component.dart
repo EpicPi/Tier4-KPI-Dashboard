@@ -44,7 +44,7 @@ class GoalComponent {
     if (name.isEmpty || desc.isEmpty) return;
     fbService.addGoal(year, name, desc);
     saveDialog = !fbService.preventAdditional;
-    message = "Added Goal";
+    message = "Goal Added";
     showPrevent = true;
   }
 
@@ -52,7 +52,7 @@ class GoalComponent {
     fbService.deleteGoal(year.key, goal.key);
     year.goals.remove(goal);
     saveDialog = !fbService.preventAdditional;
-    message = "Deleted Goal";
+    message = "Goal Deleted";
     showPrevent = true;
   }
 

@@ -1,14 +1,13 @@
-div.edit{
-    position:relative;
-    left:50px;
+.red {
+    background-color: #f44336;
+    color: white;
 }
 
-button.delete{
-    position:absolute;
-    left:700px;
+.gray{
+    background-color: darkgrey;
+    color: white;
 }
-
-button.editintro{
-    position:absolute;
-    left:700px;
+.blue{
+    background-color: dodgerblue;
+    color: white;
 }

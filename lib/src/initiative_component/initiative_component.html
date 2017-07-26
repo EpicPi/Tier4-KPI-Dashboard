@@ -1,5 +1,5 @@
 <material-expansionpanel-set>
-    <material-expansionpanel name="Initiatives" [showSaveCancel] = "false" [hideExpandedHeader]="true">
+    <material-expansionpanel flat name="Initiatives" [showSaveCancel] = "false" [hideExpandedHeader]="true">
             <div *ngFor="let init of strat.initiatives">
                 <h3>
                     Initiative {{strat.initiatives.indexOf(init,0)+1}}
@@ -9,6 +9,7 @@
                 <material-input style="width:47%" floatingLabel label="Initiative Description"
                                 [(ngModel)]="init.description"></material-input>
                 <my-dir [year]=year [goal]="goal" [strat]="strat" [init]="init"></my-dir>
+                <br>
                 <material-fab raised mini class="red" (click)="delete(init)">
                     <glyph icon="delete"></glyph>
                 </material-fab>

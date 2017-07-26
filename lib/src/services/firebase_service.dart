@@ -317,7 +317,7 @@ class FirebaseService {
   }
 
   Future changeDirMax(
-      Year year, Goal goal, Strategy strat, Initiative init, Dir dir) async {
+      Year year, Goal goal, Strategy strat, Initiative init, Dir dir, num maxValue) async {
     await _fbRefYears
         .child(year.key)
         .child("goals")
@@ -329,7 +329,7 @@ class FirebaseService {
         .child("directives")
         .child(dir.key)
         .child("max value")
-        .set(dir.maxValue);
+        .set(maxValue);
   }
 
   Future changeVal(Year year, Goal goal, Strategy strat, Initiative init, Dir dir, Value val) async {
