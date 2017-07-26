@@ -41,6 +41,17 @@
 <br>
 <br>
 
+<h3>Set Admin Key:</h3>
+<material-input type="password" floatinglabel label="New Admin Key" #newKey></material-input>
+<br>
+<material-input type="password" floatinglabel label="New Password Again" #newKey2></material-input>
+<br>
+<material-button raised class="gray" (click)="setKey(newKey.inputText, newKey2.inputText)">
+    Set Admin Key
+</material-button>
+<br>
+<br>
+
 <modal [(visible)]="saveDialog">
     <material-dialog
             info
@@ -59,5 +70,7 @@
         </material-button>
     </material-dialog>
 </modal>
+
+
 
 

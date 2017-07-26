@@ -28,6 +28,12 @@
             </material-select-item>
         </material-select>
         <br>
+        <div *ngIf="admin!=true">
+            <material-input floatingLabel label="Password" type="password" [(ngModel)]="key" (keyup.enter)="changeBool2()"></material-input>
+            <material-fab raised (click)="changeBool2()">
+                <glyph icon="keyboard_arrow_right"></glyph>
+            </material-fab>
+        </div>
 
 
         <material-tab-panel>
@@ -43,7 +49,7 @@
                 </div>
             </material-tab>
             <material-tab label="admin">
-                <div *ngIf="year !=null" class="tab">
+                <div *ngIf="year !=null && admin == true" class="tab">
                     <my-goal [year]="year"></my-goal>
                 </div>
             </material-tab>

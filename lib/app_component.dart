@@ -42,7 +42,9 @@ import 'package:kpi_dash/src/val_component/val_component.dart';
 class AppComponent{
   Year year;
   String pass = "";
+  String key = "";
   bool b = false;
+  bool admin = false;
   String pro;
 
 
@@ -52,9 +54,14 @@ class AppComponent{
   }
 
   void changeBool(){
-    print(fbService.password);
     if(pass == fbService.password)
       b=true;
+  }
+
+  void changeBool2(){
+    print(fbService.key);
+    if(key == fbService.key)
+      admin=true;
   }
 
   final FirebaseService fbService;

@@ -13,7 +13,9 @@ class FirebaseService {
   fb.Database _fbDatabase;
   List<Year> years;
   String password;
+  String key;
   fb.DatabaseReference fbPass;
+  fb.DatabaseReference fbKey;
 
   FirebaseService(){
     fb.initializeApp(
@@ -22,15 +24,19 @@ class FirebaseService {
         databaseURL: "https://fir-kpi-dashboard.firebaseio.com",
         storageBucket: "fir-kpi-dashboard.appspot.com");
 
+
     _fbDatabase = fb.database();
     fbPass = _fbDatabase.ref("pass");
     _fbRefYears = _fbDatabase.ref("years");
+    fbKey = _fbDatabase.ref("admin");
     _fbGoogleAuthProvider = new fb.GoogleAuthProvider();
    _fbAuth = fb.auth();
     password = "";
+    key = "";
     initPass();
     years = [];
     initYears();
+    initKey();
   }
 
   Future initPass() async
@@ -44,14 +50,10 @@ class FirebaseService {
     await _fbRefYears.limitToLast(20).onChildAdded.listen(_newYear);
   }
 
-//  Future _authChanged(fb.AuthEvent event) async {
-//    user = event.user;
-//
-//    if (user != null) {
-//
-//      await _fbRefYears.limitToLast(20).onChildAdded.listen(_newYear);
-//    }
-//  }
+  Future initKey() async{
+    await fbKey.limitToLast(20).onChildAdded.listen(_newKey);
+  }
+
 
   Future _newPass (fb.QueryEvent ev) async{
     fb.DataSnapshot data = ev.snapshot;
@@ -136,6 +138,12 @@ class FirebaseService {
     });
   }
 
+  Future _newKey (fb.QueryEvent e) async{
+    fb.DataSnapshot data = e.snapshot;
+    var val = data.val();
+    var item = val.toString();
+    key = item;
+  }
 
 
 
@@ -343,6 +351,10 @@ class FirebaseService {
 
   Future changePass(String s) async {
     await fbPass.child("password").set(s);
+  }
+
+  Future changeKey(String s) async {
+    await fbKey.child("admin key").set(s);
   }
 
   Future deleteGoal(String key1, String key2) async {

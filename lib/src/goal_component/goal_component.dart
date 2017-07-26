@@ -65,4 +65,15 @@ class GoalComponent {
       message = "No Match!";
     }
   }
+
+
+  void setKey(String s, String s2) {
+    saveDialog = true;
+    if (s == s2 && !s.trim().isEmpty) {
+      message = "Admin Key Saved";
+      fbService.changeKey(s);
+    } else {
+      message = "No Match!";
+    }
+  }
 }
