@@ -4,7 +4,7 @@
 <br>
 Select Month:
 <div>{{month}}</div>
-<material-dropdown-select [width]="0">
+<material-dropdown-select [width]="2">
     <material-select-item *ngFor="let mon of months"
                           (trigger)="month = mon"
                           [selected]="month == mon">
