@@ -34,32 +34,31 @@ class StrategyComponent {
   @Input()
   Goal goal;
 
-  final FirebaseService fbService2;
-  StrategyComponent(this.fbService2);
+  final FirebaseService fbService;
+  StrategyComponent(this.fbService);
 
   bool saveDialog = false;
-  bool preventAdditional = false;
   String message;
 
   void add(Year year, Goal goal, String name, String description) {
     if (name.isEmpty||description.isEmpty) return;
-    fbService2.addStrat(year, goal, name, description);
-    saveDialog = !preventAdditional;
+    fbService.addStrat(year, goal, name, description);
+    saveDialog = !fbService.preventAdditional;
     message = "Strategy Added";
   }
 
   void delete(Year year, Goal goal, Strategy strat) {
-    fbService2.deleteStrategy(year.key, goal.key, strat.key);
+    fbService.deleteStrategy(year.key, goal.key, strat.key);
     goal.strategies.remove(strat);
-    saveDialog = !preventAdditional;
+    saveDialog = !fbService.preventAdditional;
     message = "Strategy Deleted";
   }
 
   void update(Year year, Goal goal,Strategy strat)
   {
-    fbService2.changeStratName(year, goal, strat);
-    fbService2.changeStratDescription(year, goal, strat);
-    saveDialog = !preventAdditional;
+    fbService.changeStratName(year, goal, strat);
+    fbService.changeStratDescription(year, goal, strat);
+    saveDialog = !fbService.preventAdditional;
     message = "Edit Saved";
   }
 
