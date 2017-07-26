@@ -16,7 +16,7 @@ class FirebaseService {
   String key;
   fb.DatabaseReference fbPass;
   fb.DatabaseReference fbKey;
-
+  bool preventAdditional = false;
   FirebaseService(){
     fb.initializeApp(
         apiKey: "AIzaSyAGY9I2J49szDBu3VJZY14WnC6xWMJOta4",

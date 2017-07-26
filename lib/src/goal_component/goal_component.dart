@@ -33,16 +33,17 @@ class GoalComponent {
   bool saveDialog = false;
   bool preventAdditional = false;
   String message;
-  bool admin = false;
+
   bool showPrevent =true;
 
+  bool admin = false;
   @Input()
   Year year;
 
   void add(Year year, String name, String desc) {
     if (name.isEmpty || desc.isEmpty) return;
     fbService.addGoal(year, name, desc);
-    saveDialog = !preventAdditional;
+    saveDialog = !fbService.preventAdditional;
     message = "Added Goal";
     showPrevent = true;
   }
@@ -50,7 +51,7 @@ class GoalComponent {
   void delete(Year year, Goal goal) {
     fbService.deleteGoal(year.key, goal.key);
     year.goals.remove(goal);
-    saveDialog = !preventAdditional;
+    saveDialog = !fbService.preventAdditional;
     message = "Deleted Goal";
     showPrevent = true;
   }
@@ -59,7 +60,7 @@ class GoalComponent {
     fbService.changeGoalDescription(year, goal, goal.description);
     fbService.changeGoalName(year, goal, goal.name);
     message = "Edit Saved";
-    saveDialog = !preventAdditional;
+    saveDialog = !fbService.preventAdditional;
     showPrevent = true;
   }
 

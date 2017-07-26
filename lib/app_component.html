@@ -15,12 +15,10 @@
 <div *ngIf="authen">
     <br>
     <material-select [width]="0" class="bordered-list">
-        <material-select-item *ngFor="let year of fbService.years"
-                              (trigger)="pro = year"
-                              [selected]="pro == year">
-            <div (click)="pickYear(year)">
-                {{year.toNum(year)}}
-            </div>
+        <material-select-item *ngFor="let yr of fbService.years"
+                              (trigger)="year = yr"
+                              [selected]="year == yr">
+            {{yr.toNum()}}
         </material-select-item>
     </material-select>
     <br>

@@ -16,9 +16,8 @@ class Year {
         goalsTagText: item.goals,
       };
 
-  num toNum(Year y){
-    if(y==null) return null;
-    return y.year;
+  num toNum(){
+    return year;
   }
 
 }

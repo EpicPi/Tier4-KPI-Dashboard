@@ -35,38 +35,31 @@ class InitiativeComponent {
   @Input()
   Strategy strat;
 
-
+  bool saveDialog = false;
+  String message;
 
   final FirebaseService fbService;
   InitiativeComponent(this.fbService);
-  Initiative selectedInit;
 
-  String inputTextName = "";
-  String inputTextDesc = "";
-
-  void add3(Year year, Goal goal, Strategy strat) {
-    String nameText = inputTextName.trim();
-    String descText = inputTextDesc.trim();
-
-    if (nameText.isEmpty) return;
-    fbService.addInit(year, goal, strat, nameText, descText);
+  void add(String name, String description) {
+    if (name.isEmpty||description.isEmpty) return;
+    fbService.addInit(year, goal, strat, name, description);
+    saveDialog = !fbService.preventAdditional;
+    message = "Initiative Added";
   }
 
-  void delete3(Year year, Goal goal, Strategy strat, Initiative init) {
+  void delete(Initiative init) {
     fbService.deleteInit(year.key, goal.key, strat.key, init.key);
     strat.initiatives.remove(init);
+    saveDialog = !fbService.preventAdditional;
+    message = "Initiative Deleted";
   }
 
-  void change3Name(Year year, Goal goal, Strategy strat, Initiative init) {
-    fbService.changeInitName(year, goal, strat, init);
-  }
-
-  void change3Desc(Year year, Goal goal, Strategy strat, Initiative init) {
-    fbService.changeInitDescription(year, goal, strat, init);
-  }
-
-  void alert(String s)
+  void update(Initiative init)
   {
-    window.alert(s);
+    fbService.changeInitName(year, goal, strat, init);
+    fbService.changeInitDescription(year, goal, strat, init);
+    saveDialog = !fbService.preventAdditional;
+    message = "Edit Saved";
   }
 }
