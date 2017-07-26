@@ -28,7 +28,7 @@
         <br>
     </div>
 
-    <h3>Add Goal:</h3>
+    <h3>Add Goal</h3>
     <material-input #name style="width:47%" floatingLabel label="Goal Name" type="text"></material-input>
     <material-input #desc style="width:47%" floatingLabel label="Goal Description" type="text"
                     (keyup.enter)="add(year,name.inputText, desc.inputText)" (keyup.enter)="name.inputText=''"
@@ -41,30 +41,43 @@
     <br>
     <br>
 
-    <div style="width: 50%">
-        <h3>Set Password:</h3>
-        <material-input type="password" floatinglabel label="New Password" #newPass></material-input>
-        <br>
-        <material-input type="password" floatinglabel label="New Password Again" #newPass2></material-input>
-        <br>
-        <material-button raised class="gray" (click)="setPassword(newPass.inputText, newPass2.inputText)"
-                         (click)="newPass.inputText=''"
-                         (click)="newPass2.inputText=''">
-            Set Password
-        </material-button>
+    <div class="left">
+
+        <h3>Set Password</h3>
+
+            <material-input class="passInput" type="password" floatinglabel label="New Password"
+                            #newPass></material-input>
+            <br>
+            <material-input class="passInput" type="password" floatinglabel label="New Password Again"
+                            #newPass2></material-input>
+            <br>
+        <div class="passButton">
+            <material-button class="passButton" raised class="gray"
+                             (click)="setPassword(newPass.inputText, newPass2.inputText)"
+                             (click)="newPass.inputText=''" (click)="newPass2.inputText=''">
+                Set Password
+            </material-button>
+        </div>
         <br>
         <br>
     </div>
-    <div style="width: 50%;">
-        <h3>Set Admin Password:</h3>
-        <material-input type="password" floatinglabel label="New Admin Key" #newAdmin></material-input>
-        <br>
-        <material-input type="password" floatinglabel label="New Password Again" #newAdmin2></material-input>
-        <br>
-        <material-button raised class="gray" (click)="setAdminPass(newAdmin.inputText, newAdmin2.inputText)"
-                         (click)="newAdmin.inputText=''" (click)="newAdmin2.inputText=''">
-            Set Admin Password
-        </material-button>
+    <div class="right">
+
+        <h3>Set Admin Password</h3>
+
+            <material-input class="passInput" type="password" floatinglabel label="New Admin Key"
+                            #newAdmin></material-input>
+            <br>
+            <material-input class="passInput" type="password" floatinglabel label="New Password Again"
+                            #newAdmin2></material-input>
+            <br>
+        <div class="passButton">
+            <material-button raised class="gray"
+                             (click)="setAdminPass(newAdmin.inputText, newAdmin2.inputText)"
+                             (click)="newAdmin.inputText=''" (click)="newAdmin2.inputText=''">
+                Set Admin Password
+            </material-button>
+        </div>
         <br>
         <br>
     </div>
@@ -81,7 +94,8 @@
         <div *ngIf="showPrevent">
             <br>
             <br>
-            <material-button raised class="gray" (trigger)="fbService.preventAdditional = true" (trigger)="saveDialog=false">
+            <material-button raised class="gray" (trigger)="fbService.preventAdditional = true"
+                             (trigger)="saveDialog=false">
                 prevent additional
             </material-button>
         </div>

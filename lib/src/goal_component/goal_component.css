@@ -1,20 +1,3 @@
-/*div.goals{*/
-    /*position:relative;*/
-    /*!*left: 30px;*!*/
-/*}*/
-
-/*div.name{*/
-    /*font-size: 1.2em;*/
-/*}*/
-
-/*div.description{*/
-    /*font-size: 1.2em;*/
-/*}*/
-
-my-strategy{
-    position:relative;
-    /*left: 30px;*/
-}
 .red {
     background-color: #f44336;
     color: white;
@@ -27,4 +10,17 @@ my-strategy{
 .blue{
     background-color: dodgerblue;
     color: white;
+}
+.passInput{
+    width: 95%;
+}
+.left{
+    width: 50%;
+    float: left
+}
+.right{
+    width: 50%;float: right
+}
+.passButton{
+    text-align: center;
 }
