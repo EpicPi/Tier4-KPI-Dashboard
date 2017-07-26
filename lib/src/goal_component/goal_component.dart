@@ -21,18 +21,13 @@ import 'package:kpi_dash/src/strategy_component/strategy_component.dart';
     DirectiveComponent,
     MaterialExpansionPanel,
     MaterialExpansionPanelSet,
-    MaterialListComponent,
-    MaterialListItemComponent,
     AutoDismissDirective,
     AutoFocusDirective,
-    MaterialButtonComponent,
-    MaterialDialogComponent,
     ModalComponent,
   ],
   providers: const [materialProviders],
 )
 class GoalComponent {
-
   final FirebaseService fbService;
   GoalComponent(this.fbService);
 
@@ -44,10 +39,7 @@ class GoalComponent {
   @Input()
   Year year;
 
-
   void add(Year year, String name, String desc) {
-
-
     if (name.isEmpty || desc.isEmpty) return;
     fbService.addGoal(year, name, desc);
   }
@@ -55,23 +47,22 @@ class GoalComponent {
   void delete(Year year, Goal goal) {
     fbService.deleteGoal(year.key, goal.key);
     year.goals.remove(goal);
-
   }
 
-  void updateGoal(Year year, Goal goal ,String name, String desc)
-  {
-    fbService.changeGoalDescription(year, goal, desc);
-    fbService.changeGoalName(year, goal, name);
+  void updateGoal(Year year, Goal goal) {
+    fbService.changeGoalDescription(year, goal, goal.description);
+    fbService.changeGoalName(year, goal, goal.name);
     message = "Edit Saved";
     saveDialog = !preventAdditional;
   }
 
-  String password = "";
-
-  void setPassword(String s){
+  void setPassword(String s, String s2) {
     saveDialog = true;
-    message = "Password Saved";
-    fbService.changePass(s);
-    password = "";
+    if (s == s2 && !s.trim().isEmpty) {
+      message = "Password Saved";
+      fbService.changePass(s);
+    } else {
+      message = "No Match!";
+    }
   }
 }

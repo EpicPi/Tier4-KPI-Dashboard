@@ -34,42 +34,22 @@ class StrategyComponent {
 
   final FirebaseService fbService2;
   StrategyComponent(this.fbService2);
-  Strategy selectedStrat;
 
-  String inputTextName = "";
-  String inputTextDescription = "";
 
-//  void add2List(Year year, Goal goal) {
-//    String stratName = inputTextName.trim();
-//    String stratDesc = inputTextDescription.trim();
-//
-//    goal.strategies.add(new Strategy(stratName, stratDesc, []));
-//  }
-
-  void add2(Year year, Goal goal) {
-    String nameText = inputTextName.trim();
-    String descText = inputTextDescription.trim();
-
-    if (nameText.isEmpty) return;
-    if (descText.isEmpty) return;
-    fbService2.addStrat(year, goal, nameText, descText);
+  void add(Year year, Goal goal, String name, String description) {
+    if (name.isEmpty||description.isEmpty) return;
+    fbService2.addStrat(year, goal, name, description);
   }
 
-  void delete2(Year year, Goal goal, Strategy strat) {
+  void delete(Year year, Goal goal, Strategy strat) {
     fbService2.deleteStrategy(year.key, goal.key, strat.key);
     goal.strategies.remove(strat);
   }
 
-  void change2Name(Year year, Goal goal, Strategy strat) {
+  void updateStrategy(Year year, Goal goal,Strategy strat)
+  {
     fbService2.changeStratName(year, goal, strat);
-  }
-
-  void change2Desc(Year year, Goal goal, Strategy strat) {
     fbService2.changeStratDescription(year, goal, strat);
   }
 
-  void alert(String s)
-  {
-    window.alert(s);
-  }
 }

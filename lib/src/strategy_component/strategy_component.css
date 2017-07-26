@@ -1,23 +1,13 @@
-material-expansionpanel{
-    width: 100%;
+.red {
+    background-color: #f44336;
+    color: white;
 }
 
-button.delete{
-    position:absolute;
-    /*left:900px;*/
+.gray{
+    background-color: darkgrey;
+    color: white;
 }
-
-button.editintro{
-    position:absolute;
-    /*left:900px;*/
-}
-
-div.edit{
-    position:relative;
-    /*left:50px;*/
-}
-
-my-init{
-    position:relative;
-    /*left: 30px;*/
+.blue{
+    background-color: dodgerblue;
+    color: white;
 }
