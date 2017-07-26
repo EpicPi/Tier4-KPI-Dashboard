@@ -15,65 +15,82 @@ Select Month:
 
 <div *ngIf = "month != null">
     <div *ngFor="let goal of year.goals">
-        <div class="goal">
-            <h3>Goal</h3>
-            <div class="name">
-                Name: {{goal.name}}
-            </div>
-        </div>
-        <div *ngFor="let strat of goal.strategies">
-            <div class="strat">
-                <h3>Strategy</h3>
-                <div class="name2">
-                    Name: {{strat.name}}
-                </div>
-            </div>
-            <div *ngFor="let init of strat.initiatives">
-                <div class="init">
-                    <h3>Initiative</h3>
-                    <div class="name3">
-                        Name: {{init.name}}
-                    </div>
-                </div>
-                <div *ngFor="let dir of init.directives">
-                    <div class="dir">
-                        <h3>Directive</h3>
-                        <div class="name4">
-                            Name: {{dir.name}}
-                        </div>
+        <h3>
+            Goal {{year.goals.indexOf(goal,0)+1}}
+        </h3>
+            <h5 class="name">
+                {{goal.name}}
+            </h5>
+        <br>
+        <material-expansionpanel-set>
+        <material-expansionpanel flat name="Strategies" [showSaveCancel]="false" [hideExpandedHeader]="true">
+            <div *ngFor="let strat of goal.strategies">
+                <h3>Strategy {{goal.strategies.indexOf(strat,0)+1}}</h3>
+                <h5 class="name2">
+                    {{strat.name}}
+                </h5>
+            <br>
+            <material-expansionpanel-set>
+            <material-expansionpanel flat name="Initiatives" [showSaveCancel]="false" [hideExpandedHeader]="true">
+                <div *ngFor="let init of strat.initiatives">
+                    <h3>Initiative {{strat.initiatives.indexOf(init,0)+1}}</h3>
+                    <h5 class="name3">
+                        {{init.name}}
+                    </h5>
+                <br>
+                <material-expansionpanel-set>
+                <material-expansionpanel flat name="Directives" [showSaveCancel]="false" [hideExpandedHeader]="true">
+                    <div *ngFor="let dir of init.directives">
+                        <h3>Directive {{init.directives.indexOf(dir,0)+1}}</h3>
+                        <h5 class="name4">
+                            {{dir.name}}
+                            <br>
+                            Max Value: {{dir.maxValue}}
+                        </h5>
                         <div *ngFor="let val of dir.values">
                             <div *ngIf="val.month == month">
                                 <div class="val">
-                                    <div class="name5">
-                                        <h3>Value: <input type="number" [(ngModel)]="val.value"></h3>
-                                    </div>
+                                    <h5 class="name5">
+                                        <h4>Value: <input type="number" [(ngModel)]="val.value"></h4>
+                                    </h5>
                                     <material-fab raised class="red" (click)="deleteValue(year, goal, strat, init, dir, val)">
                                         <glyph icon="delete"></glyph>
                                     </material-fab>
                                     <material-fab raised class="idk" (click)="changeValue(year, goal, strat, init, dir, val)"
-                                                     (click)="alert('Your edit has been saved.')">
+                                                  (click)="alert('Your edit has been saved.')">
                                         <glyph icon="save"></glyph>
                                     </material-fab>
                                 </div>
                             </div>
                         </div>
-                        <div class="add">
-                            <h3>Add Value:</h3>
-                            <label>Value: </label>
-                            <input type="number" [(ngModel)]="inputVal" value="0"
-                                   (keyup.enter)="addValue(year, goal, strat, init, dir)"
-                                   (keyup.enter)="inputVal = null ">
-                            <br>
-                            <br>
-                            <material-button raised class="blue" (click)="addValue(year, goal, strat, init, dir)"
-                                    (click)="inputVal = null ">
-                                Add
-                            </material-button>
-                        </div>
+                    <div class="add">
+                        <h4>Add Value:</h4>
+                        <label>Value: </label>
+                        <input type="number" [(ngModel)]="inputVal" value="0"
+                               (keyup.enter)="addValue(year, goal, strat, init, dir)"
+                               (keyup.enter)="inputVal = null ">
+                        <br>
+                        <br>
+                        <material-button raised class="blue" (click)="addValue(year, goal, strat, init, dir)"
+                                         (click)="inputVal = null ">
+                            Add
+                        </material-button>
                     </div>
+                    </div>
+                </material-expansionpanel>
+                </material-expansionpanel-set>
                 </div>
+                </material-expansionpanel>
+            </material-expansionpanel-set>
             </div>
-        </div>
+            </material-expansionpanel>
+        </material-expansionpanel-set>
     </div>
 </div>
-<!--</div>-->
+
+
+
+
+
+
+
