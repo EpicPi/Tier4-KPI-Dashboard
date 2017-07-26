@@ -1,5 +1,4 @@
 import 'package:angular2/core.dart';
-import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:angular_components/angular_components.dart';
 import 'package:kpi_dash/src/directive_component/directive_component.dart';
@@ -33,8 +32,9 @@ class GoalComponent {
 
   bool saveDialog = false;
   bool preventAdditional = false;
-
   String message;
+
+  bool showPrevent =true;
 
   @Input()
   Year year;
@@ -42,11 +42,17 @@ class GoalComponent {
   void add(Year year, String name, String desc) {
     if (name.isEmpty || desc.isEmpty) return;
     fbService.addGoal(year, name, desc);
+    saveDialog = !preventAdditional;
+    message = "Added Goal";
+    showPrevent = true;
   }
 
   void delete(Year year, Goal goal) {
     fbService.deleteGoal(year.key, goal.key);
     year.goals.remove(goal);
+    saveDialog = !preventAdditional;
+    message = "Deleted Goal";
+    showPrevent = true;
   }
 
   void updateGoal(Year year, Goal goal) {
@@ -54,10 +60,12 @@ class GoalComponent {
     fbService.changeGoalName(year, goal, goal.name);
     message = "Edit Saved";
     saveDialog = !preventAdditional;
+    showPrevent = true;
   }
 
   void setPassword(String s, String s2) {
     saveDialog = true;
+    showPrevent = false;
     if (s == s2 && !s.trim().isEmpty) {
       message = "Password Saved";
       fbService.changePass(s);

@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'package:kpi_dash/src/directive_component/directive_component.dart';
 import 'package:kpi_dash/src/initiative_component/initiative_component.dart';
 import 'package:kpi_dash/src/models/goal.dart';
@@ -19,7 +18,10 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
     InitiativeComponent,
     DirectiveComponent,
     MaterialExpansionPanel,
-    MaterialExpansionPanelSet
+    MaterialExpansionPanelSet,
+    AutoDismissDirective,
+    AutoFocusDirective,
+    ModalComponent,
   ],
   providers: const [
     materialProviders,
@@ -35,21 +37,30 @@ class StrategyComponent {
   final FirebaseService fbService2;
   StrategyComponent(this.fbService2);
 
+  bool saveDialog = false;
+  bool preventAdditional = false;
+  String message;
 
   void add(Year year, Goal goal, String name, String description) {
     if (name.isEmpty||description.isEmpty) return;
     fbService2.addStrat(year, goal, name, description);
+    saveDialog = !preventAdditional;
+    message = "Strategy Added";
   }
 
   void delete(Year year, Goal goal, Strategy strat) {
     fbService2.deleteStrategy(year.key, goal.key, strat.key);
     goal.strategies.remove(strat);
+    saveDialog = !preventAdditional;
+    message = "Strategy Deleted";
   }
 
-  void updateStrategy(Year year, Goal goal,Strategy strat)
+  void update(Year year, Goal goal,Strategy strat)
   {
     fbService2.changeStratName(year, goal, strat);
     fbService2.changeStratDescription(year, goal, strat);
+    saveDialog = !preventAdditional;
+    message = "Edit Saved";
   }
 
 }

@@ -41,20 +41,25 @@ import 'package:kpi_dash/src/val_component/val_component.dart';
 )
 class AppComponent{
   Year year;
-  String pass = "";
-  bool b = false;
+  bool authen = false;
   String pro;
 
+  bool saveDialog = false;
+  String message;
 
   void pickYear(Year y) {
     year = y;
     print(year);
   }
 
-  void changeBool(){
-    print(fbService.password);
+  void checkPass(String pass){
     if(pass == fbService.password)
-      b=true;
+      authen=true;
+    else
+      {
+        saveDialog = true;
+        message="Incorrect Password";
+      }
   }
 
   final FirebaseService fbService;
