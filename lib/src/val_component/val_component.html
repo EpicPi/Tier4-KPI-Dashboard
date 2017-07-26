@@ -18,41 +18,41 @@ Select Month:
         <h3>
             Goal {{year.goals.indexOf(goal,0)+1}}
         </h3>
-            <div class="name">
+            <h5 class="name">
                 {{goal.name}}
-            </div>
+            </h5>
         <br>
         <material-expansionpanel-set>
         <material-expansionpanel flat name="Strategies" [showSaveCancel]="false" [hideExpandedHeader]="true">
             <div *ngFor="let strat of goal.strategies">
                 <h3>Strategy {{goal.strategies.indexOf(strat,0)+1}}</h3>
-                <div class="name2">
+                <h5 class="name2">
                     {{strat.name}}
-                </div>
+                </h5>
             <br>
             <material-expansionpanel-set>
             <material-expansionpanel flat name="Initiatives" [showSaveCancel]="false" [hideExpandedHeader]="true">
                 <div *ngFor="let init of strat.initiatives">
                     <h3>Initiative {{strat.initiatives.indexOf(init,0)+1}}</h3>
-                    <div class="name3">
+                    <h5 class="name3">
                         {{init.name}}
-                    </div>
+                    </h5>
                 <br>
                 <material-expansionpanel-set>
                 <material-expansionpanel flat name="Directives" [showSaveCancel]="false" [hideExpandedHeader]="true">
                     <div *ngFor="let dir of init.directives">
                         <h3>Directive {{init.directives.indexOf(dir,0)+1}}</h3>
-                        <div class="name4">
+                        <h5 class="name4">
                             {{dir.name}}
                             <br>
                             Max Value: {{dir.maxValue}}
-                        </div>
+                        </h5>
                         <div *ngFor="let val of dir.values">
                             <div *ngIf="val.month == month">
                                 <div class="val">
-                                    <div class="name5">
+                                    <h5 class="name5">
                                         <h4>Value: <input type="number" [(ngModel)]="val.value"></h4>
-                                    </div>
+                                    </h5>
                                     <material-fab raised class="red" (click)="deleteValue(year, goal, strat, init, dir, val)">
                                         <glyph icon="delete"></glyph>
                                     </material-fab>
