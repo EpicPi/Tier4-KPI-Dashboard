@@ -1,28 +1,23 @@
-<!--<div [hidden]="fbService.user == null" hidden;>-->
-
-<div class="goals">
-
-    <div *ngFor="let goal of year.goals">
-        <h3>
-            Goal {{year.goals.indexOf(goal,0)+1}}
-        </h3>
-        <material-input style="width:47%" floatingLabel label="Goal Name" type="text"
-                        [(ngModel)]="goal.name"></material-input>
-        <material-input style="width:47%" floatingLabel label="Goal Description"
-                        [(ngModel)]="goal.description"></material-input>
-        <my-strategy [year]=year [goal]="goal"></my-strategy>
-        <br>
-        <material-fab raised class="red" mini (click)="delete(year,goal)">
-            <glyph icon="delete"></glyph>
-        </material-fab>
-        <material-fab raised class="blue" (click)="updateGoal(year, goal)">
-            <glyph icon="save"></glyph>
-        </material-fab>
-        <br>
-        <br>
-        <hr>
-        <br>
-    </div>
+<div *ngFor="let goal of year.goals">
+    <h3>
+        Goal {{year.goals.indexOf(goal,0)+1}}
+    </h3>
+    <material-input style="width:47%" floatingLabel label="Goal Name" type="text"
+                    [(ngModel)]="goal.name"></material-input>
+    <material-input style="width:47%" floatingLabel label="Goal Description"
+                    [(ngModel)]="goal.description"></material-input>
+    <my-strategy [year]=year [goal]="goal"></my-strategy>
+    <br>
+    <material-fab raised class="red" mini (click)="delete(year,goal)">
+        <glyph icon="delete"></glyph>
+    </material-fab>
+    <material-fab raised class="blue" (click)="updateGoal(year, goal)">
+        <glyph icon="save"></glyph>
+    </material-fab>
+    <br>
+    <br>
+    <hr>
+    <br>
 </div>
 
 <h3>Add Goal:</h3>
@@ -34,19 +29,18 @@
 </material-fab>
 <br>
 <br>
-<h3>Set Password:</h3>
-<div>
 
-    <material-input type="password" floatinglabel label="New Password" #newPass></material-input>
-    <br>
-    <material-input type="password" floatinglabel label="New Password Again" #newPass2></material-input>
-    <br>
-    <material-button raised class="gray" (click)="setPassword(newPass.inputText, newPass2.inputText)">
-        Set Password
-    </material-button>
-</div>
+<h3>Set Password:</h3>
+<material-input type="password" floatinglabel label="New Password" #newPass></material-input>
+<br>
+<material-input type="password" floatinglabel label="New Password Again" #newPass2></material-input>
+<br>
+<material-button raised class="gray" (click)="setPassword(newPass.inputText, newPass2.inputText)">
+    Set Password
+</material-button>
 <br>
 <br>
+
 <modal [(visible)]="saveDialog">
     <material-dialog
             info
