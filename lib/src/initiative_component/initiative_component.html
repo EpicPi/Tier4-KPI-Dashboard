@@ -31,7 +31,21 @@
         </material-fab>
         <br>
         <br>
-
-
     </material-expansionpanel>
 </material-expansionpanel-set>
+
+<modal [(visible)]="saveDialog">
+    <material-dialog
+            info
+            [autoDismissable]="true"
+            (dismiss)="saveDialog = false">
+        <div header style="text-align: center">
+            <h3>{{message}}</h3>
+        </div>
+        <br>
+        <br>
+        <material-button raised class="gray" (trigger)="fbService.preventAdditional = true" (trigger)="saveDialog=false">
+            prevent additional
+        </material-button>
+    </material-dialog>
+</modal>

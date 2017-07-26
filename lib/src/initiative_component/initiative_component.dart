@@ -35,22 +35,31 @@ class InitiativeComponent {
   @Input()
   Strategy strat;
 
+  bool saveDialog = false;
+  String message;
+
   final FirebaseService fbService;
   InitiativeComponent(this.fbService);
 
   void add(String name, String description) {
     if (name.isEmpty||description.isEmpty) return;
     fbService.addInit(year, goal, strat, name, description);
+    saveDialog = !fbService.preventAdditional;
+    message = "Initiative Added";
   }
 
   void delete(Initiative init) {
     fbService.deleteInit(year.key, goal.key, strat.key, init.key);
     strat.initiatives.remove(init);
+    saveDialog = !fbService.preventAdditional;
+    message = "Initiative Deleted";
   }
 
   void update(Initiative init)
   {
     fbService.changeInitName(year, goal, strat, init);
     fbService.changeInitDescription(year, goal, strat, init);
+    saveDialog = !fbService.preventAdditional;
+    message = "Edit Saved";
   }
 }

@@ -10,10 +10,10 @@
                             [(ngModel)]="strat.description"></material-input>
             <my-init [year]=year [goal]=goal [strat]="strat"></my-init>
             <br>
-            <material-fab raised mini class="red" (click)="delete(year, goal, strat)">
+            <material-fab raised mini class="red" (click)="delete(strat)">
                 <glyph icon="delete"></glyph>
             </material-fab>
-            <material-fab raised class="blue" (click)="update(year, goal, strat)">
+            <material-fab raised class="blue" (click)="update(strat)">
                 <glyph icon="save"></glyph>
             </material-fab>
             <br>
@@ -24,9 +24,9 @@
         <h3>Add Strategy:</h3>
         <material-input #name style="width:47%" type="text" floatingLabel label="Strategy Name"></material-input>
         <material-input #desc style="width:47%" type="text" floatingLabel label="Strategy Description"
-                        (keyup.enter)="add(year, goal,name.inputText,desc.inputText)" (keyup.enter)="name.inputText=''"
+                        (keyup.enter)="add(name.inputText,desc.inputText)" (keyup.enter)="name.inputText=''"
                         (keyup.enter)="desc.inputText=''"></material-input>
-        <material-fab raised mini class="blue" (click)="add(year, goal,name.inputText, desc.inputText)"
+        <material-fab raised mini class="blue" (click)="add(name.inputText, desc.inputText)"
                       (click)="name.inputText=''" (click)="desc.inputText=''">
             <glyph icon="add_circle"></glyph>
         </material-fab>

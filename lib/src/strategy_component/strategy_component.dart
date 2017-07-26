@@ -40,21 +40,21 @@ class StrategyComponent {
   bool saveDialog = false;
   String message;
 
-  void add(Year year, Goal goal, String name, String description) {
+  void add(String name, String description) {
     if (name.isEmpty||description.isEmpty) return;
     fbService.addStrat(year, goal, name, description);
     saveDialog = !fbService.preventAdditional;
     message = "Strategy Added";
   }
 
-  void delete(Year year, Goal goal, Strategy strat) {
+  void delete(Strategy strat) {
     fbService.deleteStrategy(year.key, goal.key, strat.key);
     goal.strategies.remove(strat);
     saveDialog = !fbService.preventAdditional;
     message = "Strategy Deleted";
   }
 
-  void update(Year year, Goal goal,Strategy strat)
+  void update(Strategy strat)
   {
     fbService.changeStratName(year, goal, strat);
     fbService.changeStratDescription(year, goal, strat);
