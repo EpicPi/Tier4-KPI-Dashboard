@@ -1,17 +1,11 @@
-body {
-    font: 15px/20px 'Segoe UI', 'Open Sans', Verdana, Arial;
-    margin: 0;
-    padding: 24px;
-
-}
-
-/*canvas {*/
-/*border: 1px solid;*/
-/*}*/
-
 .graph-main{
     text-align: center;
 }
 .graph{
     text-align: center;
+}
+h3{
+    font-size: 19px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.87);
 }

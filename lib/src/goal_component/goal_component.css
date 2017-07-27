@@ -24,3 +24,13 @@
 .passButton{
     text-align: center;
 }
+.small{
+    font-size: xx-small;
+    text-align: right;
+    color: darkgrey;
+}
+h3{
+    font-size: 19px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.87);
+}

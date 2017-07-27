@@ -13,14 +13,16 @@
 </div>
 
 <div *ngIf="authen">
-    <br>
-    <material-select [width]="0" class="bordered-list">
+    <material-select style="float: left" [width]="0" class="bordered-list">
         <material-select-item *ngFor="let yr of fbService.years"
                               (trigger)="year = yr"
                               [selected]="year == yr">
             {{yr.toNum()}}
         </material-select-item>
     </material-select>
+    <div style="width:100%;text-align: center">
+        <img src="t4.jpg" style="width:25%;height:25%;">
+    </div>
     <br>
     <material-tab-panel>
         <material-tab label="summary">

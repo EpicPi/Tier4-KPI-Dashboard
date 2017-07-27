@@ -9,11 +9,9 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
     selector: 'my-summary',
     styleUrls: const ['summary_component.css'],
     templateUrl: 'summary_component.html',
-    directives: const [materialDirectives,
-    COMMON_DIRECTIVES,
-    CORE_DIRECTIVES],
+    directives: const [materialDirectives, COMMON_DIRECTIVES, CORE_DIRECTIVES],
     providers: const [])
-class SummaryComponent implements AfterContentInit, DoCheck{
+class SummaryComponent implements AfterContentInit, DoCheck {
   @Input()
   Year year;
   int yr = 2016;
@@ -35,7 +33,7 @@ class SummaryComponent implements AfterContentInit, DoCheck{
   var goals;
   var chart;
 
-  var options1={
+  var options1 = {
     // String - The background color of the gauges.
     'gaugeBackgroundColor': '#dbdbdb',
 
@@ -45,14 +43,10 @@ class SummaryComponent implements AfterContentInit, DoCheck{
       'enabled': true,
 
       // Map - An object that controls the styling of the gauge labels.
-      'style': {
-        'color': '#212121',
-        'fontSize': 17,
-        'fontStyle': 'normal'
-      }
+      'style': {'color': '#212121', 'fontSize': 17, 'fontStyle': 'normal'}
     }
   };
-  var options2={
+  var options2 = {
     // String - The background color of the gauges.
     'gaugeBackgroundColor': '#dbdbdb',
 
@@ -62,11 +56,7 @@ class SummaryComponent implements AfterContentInit, DoCheck{
       'enabled': true,
 
       // Map - An object that controls the styling of the gauge labels.
-      'style': {
-        'color': '#212121',
-        'fontSize': 13,
-        'fontStyle': 'normal'
-      }
+      'style': {'color': '#212121', 'fontSize': 13, 'fontStyle': 'normal'}
     }
   };
   @override
@@ -76,8 +66,7 @@ class SummaryComponent implements AfterContentInit, DoCheck{
     divElement = div.nativeElement;
   }
 
-  void createChart()
-  {
+  void createChart() {
     yr = year.year;
     List<List> data = new List<List>();
     data.add(["name", "value"]);
@@ -86,11 +75,7 @@ class SummaryComponent implements AfterContentInit, DoCheck{
 
     var canvas2 = new CanvasElement();
     canvas2.style..width = "80%";
-   var text = new HeadingElement.h1();
-   text.innerHtml=year.year.toString();
-   canvasElement.append(text);
     canvasElement.append(canvas2);
-
     chart = createGaugeChart(canvas2, new DataTable(data), options1);
   }
 
@@ -103,45 +88,40 @@ class SummaryComponent implements AfterContentInit, DoCheck{
 
   // TODO: need to make this create multiple rows if necessary
   void createSubGraph(MouseEvent e) {
-
-
     //if you didn't click on a graph, do nothing
     var index = getIndex(e);
     if (index < 0) return;
 
     //only one display open at a a time
-    while (divElement.childNodes.length > 0) divElement.childNodes.last.remove();
+    while (divElement.childNodes.length > 0)
+      divElement.childNodes.last.remove();
 
     var canvas2 = new CanvasElement();
-    canvas2.style
-      ..width = "80%";
+    canvas2.style..width = "80%";
 //    ..height="250px%";
     divElement.hidden = false;
-    var text = new HeadingElement.h2();
-    text
-      ..innerHtml = year.goals[index].name;
+    var text = new HeadingElement.h3();
+    text..innerHtml = year.goals[index].name;
+    text.style
+      ..setProperty("font-size", "19px")
+      ..setProperty("font-weight", "400")
+      ..setProperty("color", "rgba(0, 0, 0, 0.87)");
     divElement.append(text);
     divElement.append(canvas2);
     createGaugeChart(canvas2, year.goals[index].dataTable, options2);
-
   }
-
 
   @override
   ngDoCheck() {
-    if(yr!=year.year)
-    {
-      if(canvasElement == null)
-        canvasElement = canvas.nativeElement;
-      if(divElement == null)
-        divElement = div.nativeElement;
-      while (canvasElement.childNodes.length > 0) canvasElement.childNodes.last.remove();
-      while (divElement.childNodes.length>0 )divElement.childNodes.last.remove();
+    if (yr != year.year) {
+      if (canvasElement == null) canvasElement = canvas.nativeElement;
+      if (divElement == null) divElement = div.nativeElement;
+      while (canvasElement.childNodes.length > 0)
+        canvasElement.childNodes.last.remove();
+      while (divElement.childNodes.length > 0)
+        divElement.childNodes.last.remove();
       createChart();
       divElement.hidden = true;
     }
-
-
   }
-
 }
