@@ -51,7 +51,8 @@
     <material-dialog
             info
             [autoDismissable]="true"
-            (dismiss)="saveDialog = false">
+            (dismiss)="saveDialog = false"
+            autoFocus (keyup.enter)="saveDialog = false">
         <div header>
             <h3>{{message}}</h3>
         </div>
