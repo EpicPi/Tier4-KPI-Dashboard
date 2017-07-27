@@ -40,17 +40,18 @@
     </material-fab>
     <br>
     <br>
+    <hr>
 
     <div class="left">
 
         <h3>Set Password</h3>
 
-            <material-input class="passInput" type="password" floatinglabel label="New Password"
-                            #newPass></material-input>
-            <br>
-            <material-input class="passInput" type="password" floatinglabel label="New Password Again"
-                            #newPass2></material-input>
-            <br>
+        <material-input class="passInput" type="password" floatinglabel label="New Password"
+                        #newPass></material-input>
+        <br>
+        <material-input class="passInput" type="password" floatinglabel label="New Password Again"
+                        #newPass2></material-input>
+        <br>
         <div class="passButton">
             <material-button class="passButton" raised class="gray"
                              (click)="setPassword(newPass.inputText, newPass2.inputText)"
@@ -65,12 +66,12 @@
 
         <h3>Set Admin Password</h3>
 
-            <material-input class="passInput" type="password" floatinglabel label="New Admin Key"
-                            #newAdmin></material-input>
-            <br>
-            <material-input class="passInput" type="password" floatinglabel label="New Password Again"
-                            #newAdmin2></material-input>
-            <br>
+        <material-input class="passInput" type="password" floatinglabel label="New Admin Key"
+                        #newAdmin></material-input>
+        <br>
+        <material-input class="passInput" type="password" floatinglabel label="New Password Again"
+                        #newAdmin2></material-input>
+        <br>
         <div class="passButton">
             <material-button raised class="gray"
                              (click)="setAdminPass(newAdmin.inputText, newAdmin2.inputText)"

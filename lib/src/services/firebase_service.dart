@@ -332,7 +332,7 @@ class FirebaseService {
         .set(maxValue);
   }
 
-  Future changeVal(Year year, Goal goal, Strategy strat, Initiative init, Dir dir, Value val) async {
+  Future changeVal(Year year, Goal goal, Strategy strat, Initiative init, Dir dir, Value val, num number) async {
     await _fbRefYears
         .child(year.key)
         .child("goals")
@@ -346,7 +346,7 @@ class FirebaseService {
         .child("values")
         .child(val.key)
         .child("value")
-        .set(val.value);
+        .set(number);
   }
 
   Future changePass(String s) async {

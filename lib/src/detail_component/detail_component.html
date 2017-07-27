@@ -1,10 +1,10 @@
 <material-expansionpanel-set>
-    <material-expansionpanel *ngFor="let goal of year.goals"
+    <material-expansionpanel flat *ngFor="let goal of year.goals"
                              name="{{goal.name}}"
                              secondaryText="{{goal.description}}"
                              [showSaveCancel]="false">
         <material-expansionpanel-set>
-            <material-expansionpanel *ngFor="let strat of goal.strategies"
+            <material-expansionpanel flat *ngFor="let strat of goal.strategies"
                                      name="{{strat.name}}"
                                      secondaryText = "{{strat.description}}"
                                      [showSaveCancel]="false">

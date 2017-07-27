@@ -6,70 +6,85 @@ import 'package:kpi_dash/src/models/models.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
 import 'dart:html';
 
-
 @Component(
   selector: 'my-val',
   styleUrls: const ['val_component.css'],
   templateUrl: 'val_component.html',
-  directives: const [materialDirectives, COMMON_DIRECTIVES, CORE_DIRECTIVES,
-  MaterialExpansionPanel, MaterialExpansionPanelSet,
-  DisplayNameRendererDirective,
-  MaterialCheckboxComponent,
-  MaterialDropdownSelectComponent,
-  MaterialSelectComponent,
-  MaterialSelectItemComponent,],
+  directives: const [
+    materialDirectives,
+    COMMON_DIRECTIVES,
+    CORE_DIRECTIVES,
+    MaterialExpansionPanel,
+    MaterialExpansionPanelSet,
+    MaterialDropdownSelectComponent,
+    MaterialSelectComponent,
+    MaterialSelectItemComponent,
+  ],
   providers: const [materialProviders],
 )
-
 class ValComponent {
+  bool saveDialog = false;
+  String message;
 
-  String protocol;
-  bool disable=false;
-
-  String month = null;
   @Input()
   Year year;
-  Value selectedVal;
 
   final FirebaseService fbService;
-
   ValComponent(this.fbService);
 
-
   var months = const <String>[
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
   ];
 
+  String month = "January";
 
-  void pickMonth(String m) {
-    month = m;
-    print (month);
-  }
-
-
-  num inputVal = null;
-  void addValue(Year year, Goal goal, Strategy strat, Initiative init, Dir dir,) {
-    num value = inputVal;
+  void addValue(Year year, Goal goal, Strategy strat, Initiative init, Dir dir,
+      String number) {
+    num value = int.parse(number);
 
     if (value == null) return;
 
     fbService.addVal(year, goal, strat, init, dir, month, value);
+    message = "Value Added";
+    saveDialog = !fbService.preventAdditional;
   }
 
-  void deleteValue(Year year, Goal goal, Strategy strat, Initiative init, Dir dir, Value val){
-    fbService.deleteVal(year.key, goal.key, strat.key, init.key, dir.key, val.key);
-    dir.values.remove(val);
+  void changeValue(Year year, Goal goal, Strategy strat, Initiative init,
+      Dir dir, Value val, String input) {
+    num number = int.parse(input);
+    fbService.changeVal(year, goal, strat, init, dir, val, number);
+    message = "Edit Saved";
+    saveDialog = !fbService.preventAdditional;
   }
 
-  void changeValue(Year year, Goal goal, Strategy strat, Initiative init, Dir dir, Value val){
-    fbService.changeVal(year, goal, strat, init, dir, val);
+  bool contains(Dir dir) {
+    return getVal(dir) != null;
   }
 
-  void alert(String s)
-  {
-    window.alert(s);
+  Value getVal(Dir dir) {
+    for (Value val in dir.values) {
+      if (val.month == month) return val;
+    }
+    return null;
   }
 
-
+  num getTotalToDate(Dir dir) {
+    int total = 0;
+    int monIndex = months.indexOf(month);
+    for (Value val in dir.values) {
+      if (months.indexOf(val.month) < monIndex) total += val.value;
+    }
+    return total;
+  }
 }

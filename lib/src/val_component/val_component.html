@@ -1,95 +1,76 @@
-<!--<div [hidden]="fbService.user == null" hidden;>-->
-
-<br>
-<br>
-Select Month:
-<div>{{month}}</div>
-<material-dropdown-select [width]="2">
+<material-dropdown-select [width]="2" [buttonText]="month">
     <material-select-item *ngFor="let mon of months"
                           (trigger)="month = mon"
                           [selected]="month == mon">
-            {{mon}}
+        {{mon}}
     </material-select-item>
 </material-dropdown-select>
-
-
-<div *ngIf = "month != null">
-    <div *ngFor="let goal of year.goals">
-        <h3>
-            Goal {{year.goals.indexOf(goal,0)+1}}
-        </h3>
-            <h5 class="name">
-                {{goal.name}}
-            </h5>
-        <br>
+<br>
+<hr>
+<br>
+<material-expansionpanel-set>
+    <material-expansionpanel *ngFor="let goal of year.goals" flat
+                             name="Goal {{year.goals.indexOf(goal,0)+1}}: {{goal.name}}"
+                             [showSaveCancel]="false">
         <material-expansionpanel-set>
-        <material-expansionpanel flat name="Strategies" [showSaveCancel]="false" [hideExpandedHeader]="true">
-            <div *ngFor="let strat of goal.strategies">
-                <h3>Strategy {{goal.strategies.indexOf(strat,0)+1}}</h3>
-                <h5 class="name2">
-                    {{strat.name}}
-                </h5>
-            <br>
-            <material-expansionpanel-set>
-            <material-expansionpanel flat name="Initiatives" [showSaveCancel]="false" [hideExpandedHeader]="true">
-                <div *ngFor="let init of strat.initiatives">
-                    <h3>Initiative {{strat.initiatives.indexOf(init,0)+1}}</h3>
-                    <h5 class="name3">
-                        {{init.name}}
-                    </h5>
-                <br>
+            <material-expansionpanel *ngFor="let strat of goal.strategies" flat
+                                     name="Strategy {{goal.strategies.indexOf(strat)+1}}: {{strat.name}}"
+                                     [showSaveCancel]="false">
                 <material-expansionpanel-set>
-                <material-expansionpanel flat name="Directives" [showSaveCancel]="false" [hideExpandedHeader]="true">
-                    <div *ngFor="let dir of init.directives">
-                        <h3>Directive {{init.directives.indexOf(dir,0)+1}}</h3>
-                        <h5 class="name4">
-                            {{dir.name}}
-                            <br>
-                            Max Value: {{dir.maxValue}}
-                        </h5>
-                        <div *ngFor="let val of dir.values">
-                            <div *ngIf="val.month == month">
-                                <div class="val">
-                                    <h5 class="name5">
-                                        <h4>Value: <input type="number" [(ngModel)]="val.value"></h4>
-                                    </h5>
-                                    <material-fab raised class="red" (click)="deleteValue(year, goal, strat, init, dir, val)">
-                                        <glyph icon="delete"></glyph>
-                                    </material-fab>
-                                    <material-fab raised class="idk" (click)="changeValue(year, goal, strat, init, dir, val)"
-                                                  (click)="alert('Your edit has been saved.')">
+                    <material-expansionpanel *ngFor="let init of strat.initiatives" flat
+                                             name="Initiative {{strat.initiatives.indexOf(init)+1}}: {{init.name}}"
+                                             [showSaveCancel]="false">
+                        <material-expansionpanel-set>
+                            <material-expansionpanel *ngFor="let dir of init.directives" flat
+                                                     name="Directive {{init.directives.indexOf(dir)+1}}: {{dir.name}}"
+                                                     [showSaveCancel]="false">
+                                Max Value: {{dir.maxValue}}
+                                <br>
+                                Total To Date: {{getTotalToDate(dir)}}
+                                <br>
+                                <br>
+                                <div *ngIf="contains(dir)">
+                                    <material-input #num type="number" floatingLabel label="Value"
+                                                    [ngModel]="getVal(dir).value.toString()"></material-input>
+                                    <material-fab mini raised class="blue"
+                                                  (click)="changeValue(year, goal, strat, init, dir, getVal(dir), num.inputText)">
                                         <glyph icon="save"></glyph>
                                     </material-fab>
                                 </div>
-                            </div>
-                        </div>
-                    <div class="add">
-                        <h4>Add Value:</h4>
-                        <label>Value: </label>
-                        <input type="number" [(ngModel)]="inputVal" value="0"
-                               (keyup.enter)="addValue(year, goal, strat, init, dir)"
-                               (keyup.enter)="inputVal = null ">
-                        <br>
-                        <br>
-                        <material-button raised class="blue" (click)="addValue(year, goal, strat, init, dir)"
-                                         (click)="inputVal = null ">
-                            Add
-                        </material-button>
-                    </div>
-                    </div>
-                </material-expansionpanel>
+                                <div *ngIf="!contains(dir)">
+                                    <material-input #addNum type="number" floatingLabel label="Value"
+                                                    (keyup.enter)="addValue(year, goal, strat, init, dir, addNum.inputText)"
+                                                    (keyup.enter)="addNum.inputText = '' "></material-input>
+                                    <material-fab mini raised class="blue"
+                                                  (click)="addValue(year, goal, strat, init, dir, addNum.inputText)"
+                                                  (click)="addNum.inputText = ''">
+                                        <glyph icon="add_circle"></glyph>
+                                    </material-fab>
+                                </div>
+                            </material-expansionpanel>
+                        </material-expansionpanel-set>
+                    </material-expansionpanel>
                 </material-expansionpanel-set>
-                </div>
-                </material-expansionpanel>
-            </material-expansionpanel-set>
-            </div>
             </material-expansionpanel>
         </material-expansionpanel-set>
-    </div>
-</div>
+    </material-expansionpanel>
+</material-expansionpanel-set>
 
-
-
+<modal [(visible)]="saveDialog">
+    <material-dialog
+            info
+            [autoDismissable]="true"
+            (dismiss)="saveDialog = false">
+        <div header style="text-align: center">
+            <h3>{{message}}</h3>
+        </div>
+        <br>
+        <br>
+        <material-button raised class="gray" (trigger)="fbService.preventAdditional = true" (trigger)="saveDialog=false">
+            prevent additional
+        </material-button>
+    </material-dialog>
+</modal>
 
 
 
