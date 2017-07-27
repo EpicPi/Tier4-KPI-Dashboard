@@ -6,7 +6,7 @@
             </h3>
             <material-input style="width:43%" floatingLabel label="Directive Name"
                             [(ngModel)]="dir.name"></material-input>
-            <material-input style="width:43%" floatingLabel label="Directive Description"
+            <material-input style="width:43%" floatingLabel label="Accountability (Data Entry)"
                             [(ngModel)]="dir.description"></material-input>
             <material-input #maxVal style="width:10%" floatingLabel label="Directive Max Value"
                             [ngModel]="dir.maxValue.toString()"></material-input>
@@ -24,7 +24,7 @@
         </div>
         <h3>Add Directive</h3>
         <material-input #name style="width:42%" type="text" floatingLabel label="Directive Name"></material-input>
-        <material-input #desc style="width:42%" type="text" floatingLabel label="Directive Description"></material-input>
+        <material-input #desc style="width:42%" type="text" floatingLabel label="Accountability (Data Entry)"></material-input>
         <material-input #maxv style="width:10%" type="number" floatingLabel label="Max Value"
                         (keyup.enter)="add(name.inputText,desc.inputText,maxv.inputText)" (keyup.enter)="name.inputText=''"
                         (keyup.enter)="desc.inputText=''"(keyup.enter)="maxv.inputText=''"></material-input>

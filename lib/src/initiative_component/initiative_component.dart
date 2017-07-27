@@ -10,21 +10,15 @@ import 'package:kpi_dash/src/models/year.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
 
 @Component(
-  selector: 'my-init',
-  styleUrls: const ['initiative_component.css'],
-  templateUrl: 'initiative_component.html',
-  directives: const [
-    materialDirectives,
-    COMMON_DIRECTIVES,
-    CORE_DIRECTIVES,
-    MaterialExpansionPanel,
-    MaterialExpansionPanelSet,
-    DirectiveComponent
-  ],
-  providers: const [
-    materialProviders,
-  ],
-)
+    selector: 'my-init',
+    styleUrls: const ['initiative_component.css'],
+    templateUrl: 'initiative_component.html',
+    directives: const [
+      materialDirectives,
+      COMMON_DIRECTIVES,
+      CORE_DIRECTIVES,
+      DirectiveComponent
+    ])
 class InitiativeComponent {
   @Input()
   Year year;
@@ -42,7 +36,7 @@ class InitiativeComponent {
   InitiativeComponent(this.fbService);
 
   void add(String name, String description) {
-    if (name.isEmpty||description.isEmpty) return;
+    if (name.isEmpty || description.isEmpty) return;
     fbService.addInit(year, goal, strat, name, description);
     saveDialog = !fbService.preventAdditional;
     message = "Initiative Added";
@@ -55,8 +49,7 @@ class InitiativeComponent {
     message = "Initiative Deleted";
   }
 
-  void update(Initiative init)
-  {
+  void update(Initiative init) {
     fbService.changeInitName(year, goal, strat, init);
     fbService.changeInitDescription(year, goal, strat, init);
     saveDialog = !fbService.preventAdditional;

@@ -8,25 +8,15 @@ import 'package:kpi_dash/src/models/year.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
 
 @Component(
-  selector: 'my-strategy',
-  styleUrls: const ['strategy_component.css'],
-  templateUrl: 'strategy_component.html',
-  directives: const [
-    materialDirectives,
-    COMMON_DIRECTIVES,
-    CORE_DIRECTIVES,
-    InitiativeComponent,
-    DirectiveComponent,
-    MaterialExpansionPanel,
-    MaterialExpansionPanelSet,
-    AutoDismissDirective,
-    AutoFocusDirective,
-    ModalComponent,
-  ],
-  providers: const [
-    materialProviders,
-  ],
-)
+    selector: 'my-strategy',
+    styleUrls: const ['strategy_component.css'],
+    templateUrl: 'strategy_component.html',
+    directives: const [
+      materialDirectives,
+      COMMON_DIRECTIVES,
+      CORE_DIRECTIVES,
+      InitiativeComponent,
+    ])
 class StrategyComponent {
   @Input()
   Year year;
@@ -41,7 +31,7 @@ class StrategyComponent {
   String message;
 
   void add(String name, String description) {
-    if (name.isEmpty||description.isEmpty) return;
+    if (name.isEmpty || description.isEmpty) return;
     fbService.addStrat(year, goal, name, description);
 
     saveDialog = !fbService.preventAdditional;
@@ -56,13 +46,11 @@ class StrategyComponent {
     message = "Strategy Deleted";
   }
 
-  void update(Strategy strat)
-  {
+  void update(Strategy strat) {
     fbService.changeStratName(year, goal, strat);
     fbService.changeStratDescription(year, goal, strat);
 
     saveDialog = !fbService.preventAdditional;
     message = "Edit Saved";
   }
-
 }

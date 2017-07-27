@@ -15,11 +15,7 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
     materialDirectives,
     COMMON_DIRECTIVES,
     CORE_DIRECTIVES,
-    MaterialExpansionPanel,
-    MaterialExpansionPanelSet
-  ],
-  providers: const [materialProviders],
-)
+  ])
 class DirectiveComponent {
   @Input()
   Year year;

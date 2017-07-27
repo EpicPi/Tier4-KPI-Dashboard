@@ -23,38 +23,25 @@ import 'package:kpi_dash/src/val_component/val_component.dart';
     CORE_DIRECTIVES,
     DetailComponent,
     GoalComponent,
-    StrategyComponent,
-    InitiativeComponent,
-    DirectiveComponent,
     ValComponent,
-    ROUTER_DIRECTIVES,
-    MaterialDropdownSelectComponent,
-    MaterialSelectComponent,
-    MaterialExpansionPanel,
-    MaterialExpansionPanelSet,
-    NgFor,
     SummaryComponent,
-    MaterialButtonComponent,
-    MaterialFabComponent,
   ],
   providers: const [materialProviders, FirebaseService],
 )
-class AppComponent{
+class AppComponent {
   Year year;
   bool authen = false;
 
   bool saveDialog = false;
   String message;
 
-
-  void checkPass(String pass){
-    if(pass == fbService.password)
-      authen=true;
-    else
-      {
-        saveDialog = true;
-        message="Incorrect Password";
-      }
+  void checkPass(String pass) {
+    if (pass == fbService.password)
+      authen = true;
+    else {
+      saveDialog = true;
+      message = "Incorrect Password";
+    }
   }
 
   final FirebaseService fbService;

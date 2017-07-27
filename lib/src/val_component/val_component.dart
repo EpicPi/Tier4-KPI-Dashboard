@@ -13,15 +13,8 @@ import 'dart:html';
   directives: const [
     materialDirectives,
     COMMON_DIRECTIVES,
-    CORE_DIRECTIVES,
-    MaterialExpansionPanel,
-    MaterialExpansionPanelSet,
-    MaterialDropdownSelectComponent,
-    MaterialSelectComponent,
-    MaterialSelectItemComponent,
-  ],
-  providers: const [materialProviders],
-)
+    CORE_DIRECTIVES
+  ])
 class ValComponent {
   bool saveDialog = false;
   String message;
