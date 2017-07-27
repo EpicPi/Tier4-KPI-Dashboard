@@ -1,27 +1,44 @@
 <material-expansionpanel-set>
-    <material-expansionpanel flat *ngFor="let goal of year.goals"
-                             name="{{goal.name}}"
+    <material-expansionpanel *ngFor="let goal of year.goals" flat
+                             name="Goal {{year.goals.indexOf(goal)+1}}: {{goal.name}}"
                              secondaryText="{{goal.description}}"
                              [showSaveCancel]="false">
         <material-expansionpanel-set>
-            <material-expansionpanel flat *ngFor="let strat of goal.strategies"
-                                     name="{{strat.name}}"
-                                     secondaryText = "{{strat.description}}"
+            <material-expansionpanel *ngFor="let strat of goal.strategies" flat
+                                     name="Strategy {{goal.strategies.indexOf(strat)+1}}: {{strat.name}}"
+                                     secondaryText="{{strat.description}}"
                                      [showSaveCancel]="false">
-
-                <div class="init" *ngFor="let init of strat.initiatives">
-                    name: {{init.name}}
-                    secondaryText: {{init.description}}
-                    <div class="dir" *ngFor="let dir of init.directives">
-                        name: {{dir.name}}
-                        secondaryText: {{dir.description}}
-                        value: {{dir.maxValue}}
-                    </div>
-                </div>
+                <material-expansionpanel-set>
+                    <material-expansionpanel *ngFor="let init of strat.initiatives" flat
+                                             name="Initiative {{strat.initiatives.indexOf(init)+1}}: {{init.name}}"
+                                             secondaryText="{{init.description}}"
+                                             [showSaveCancel]="false">
+                        <div *ngFor="let dir of init.directives">
+                            <div style="position: relative;left: 10px">
+                                {{init.directives.indexOf(dir)+1}}: {{dir.name}}
+                                <br>
+                                <small>{{dir.description}}</small>
+                                <br>
+                                <red-material-progress *ngIf="dir.percentage < 33"
+                                                       [activeProgress]=dir.percentage></red-material-progress>
+                                <yellow-material-progress *ngIf="dir.percentage > 32 && dir.percentage < 67"
+                                                          [activeProgress]=dir.percentage></yellow-material-progress>
+                                <green-material-progress *ngIf="dir.percentage >66"
+                                                         [activeProgress]=dir.percentage></green-material-progress>
+                            </div>
+                            <br>
+                            <div *ngIf="init.directives.indexOf(dir) < (init.directives.length-1)">
+                                <hr>
+                                <br>
+                            </div>
+                        </div>
+                    </material-expansionpanel>
+                </material-expansionpanel-set>
             </material-expansionpanel>
         </material-expansionpanel-set>
     </material-expansionpanel>
 </material-expansionpanel-set>
+
 
 
 

@@ -10,7 +10,7 @@
 <br>
 <material-expansionpanel-set>
     <material-expansionpanel *ngFor="let goal of year.goals" flat
-                             name="Goal {{year.goals.indexOf(goal,0)+1}}: {{goal.name}}"
+                             name="Goal {{year.goals.indexOf(goal)+1}}: {{goal.name}}"
                              [showSaveCancel]="false">
         <material-expansionpanel-set>
             <material-expansionpanel *ngFor="let strat of goal.strategies" flat

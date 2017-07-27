@@ -1,5 +1,8 @@
 import 'package:angular2/angular2.dart';
 import 'package:angular_components/angular_components.dart';
+import 'package:kpi_dash/material_progress/green_material_progress.dart';
+import 'package:kpi_dash/material_progress/red_material_progress.dart';
+import 'package:kpi_dash/material_progress/yellow_material_progress.dart';
 import 'package:kpi_dash/src/models/models.dart';
 import 'package:kpi_dash/src/services/firebase_service.dart';
 
@@ -10,15 +13,14 @@ import 'package:kpi_dash/src/services/firebase_service.dart';
       'detail_component.css'
     ],
     directives: const [
-
       materialDirectives,
       COMMON_DIRECTIVES,
       CORE_DIRECTIVES,
       MaterialExpansionPanel,
       MaterialExpansionPanelSet,
-    ],
-    providers: const [
-      materialProviders
+      RedMaterialProgressComponent,
+      GreenMaterialProgressComponent,
+      YellowMaterialProgressComponent
     ])
 class DetailComponent{
   @Input()
