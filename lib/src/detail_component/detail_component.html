@@ -14,21 +14,22 @@
                                              secondaryText="{{init.description}}"
                                              [showSaveCancel]="false">
                         <div *ngFor="let dir of init.directives">
-                            <div style="position: relative;left: 10px">
-                                {{init.directives.indexOf(dir)+1}}: {{dir.name}}
-                                <br>
-                                <small>{{dir.description}}</small>
-                                <br>
+                            <div style="position: relative;left: 2%">
+                                <div class="normalText">{{init.directives.indexOf(dir)+1}}. {{dir.name}}</div>
+                                <div class="smallText">{{dir.description}}</div>
                                 <red-material-progress *ngIf="dir.percentage < 33"
                                                        [activeProgress]=dir.percentage></red-material-progress>
                                 <yellow-material-progress *ngIf="dir.percentage > 32 && dir.percentage < 67"
                                                           [activeProgress]=dir.percentage></yellow-material-progress>
                                 <green-material-progress *ngIf="dir.percentage >66"
                                                          [activeProgress]=dir.percentage></green-material-progress>
+                                <br>
+                                <div class="smallText" style="text-align: right;margin-right: 2%">
+                                    {{dir.total}} / {{dir.maxValue}}
+                                </div>
                             </div>
-                            <br>
                             <div *ngIf="init.directives.indexOf(dir) < (init.directives.length-1)">
-                                <hr>
+                                <!--<hr>-->
                                 <br>
                             </div>
                         </div>

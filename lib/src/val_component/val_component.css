@@ -1,22 +1,13 @@
+.red {
+    background-color: #f44336;
+    color: white;
+}
 
-
+.gray{
+    background-color: darkgrey;
+    color: white;
+}
 .blue{
     background-color: dodgerblue;
-    color: whitesmoke;
-}
-
-.red{
-    background-color: red;
-    color: whitesmoke;
-}
-
-div.add{
-    position:relative;
-    left:180px;
-}
-
-h5{
-    position: relative;
-    left: 20px;
-    font-size: 110%;
+    color: white;
 }
