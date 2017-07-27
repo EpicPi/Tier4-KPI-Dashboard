@@ -43,7 +43,7 @@ class SummaryComponent implements AfterContentInit, DoCheck {
       'enabled': true,
 
       // Map - An object that controls the styling of the gauge labels.
-      'style': {'color': '#212121', 'fontSize': 17, 'fontStyle': 'normal'}
+      'style': {'color': 'rgba(0, 0, 0, 0.87)', 'fontSize': 15, 'fontWeight': '400'}
     }
   };
   var options2 = {
@@ -86,7 +86,6 @@ class SummaryComponent implements AfterContentInit, DoCheck {
     return chart.getEntityGroupIndexGeneral(x, y);
   }
 
-  // TODO: need to make this create multiple rows if necessary
   void createSubGraph(MouseEvent e) {
     //if you didn't click on a graph, do nothing
     var index = getIndex(e);
@@ -98,7 +97,6 @@ class SummaryComponent implements AfterContentInit, DoCheck {
 
     var canvas2 = new CanvasElement();
     canvas2.style..width = "80%";
-//    ..height="250px%";
     divElement.hidden = false;
     var text = new HeadingElement.h3();
     text..innerHtml = year.goals[index].name;
