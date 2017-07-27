@@ -23,12 +23,8 @@
                         <material-expansionpanel-set>
                             <material-expansionpanel *ngFor="let dir of init.directives" flat
                                                      name="Directive {{init.directives.indexOf(dir)+1}}: {{dir.name}}"
-                                                     [showSaveCancel]="false">
-                                Max Value: {{dir.maxValue}}
-                                <br>
-                                Total To Date: {{getTotalToDate(dir)}}
-                                <br>
-                                <br>
+                                                     [showSaveCancel]="false"
+                                                     secondaryText="Total To Date: {{getTotalToDate(dir)}} / {{dir.maxValue}}">
                                 <div *ngIf="contains(dir)">
                                     <material-input #num type="number" floatingLabel label="Value"
                                                     [ngModel]="getVal(dir).value.toString()"></material-input>
@@ -66,7 +62,8 @@
         </div>
         <br>
         <br>
-        <material-button raised class="gray" (trigger)="fbService.preventAdditional = true" (trigger)="saveDialog=false">
+        <material-button raised class="gray" (trigger)="fbService.preventAdditional = true"
+                         (trigger)="saveDialog=false">
             prevent additional
         </material-button>
     </material-dialog>
