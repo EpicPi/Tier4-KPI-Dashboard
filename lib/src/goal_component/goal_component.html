@@ -11,9 +11,9 @@
             Goal {{year.goals.indexOf(goal)+1}}
         </h3>
         <material-input style="width:47%" floatingLabel label="Goal Name" type="text"
-                        [(ngModel)]="goal.name"></material-input>
+                        [(ngModel)]="goal.name" multiline="true"></material-input>
         <material-input style="width:47%" floatingLabel label="Goal Description"
-                        [(ngModel)]="goal.description"></material-input>
+                        [(ngModel)]="goal.description" multiline="true"></material-input>
         <my-strategy [year]=year [goal]="goal"></my-strategy>
         <br>
         <material-fab raised class="red" mini (click)="delete(year,goal)">
@@ -28,10 +28,10 @@
     </div>
 
     <h3>Add Goal</h3>
-    <material-input #name style="width:47%" floatingLabel label="Goal Name" type="text"></material-input>
+    <material-input #name style="width:47%" floatingLabel label="Goal Name" type="text" multiline="true"></material-input>
     <material-input #desc style="width:47%" floatingLabel label="Goal Description" type="text"
                     (keyup.enter)="add(year,name.inputText, desc.inputText)" (keyup.enter)="name.inputText=''"
-                    (keyup.enter)="desc.inputText=''"></material-input>
+                    (keyup.enter)="desc.inputText=''" multiline="true"></material-input>
     <material-fab raised mini class="blue" (click)="add(year,name.inputText, desc.inputText)"
                   (click)="name.inputText=''"
                   (click)="desc.inputText=''">

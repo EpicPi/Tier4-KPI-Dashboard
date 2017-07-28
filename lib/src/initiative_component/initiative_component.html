@@ -5,9 +5,9 @@
                     Initiative {{strat.initiatives.indexOf(init)+1}}
                 </h3>
                 <material-input style="width:47%" floatingLabel label="Initiative Name"
-                                [(ngModel)]="init.name"></material-input>
+                                [(ngModel)]="init.name" multiline="true"></material-input>
                 <material-input style="width:47%" floatingLabel label="Initiative Description"
-                                [(ngModel)]="init.description"></material-input>
+                                [(ngModel)]="init.description" multiline="true"></material-input>
                 <my-dir [year]=year [goal]="goal" [strat]="strat" [init]="init"></my-dir>
                 <br>
                 <material-fab raised mini class="red" (click)="delete(init)">
@@ -22,10 +22,10 @@
                 <br>
             </div>
             <h3>Add Initiative</h3>
-        <material-input #name style="width:47%" type="text" floatingLabel label="Initiative Name"></material-input>
+        <material-input #name style="width:47%" type="text" floatingLabel label="Initiative Name" multiline="true"></material-input>
         <material-input #desc style="width:47%" type="text" floatingLabel label="Initiative Description"
                         (keyup.enter)="add(name.inputText,desc.inputText)" (keyup.enter)="name.inputText=''"
-                        (keyup.enter)="desc.inputText=''"></material-input>
+                        (keyup.enter)="desc.inputText=''" multiline="true"></material-input>
         <material-fab raised mini class="blue" (click)="add(name.inputText, desc.inputText)"
                       (click)="name.inputText=''" (click)="desc.inputText=''">
             <glyph icon="add_circle"></glyph>

@@ -5,9 +5,9 @@
                 Strategy {{goal.strategies.indexOf(strat)+1}}
             </h3>
             <material-input style="width:47%" floatingLabel label="Strategy Name"
-                            [(ngModel)]="strat.name"></material-input>
+                            [(ngModel)]="strat.name" multiline="true"></material-input>
             <material-input style="width:47%" floatingLabel label="Strategy Description"
-                            [(ngModel)]="strat.description"></material-input>
+                            [(ngModel)]="strat.description" multiline="true"></material-input>
             <my-init [year]=year [goal]=goal [strat]="strat"></my-init>
             <br>
             <material-fab raised mini class="red" (click)="delete(strat)">
@@ -22,10 +22,10 @@
             <br>
         </div>
         <h3>Add Strategy</h3>
-        <material-input #name style="width:47%" type="text" floatingLabel label="Strategy Name"></material-input>
+        <material-input #name style="width:47%" type="text" floatingLabel label="Strategy Name" multiline="true"></material-input>
         <material-input #desc style="width:47%" type="text" floatingLabel label="Strategy Description"
                         (keyup.enter)="add(name.inputText,desc.inputText)" (keyup.enter)="name.inputText=''"
-                        (keyup.enter)="desc.inputText=''"></material-input>
+                        (keyup.enter)="desc.inputText=''" multiline="true"></material-input>
         <material-fab raised mini class="blue" (click)="add(name.inputText, desc.inputText)"
                       (click)="name.inputText=''" (click)="desc.inputText=''">
             <glyph icon="add_circle"></glyph>
